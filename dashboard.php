@@ -6,7 +6,12 @@
     }
     extract($_SESSION["userData"]);
     extract($_SESSION["userServerData"]);
-    $avatar_url = "https://cdn.discordapp.com/avatars/".$discord_id."/".$avatar.".jpg";
+    if(isset($avatar)){
+      $avatar_url = "https://cdn.discordapp.com/avatars/".$discord_id."/".$avatar.".jpg";  
+    }else{
+        $avatar_url = "media/profileDefault_avatar.png";
+    }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +70,9 @@
             </div>
             <div class="card-body">
                 <div class="row row-cols-1 row-cols-md-6 g-4">
-                    
+                    <?php if(count($serverNames) == 0){?>
+                       <p id="noServerYet">It seems like you are not connected to any Server yet.</p>
+                     <?php } ?>
                     <?php for($i=0;$i<count($serverNames);$i++){ ?>
                         <?php
                             if(isset($serverIcons[$i])){

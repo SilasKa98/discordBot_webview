@@ -17,8 +17,29 @@ body{
 
 #logoutBtn, #loginWithDiscord_btn{
     position: absolute;
-    top: 10px;
+    top: 18px;
     right: 10px;
+}
+
+#backToAccountImg{
+    position: absolute;
+    top: 8px;
+    right: 10px;
+}
+
+#backToAccountName{
+    display: inline;
+    font-weight:bold;
+    transition: 0.2s ease-out;
+}
+
+#backToAccountName:hover{
+    color: rgb(206, 172, 20);
+}
+
+#backToAccountImg img{
+    border-radius: 50px;
+    border: 2px solid black;
 }
 
 #profileCard{
@@ -50,4 +71,12 @@ body{
     margin-top: 16%;
     border-radius: 50%;
     padding: 1%;
+}
+
+#noServerYet{
+    color: white;
+    margin: 0 auto;
+    margin-top: 2%;
+    font-size: 18pt;
+    width: fit-content;
 }
