@@ -1,0 +1,53 @@
+body{
+    background-color: rgba(9,10,17,0.8) !important;
+}
+
+#headerName{
+    display: inline;
+    position: relative;
+    top: 12px;
+}
+
+#profileAvatar{
+    border-radius: 74px !important;
+    border: 3px solid black;
+    margin-top: 10%;
+    margin-left: 2%;
+}
+
+#logoutBtn, #loginWithDiscord_btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#profileCard{
+    margin-top: 1%;
+    background-color: #202228;
+    color: #ffffff;
+}
+
+#smallProfileCardText{
+    color: #ffffff !important;
+}
+
+#yourServersWrapper{
+    background-color: #202228;
+}
+
+#yourServersTitel{
+    color: #ffffff;
+}
+
+.innerYourServersCard{
+    background-color: #08090a !important;
+    color: white;
+}
+
+#getStartedCard{
+    width: 18rem;
+    margin: 0 auto;
+    margin-top: 16%;
+    border-radius: 50%;
+    padding: 1%;
+}
