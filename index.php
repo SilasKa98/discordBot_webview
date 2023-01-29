@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +28,9 @@
                     <a class="nav-link active" aria-current="page" href="#">Commands</a>
                     <a class="nav-link" href="#">Join Our Discord</a>
                     <a class="nav-link" href="#">Help</a>
+                    <?php if(isset($_SESSION["logged_in"])){ ?>
+                        <a class="nav-link" href="dashboard.php">My Account</a>
+                    <?php }?>
                 </div>
             </div>
         </div>
