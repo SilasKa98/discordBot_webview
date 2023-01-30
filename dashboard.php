@@ -11,6 +11,12 @@
     }else{
         $avatar_url = "media/profileDefault_avatar.png";
     }
+
+    print_r($_SESSION["userServerData"]);
+
+    require __DIR__ . '/vendor/autoload.php';
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
     
 ?>
 <!DOCTYPE html>
@@ -82,16 +88,18 @@
                             }
                         ?>
                         <div class="col">
-                            <div class="card h-100 innerYourServersCard">
-                                <img src='<?php echo $serverImg; ?>' class="card-img-top" alt="Server Icon">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo $serverNames[$i]; ?></h5>
-                                    <p class="card-text">Here could be some nice Information about the server</p>
+                            <a href="<?php echo $_ENV["discord_join_url"]; ?>">
+                                <div class="card h-100 innerYourServersCard">
+                                    <img src='<?php echo $serverImg; ?>' class="card-img-top" alt="Server Icon">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo $serverNames[$i]; ?></h5>
+                                        <p class="card-text">Here could be some nice Information about the server</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small class="text-muted" style="color: white !important;">Last updated 3 mins ago</small>
+                                    </div>
                                 </div>
-                                <div class="card-footer">
-                                    <small class="text-muted" style="color: white !important;">Last updated 3 mins ago</small>
-                                </div>
-                            </div>
+                            </a>
                         </div>
                     <?php } ?>
 
