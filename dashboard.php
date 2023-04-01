@@ -71,7 +71,7 @@
                             }
                         ?>
                         <div class="col">
-                            <a href="<?php echo $_ENV["discord_join_url"]; ?>">
+                            <a href="services/oAuth/server_oAuth/initServerAuth.php">
                                 <div class="card h-100 innerYourServersCard">
                                     <img src='<?php echo $serverImg; ?>' class="card-img-top" alt="Server Icon">
                                     <div class="card-body">
