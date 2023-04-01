@@ -66,12 +66,16 @@ $result3 = json_decode($result3, true);
 $serverNames = [];
 $serverIcons = [];
 $guildIds = [];
+$guildOwner = [];
+$guildPermissions = [];
 foreach($result3 as $key => $value){
     #print_r($value);
     #print "<br><br>";
     array_push($serverNames,$value["name"]);
     array_push($serverIcons,$value["icon"]);
     array_push($guildIds,$value["id"]);
+    array_push($guildOwner,$value["owner"]);
+    array_push($guildPermissions,$value["permissions"]);
 }
 
 
@@ -88,7 +92,9 @@ $_SESSION["userData"] = [
 $_SESSION["userServerData"] = [
     "serverNames"=>$serverNames,
     "serverIcons"=>$serverIcons,
-    "guildIds"=>$guildIds
+    "guildIds"=>$guildIds,
+    "guildOwnerStatus"=>$guildOwner,
+    "guildPermissions"=>$guildPermissions
 ];
 
 
