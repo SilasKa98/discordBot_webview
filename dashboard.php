@@ -24,31 +24,14 @@
 
     <link rel="stylesheet" href="general.css">
 
-    <!--Documentation:-->
-    <!--https://getbootstrap.com/docs/5.3/getting-started/introduction/-->
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">
-                <img src="media/bergfestBot_logo.svg" alt="Logo" width="60" height="48" class="d-inline-block align-text-top">
-                <p id="headerName">Bergfest Bot</p>
-            </a>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="#">Commands</a>
-                    <a class="nav-link" href="#">Join Our Discord</a>
-                    <a class="nav-link" href="#">Help</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <?php include_once "frontend/navbar.php"; ?>
 
     <div class="container-fluid">
-
-        <a href="logout.php" id="logoutBtn"><button>Logout</button></a>
         <div class="card mb-3" id="profileCard" style="max-width: 540px;">
             <div class="row g-0">
                 <div class="col-md-4">

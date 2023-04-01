@@ -4,8 +4,10 @@ if(!isset($_GET["code"])){
     echo "something went wrong, no code found";
     exit();
 }
-require __DIR__ . '/vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+
+$basePath = dirname(__DIR__, 2);
+require $basePath.'/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable($basePath);
 $dotenv->load();
 
 include_once "oAuthService.php";
@@ -90,6 +92,6 @@ $_SESSION["userServerData"] = [
 ];
 
 
-header("Location:dashboard.php")
+header("Location:../../dashboard.php")
 
 ?>

@@ -1,5 +1,6 @@
 <?php
 
+
 class oAuthService{
 
     function __constructor(){
@@ -28,6 +29,10 @@ class oAuthService{
         $result = json_decode($curlResult,true);
         $bearer_token = $result["access_token"];
         return $bearer_token;
+    }
+
+    function initOAuth(){
+
     }
 
 }
