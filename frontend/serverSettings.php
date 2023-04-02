@@ -14,7 +14,7 @@
 
     // API-URL zum Abrufen von Server-Informationen
     $url = "https://discord.com/api/guilds/{$guild_id}";
-    $url2 = "https://discord.com/api/guilds/{$guild_id}/members";
+    $url2 = "https://discord.com/api/guilds/{$guild_id}/members?limit=1000&offset=0";
     $url3 = "https://discord.com/api/guilds/{$guild_id}/channels";
     include_once "../services/oAuth/oAuthService.php";
 
@@ -59,6 +59,9 @@
     $result2 = $oAuthService->doCurl($curlOptions2);
     $members = json_decode($result2, true);
     $memberCount = count($members);
+    if($memberCount == 1000){
+        $memberCount = "1000+";
+    }
     
     print "<pre>";
     print_r($members);
