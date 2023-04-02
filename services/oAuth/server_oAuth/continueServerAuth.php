@@ -1,4 +1,5 @@
 <?php
+//this code is used after a bot joined a server, then a curl is done to get the id of the server which the bot joined on to redirect to the settings site with the id as get param 
 
 $basePath = dirname(__DIR__, 3);
 require $basePath.'/vendor/autoload.php';

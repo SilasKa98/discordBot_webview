@@ -1,4 +1,5 @@
 <?php
+    //here it gets checked whether the bot is already on the server or not.
     $basePath = dirname(__DIR__, 3);
     require $basePath.'/vendor/autoload.php';
     $dotenv = Dotenv\Dotenv::createImmutable($basePath);
@@ -23,6 +24,7 @@
 
     $data = json_decode($response, true);
 
+    //redirect to settings page or auth process
     if ($data['user']['bot']) {
         header("Location:../../../frontend/serverSettings.php?guildId=".$_GET["guildId"]);
     } else {
