@@ -12,7 +12,7 @@
         $avatar_url = "media/profileDefault_avatar.png";
     }
 
-    print_r($_SESSION["userServerData"]);
+    print_r($guildIds);
 
     require __DIR__ . '/vendor/autoload.php';
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
@@ -71,7 +71,7 @@
                             }
                         ?>
                         <div class="col">
-                            <a href="services/oAuth/server_oAuth/initServerAuth.php">
+                            <a href="services/oAuth/server_oAuth/initServerAuth.php?guildId=<?php echo $guildIds[$i];?>">
                                 <div class="card h-100 innerYourServersCard">
                                     <img src='<?php echo $serverImg; ?>' class="card-img-top" alt="Server Icon">
                                     <div class="card-body">

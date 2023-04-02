@@ -4,5 +4,29 @@
     $dotenv = Dotenv\Dotenv::createImmutable($basePath);
     $dotenv->load();
 
-    header("LOCATION:".$_ENV["discord_serverAuth_url"]);
+
+    include_once "../oAuthService.php";
+    $bot_token = $_ENV["bot_token"];
+    $bot_id = $_ENV["client_id"];
+    $guild_id = $_GET["guildId"];
+
+    $url = "https://discord.com/api/v9/guilds/$guild_id/members/$bot_id";
+    $oAuthService = new oAuthService();
+    $curlOptions = [
+        CURLOPT_RETURNTRANSFER=>true,
+        CURLOPT_HTTPHEADER=>[
+            'Authorization: Bot ' . $bot_token,
+            'Content-Type: application/json',
+        ]
+    ];
+    $response = $oAuthService->doCurlWithUrl($curlOptions, $url);
+
+    $data = json_decode($response, true);
+
+    if ($data['user']['bot']) {
+        header("Location:../../../frontend/serverSettings.php?guildId=".$_GET["guildId"]);
+    } else {
+        header("Location:".$_ENV["discord_serverAuth_url"]);
+    }
+
 ?>
