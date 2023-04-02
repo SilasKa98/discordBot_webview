@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="index.php">
-            <img src="/discordBot_webview/media/bergfestBot_logo.svg" alt="Logo" width="60" height="48" class="d-inline-block align-text-top">
+        <a class="navbar-brand" href="/discordBot_webview/index.php">
+            <img src="/discordBot_webview/media/bergfestBot_logo_v2.png" alt="Logo" width="90" class="d-inline-block align-text-top">
             <p id="headerName">Bergfest Bot</p>
         </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -10,7 +10,7 @@
                 <a class="nav-link" href="#">Join Our Discord</a>
                 <a class="nav-link" href="#">Help</a>
                 <?php if(isset($_SESSION["logged_in"])){ ?>
-                    <a class="nav-link" href="dashboard.php">Dashboard</a>
+                    <a class="nav-link" href="/discordbot_webview/dashboard.php">Dashboard</a>
                 <?php }?>
             </div>
         </div>

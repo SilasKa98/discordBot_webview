@@ -55,7 +55,7 @@
             <div class="card-header">
                 <h3 class="card-title" id="yourServersTitel">Your Servers</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body" id="allServersBody">
                 <div class="row row-cols-1 row-cols-md-6 g-4">
                     <?php if(count($serverNames) == 0){?>
                        <p id="noServerYet">It seems like you are not connected to any Server yet.</p>
@@ -65,11 +65,11 @@
                             if(isset($serverIcons[$i])){
                                 $serverImg = "https://cdn.discordapp.com/icons/".$guildIds[$i]."/".$serverIcons[$i].".png";
                             }else{
-                                $serverImg ="media/missingServerIcon.png";
+                                $serverImg ="/discordBot_webview/media/bergfestBot_logo_v2.png";
                             }
                         ?>
                         <div class="col">
-                            <a href="services/oAuth/server_oAuth/initServerAuth.php?guildId=<?php echo $guildIds[$i];?>">
+                            <a class="dashboardServerCardLinkWrapper" href="services/oAuth/server_oAuth/initServerAuth.php?guildId=<?php echo $guildIds[$i];?>">
                                 <div class="card h-100 innerYourServersCard">
                                     <img src='<?php echo $serverImg; ?>' class="card-img-top" alt="Server Icon">
                                     <div class="card-body">

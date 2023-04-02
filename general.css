@@ -5,7 +5,7 @@ body{
 #headerName{
     display: inline;
     position: relative;
-    top: 12px;
+    top: 19px;
 }
 
 #profileAvatar{
@@ -61,8 +61,8 @@ body{
 }
 
 .innerYourServersCard{
-    background-color: #08090a !important;
-    color: white;
+    background-color: #141414 !important;
+    color: white !important;
 }
 
 #getStartedCard{
@@ -86,3 +86,92 @@ body{
     margin-bottom: 2%;
 }
 
+
+#serverSettingsIcon{
+    border-radius: 100px;
+    border: 1px solid gray;
+    margin-bottom: 1%;
+}
+
+#serverSettingsName{
+    color: white;
+    font-size: 30pt;
+}
+
+.featureLinkWrapp{
+    text-decoration: none;
+    color: black;
+}
+
+#faceitEloCheckerHeader{
+    color: white;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 11px;
+}
+
+#ankerWrapUserLink{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+#bigSignInBtn{
+    padding: 7%;
+    font-size: 20pt;
+}
+
+.featureHeader{
+    font-weight: bold;
+    color: white !important;
+}
+
+.wrapperCard{
+    width: 97%;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    background-color: #202228 !important;
+    color: white;
+}
+.exampleImg{
+    border-radius: 7px;
+}
+
+.wrapp2{
+    background-color: #e3e3e3;
+}
+
+.contactFormLabel{
+    float:left;
+    margin-top: 10px;
+}
+
+#submitContactFormular{
+    width: 100%;
+    margin-top: 20px;
+}
+
+#allServersBody{
+    width: 92%;
+    margin: 0 auto;
+}
+
+.dashboardServerCardLinkWrapper{
+    text-decoration: none;
+}
+
+.alertTable{
+    width: 100%;
+    text-align: center;
+}
+
+.activityLogMsg{
+    padding: 5px !important;
+}
+
+.activityLogBody{
+    height: 350px;
+    overflow: auto;
+}
