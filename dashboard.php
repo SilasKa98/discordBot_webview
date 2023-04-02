@@ -35,6 +35,18 @@
 <body>
     <?php include_once "frontend/navbar.php"; ?>
 
+    <!--display no permissions notification-->
+    <?php if($_GET["error"] == "NoPermissions"){?>    
+        <div class="alert alert-danger" id="noPermissionsWarn" role="alert">
+            You don't have permissions to edit the settings of this Server.
+        </div>
+        <script>
+            setTimeout(function(){
+                document.getElementById("noPermissionsWarn").style.display = "none";
+            }, 4000);
+        </script>
+    <?php }?>
+
     <div class="container-fluid">
         <div class="card mb-3" id="profileCard" style="max-width: 540px;">
             <div class="row g-0">

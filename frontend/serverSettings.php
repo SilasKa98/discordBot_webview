@@ -68,62 +68,40 @@
         $memberCount = "1000+";
     }
 
-    #print_r($_SESSION["userData"]);
-   # print "<pre>";
-    #print_r($members);
-    #print "</pre>";
-    
     $result3 = $oAuthService->doCurl($curlOptions3);
     $channels = json_decode($result3, true);
     $channelsCount = count($channels);
 
-
-/*
-    //check if the user has permission to edit the settings for the bot (needs to be admin on the discord server)
+    //get roles of the current User
     $loggedInUserRoles = null;
     foreach($members as $member){
         if($member["user"]["id"] == $_SESSION["userData"]["discord_id"]){
             $loggedInUserRoles = $member["roles"];
-            print "<pre>";
-            print_r($member);
-            print "</pre>";
         }
     }
 
-    // Überprüfen, ob der Nutzer Administratorrechte hat
-    $isAdmin = false;
-    foreach ($loggedInUserRoles as $role_id) {
-        echo $role_id."<br>";
-        echo $guild_id."<br>";
-        $role_url = "https://discord.com/api/guilds/{$guild_id}/roles/{$role_id}";
+    //get all roles with its permissions from the server
+    $rolePermissionDic = [];
+    foreach($serverInfos["roles"] as $roles){
+        $rolePermissionDic[$roles["id"]] = $roles["permissions"];
+    }
 
-        $curlOptions_adminCheck = [
-            CURLOPT_URL => $role_url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_HTTPHEADER => [
-                "Authorization: Bot {$bot_token}",
-                "Content-Type: application/json"
-            ]
-        ];
-
-        $result_adminCheck = $oAuthService->doCurl($curlOptions_adminCheck);
-        $role = json_decode($result_adminCheck, true);
-
-        print_r($result_adminCheck);
-
-        if (in_array("ADMINISTRATOR", $role['permissions'])) {
-            $isAdmin = true;
-            break;
+    $userIsAdmin = false;
+    //check if user has admin permissions
+    foreach($rolePermissionDic as $roleId => $permission){
+        if(in_array($roleId, $loggedInUserRoles)){
+            $admin = 8;
+            if (($permission & 8) != 0) {
+                $userIsAdmin = true;
+                break;
+            }
         }
     }
 
-    if ($isAdmin) {
-        echo "Der Nutzer hat Administratorrechte auf diesem Server.";
-    } else {
-        echo "Der Nutzer hat keine Administratorrechte auf diesem Server.";
+    if($userIsAdmin == false){
+        header("Location:../dashboard.php?error=NoPermissions");
+        exit();
     }
-*/
-
 
     include_once "../services/databaseService.php";
     $databaseService = new DatabaseService;
