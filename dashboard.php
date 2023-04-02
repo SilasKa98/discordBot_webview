@@ -12,8 +12,6 @@
         $avatar_url = "media/profileDefault_avatar.png";
     }
 
-    print_r($guildIds);
-
     require __DIR__ . '/vendor/autoload.php';
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
     $dotenv->load();
