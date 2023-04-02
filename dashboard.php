@@ -36,7 +36,7 @@
     <?php include_once "frontend/navbar.php"; ?>
 
     <!--display no permissions notification-->
-    <?php if($_GET["error"] == "NoPermissions"){?>    
+    <?php if(isset($_GET["error"]) && $_GET["error"] == "NoPermissions"){?>    
         <div class="alert alert-danger" id="noPermissionsWarn" role="alert">
             You don't have permissions to edit the settings of this Server.
         </div>

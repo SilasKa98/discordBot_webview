@@ -51,7 +51,9 @@
     $roles = json_decode($result, true);
     
     $roleNames = [];
+    $rolePermissionDic = [];
     foreach($roles as $role){
+        $rolePermissionDic[$role["id"]] = $role["name"];
         array_push($roleNames,$role["name"]);
     }
 
@@ -103,8 +105,12 @@
                         <div class="card-body">
                             <h5 class="card-title">Admin ID</h5>
                             <div class="input-group mb-3">
-                                <span class="input-group-text text-bg-secondary" id="basic-addon1">Set the Admin-ID</span>
-                                <input type="text" class="form-control text-bg-secondary" value="<?php echo $dbSelection["admin_role_id"];?>" name="adminId" aria-label="AdminId" aria-describedby="basic-addon1">
+                                <select class="form-select text-bg-secondary" name="adminId" aria-label="Admin Id">
+                                    <option>Open this select menu</option>
+                                    <?php foreach($rolePermissionDic as $roleId => $roleName){ ?>
+                                            <option value="<?php echo $roleId; ?>" <?php if($roleId == $dbSelection["admin_role_id"]){ echo "selected";} ?>><?php echo $roleName;?></option>
+                                    <?php }?>
+                                </select>
                             </div>
                         </div>
 
