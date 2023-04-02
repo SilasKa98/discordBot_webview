@@ -29,7 +29,7 @@ if(isset($_POST["method"]) && $_POST["method"] == "faceitEloChecker"){
         $types = "issssss";
         $databaseService->insertData("faceitelochecker", $data, $types);
 
-        $activity = array("discord_id" =>$discord_id, "author" => $_SESSION["name"], "action" => "First time inserted the Faceit-Elo-Checker settings", "date"=> time());
+        $activity = array("discord_id" =>$discord_id, "author" => $_SESSION["userData"]["name"], "action" => "First time inserted the Faceit-Elo-Checker settings", "date"=> date("Y-m-d H:i:s"));
     }else{
         $data = array("discord_id" => $discord_id, "admin_role_id" => $adminId, "mvp_update" => $mvpTime,
         "csgo_text_channel" => $updateChannel, "lol_text_channel" => "", "ff_1_role_id" => $roleTeam1, "ff_2_role_id" => $roleTeam2);

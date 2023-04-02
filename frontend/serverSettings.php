@@ -7,7 +7,7 @@
         if(isset($avatar)){
             $avatar_url = "https://cdn.discordapp.com/avatars/".$discord_id."/".$avatar.".jpg";  
         }else{
-            $avatar_url = "media/profileDefault_avatar.png";
+            $avatar_url = "/discordbot_webview/media/profileDefault_avatar.png";
         }
     }
 
@@ -60,16 +60,69 @@
     $result = $oAuthService->doCurl($curlOptions);
     $serverInfos = json_decode($result, true);
 
+
     $result2 = $oAuthService->doCurl($curlOptions2);
     $members = json_decode($result2, true);
     $memberCount = count($members);
     if($memberCount == 1000){
         $memberCount = "1000+";
     }
+
+    #print_r($_SESSION["userData"]);
+   # print "<pre>";
+    #print_r($members);
+    #print "</pre>";
     
     $result3 = $oAuthService->doCurl($curlOptions3);
     $channels = json_decode($result3, true);
     $channelsCount = count($channels);
+
+
+/*
+    //check if the user has permission to edit the settings for the bot (needs to be admin on the discord server)
+    $loggedInUserRoles = null;
+    foreach($members as $member){
+        if($member["user"]["id"] == $_SESSION["userData"]["discord_id"]){
+            $loggedInUserRoles = $member["roles"];
+            print "<pre>";
+            print_r($member);
+            print "</pre>";
+        }
+    }
+
+    // Überprüfen, ob der Nutzer Administratorrechte hat
+    $isAdmin = false;
+    foreach ($loggedInUserRoles as $role_id) {
+        echo $role_id."<br>";
+        echo $guild_id."<br>";
+        $role_url = "https://discord.com/api/guilds/{$guild_id}/roles/{$role_id}";
+
+        $curlOptions_adminCheck = [
+            CURLOPT_URL => $role_url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTPHEADER => [
+                "Authorization: Bot {$bot_token}",
+                "Content-Type: application/json"
+            ]
+        ];
+
+        $result_adminCheck = $oAuthService->doCurl($curlOptions_adminCheck);
+        $role = json_decode($result_adminCheck, true);
+
+        print_r($result_adminCheck);
+
+        if (in_array("ADMINISTRATOR", $role['permissions'])) {
+            $isAdmin = true;
+            break;
+        }
+    }
+
+    if ($isAdmin) {
+        echo "Der Nutzer hat Administratorrechte auf diesem Server.";
+    } else {
+        echo "Der Nutzer hat keine Administratorrechte auf diesem Server.";
+    }
+*/
 
 
     include_once "../services/databaseService.php";
@@ -93,7 +146,11 @@
     <?php include_once "navbar.php"; ?>
     <div class="container-fluid" style="margin-top: 1%;">
         <div>
-            <img id="serverSettingsIcon" src="https://cdn.discordapp.com/icons/<?php echo $serverInfos["id"]."/".$serverInfos["icon"]; ?>.png">
+            <?php if($serverInfos["icon"] != ""){?>
+                <img id="serverSettingsIcon" src="https://cdn.discordapp.com/icons/<?php echo $serverInfos["id"]."/".$serverInfos["icon"]; ?>.png">
+            <?php }else{?>
+                <img id="serverSettingsIcon" src="/discordbot_webview/media/bergfestBot_logo_v2.png" width=110px height=100px>
+            <?php }?>
             <span id="serverSettingsName"><?php echo $serverInfos["name"]; ?></span>
         </div>
         

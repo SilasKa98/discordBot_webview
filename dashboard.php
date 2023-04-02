@@ -9,7 +9,7 @@
     if(isset($avatar)){
       $avatar_url = "https://cdn.discordapp.com/avatars/".$discord_id."/".$avatar.".jpg";  
     }else{
-        $avatar_url = "media/profileDefault_avatar.png";
+        $avatar_url = "/discordbot_webview/media/profileDefault_avatar.png";
     }
 
     require __DIR__ . '/vendor/autoload.php';

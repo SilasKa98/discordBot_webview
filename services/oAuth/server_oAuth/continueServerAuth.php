@@ -43,6 +43,9 @@ $result2 = $oAuthService->doCurl($curlOptions2);
 
 $result2 = json_decode($result2, true);
 
-header("Location:../../../frontend/serverSettings.php?guildId=".$result2["id"]);
+//currently bugged... user session data gets lost ? name not found, image... etc.
+#header("Location:../../../frontend/serverSettings.php?guildId=".$result2["id"]);
 
+//therefore redirecting to the dashboard atm.
+header("Location:../../../dashboard.php?botJoin=success");
 ?>
