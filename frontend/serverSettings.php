@@ -90,9 +90,7 @@
     //check if user has admin permissions
     foreach($rolePermissionDic as $roleId => $permission){
         if(in_array($roleId, $loggedInUserRoles)){
-            echo "run";
             $admin = 8;
-            echo $permission & 8;
             if (($permission & 8) != 0) {
                 $userIsAdmin = true;
                 break;
