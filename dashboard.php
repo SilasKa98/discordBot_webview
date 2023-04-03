@@ -38,7 +38,7 @@
     <!--display no permissions notification-->
     <?php if(isset($_GET["error"]) && $_GET["error"] == "NoPermissions"){?>    
         <div class="alert alert-danger" id="noPermissionsWarn" role="alert">
-            You don't have permissions to edit the settings of this Server.
+            You don't have permissions to edit the Bot-Settings on this Server.
         </div>
         <script>
             setTimeout(function(){
