@@ -6,23 +6,11 @@
     $dotenv->load();
 
 
-    include_once "../oAuthService.php";
-    $bot_token = $_ENV["bot_token"];
+    include_once "../../apiRequestService.php";
+    $apiRequest = new ApiRequests();
     $bot_id = $_ENV["client_id"];
     $guild_id = $_GET["guildId"];
-
-    $url = "https://discord.com/api/v9/guilds/$guild_id/members/$bot_id";
-    $oAuthService = new oAuthService();
-    $curlOptions = [
-        CURLOPT_RETURNTRANSFER=>true,
-        CURLOPT_HTTPHEADER=>[
-            'Authorization: Bot ' . $bot_token,
-            'Content-Type: application/json',
-        ]
-    ];
-    $response = $oAuthService->doCurlWithUrl($curlOptions, $url);
-
-    $data = json_decode($response, true);
+    $data = $apiRequest->checkUserOnServer($guild_id, $bot_id);
 
     //redirect to settings page or auth process
     if ($data['user']['bot']) {

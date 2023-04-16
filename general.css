@@ -107,7 +107,6 @@ body{
     color: white;
     margin-top: 1%;
     margin-bottom: 1%;
-    margin-left: 11px;
 }
 
 #ankerWrapUserLink{
@@ -185,4 +184,23 @@ body{
     width: 98%;
     text-align: center;
     opacity: 0.8;
+}
+
+
+.subHeadingEloChecker{
+    color: white;
+}
+
+
+.deviderHr{
+    color: white;
+}
+
+.smallDescText{
+    font-size: 10pt !important;
+    font-weight: lighter;
+}
+
+.secondaryModuleTitel{
+    font-size: 13pt;
 }

@@ -15,30 +15,41 @@ if(isset($_POST["method"]) && $_POST["method"] == "faceitEloChecker"){
     $discord_id = $_SESSION["currentGuildId"];
     $adminId = $sanitiser->sanitiseInput($_POST["adminId"]);
     $mvpTime = $sanitiser->sanitiseInput($_POST["mvpTime"]);
-    $updateChannel = $sanitiser->sanitiseInput($_POST["updateChannel"]);
+    $updateChannelFaceit = $sanitiser->sanitiseInput($_POST["updateChannelFaceit"]);
+    $updateChannelLol = $sanitiser->sanitiseInput($_POST["updateChannelLol"]);
     $roleTeam1 = $sanitiser->sanitiseInput($_POST["roleTeam1"]);
     $roleTeam2 = $sanitiser->sanitiseInput($_POST["roleTeam2"]);
 
+
+    echo $discord_id."<br";
+    echo $adminId."<br";
+    echo $mvpTime."<br";
+    echo $updateChannelFaceit."<br";
+    echo $updateChannelLol."<br";
+    echo $roleTeam1."<br";
+    echo $roleTeam2."<br";
+
+
     include_once "services/databaseService.php";
     $databaseService = new DatabaseService;
-    $dbSelection = $databaseService->selectData("faceitelochecker", "discord_id=?", [$discord_id]);
+    $dbSelection = $databaseService->selectData("server_settings", "discord_id=?", [$discord_id]);
 
     if(empty($dbSelection)){
         $data = array("discord_id" => $discord_id, "admin_role_id" => $adminId, "mvp_update" => $mvpTime,
-                     "csgo_text_channel" => $updateChannel, "lol_text_channel" => "", "ff_1_role_id" => $roleTeam1, "ff_2_role_id" => $roleTeam2);
-        $types = "issssss";
-        $databaseService->insertData("faceitelochecker", $data, $types);
+                     "csgo_text_channel_id" => $updateChannelFaceit, "lol_text_channel_id" => $updateChannelLol, "ff_1_role_id" => $roleTeam1, "ff_2_role_id" => $roleTeam2);
+        $types = "iisiiii";
+        $databaseService->insertData("server_settings", $data, $types);
 
-        $activity = array("discord_id" =>$discord_id, "author" => $_SESSION["userData"]["name"], "action" => "First time inserted the Faceit-Elo-Checker settings", "date"=> date("Y-m-d H:i:s"));
+        $activity = array("discord_id" =>$discord_id, "author" => $_SESSION["userData"]["name"], "action" => "First time inserted the Elo-Checker settings", "date"=> date("Y-m-d H:i:s"));
     }else{
         $data = array("discord_id" => $discord_id, "admin_role_id" => $adminId, "mvp_update" => $mvpTime,
-        "csgo_text_channel" => $updateChannel, "lol_text_channel" => "", "ff_1_role_id" => $roleTeam1, "ff_2_role_id" => $roleTeam2);
+        "csgo_text_channel_id" => $updateChannelFaceit, "lol_text_channel_id" => $updateChannelLol, "ff_1_role_id" => $roleTeam1, "ff_2_role_id" => $roleTeam2);
         $condition = "discord_id=?";
         $params = [$discord_id];
-        $types = "issssssi";
-        $databaseService->updateData("faceitelochecker", $data, $condition, $params, $types);
+        $types = "iisiiiii";
+        $databaseService->updateData("server_settings", $data, $condition, $params, $types);
 
-        $activity = array("discord_id" =>$discord_id, "author" => $_SESSION["userData"]["name"], "action" => "Updated the Faceit-Elo-Checker settings", "date"=> date("Y-m-d H:i:s"));
+        $activity = array("discord_id" =>$discord_id, "author" => $_SESSION["userData"]["name"], "action" => "Updated the Elo-Checker settings", "date"=> date("Y-m-d H:i:s"));
     }
 
 

@@ -23,8 +23,6 @@ $payload = [
     'scope'=>$_ENV["scope"]
 ];
 
-print_r($payload);
-
 $payload_http = http_build_query($payload);
 $discord_token_url = $_ENV["discord_token_url"];
 $oAuthService = new oAuthService();

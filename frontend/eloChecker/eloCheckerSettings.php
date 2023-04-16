@@ -60,16 +60,20 @@
     $result2 = $oAuthService->doCurl($curlOptions2);
     $channels = json_decode($result2, true);
 
+    #print_r($channels);
+
     $channelNames = [];
+    $channelNameIdDic = [];
     foreach($channels as $cha){
         if($cha["type"] == 0){
+            $channelNameIdDic[$cha["id"]] = $cha["name"];
             array_push($channelNames,$cha["name"]);
         }
     }
 
     include_once "../../services/databaseService.php";
     $databaseService = new DatabaseService;
-    $dbSelection = $databaseService->selectData("faceitelochecker", "discord_id=?", [$guild_id]);
+    $dbSelection = $databaseService->selectData("server_settings", "discord_id=?", [$guild_id]);
     if(empty($dbSelection)){
         $dbSelection = array("admin_role_id" => "", "mvp_update" => "",
         "csgo_text_channel" => "", "lol_text_channel" => "", "ff_1_role_id" => "", "ff_2_role_id" => "");
@@ -92,140 +96,176 @@
 </head>
 <body>
     <?php include_once "../navbar.php"; ?>
-    <h1 id="faceitEloCheckerHeader">Faceit-Elo Checker Settings</h1>
     <div class="container-fluid">
+        <div id="eloCheckerWrapper">
+            <h1 id="faceitEloCheckerHeader">General Elo Checker Settings</h1>
+            <form action="/discordbot_webview/doTransaction.php" method="POST">
+                <input type="hidden" name="method" value="faceitEloChecker">
+                <div class="row row-cols-1 row-cols-md-2 g-4">
 
-        <form action="/discordbot_webview/doTransaction.php" method="POST">
-            <input type="hidden" name="method" value="faceitEloChecker">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                        <div class="card text-bg-dark mb-3">
 
-                <div class="col">
-                    <div class="card text-bg-dark mb-3" style="max-width: 540px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Admin ID</h5>
+                                <div class="input-group mb-3">
+                                    <select class="form-select text-bg-secondary" name="adminId" aria-label="Admin Id">
+                                        <option>Open this select menu</option>
+                                        <?php foreach($rolePermissionDic as $roleId => $roleName){ ?>
+                                                <option value="<?php echo $roleId; ?>" <?php if($roleId == $dbSelection["admin_role_id"]){ echo "selected";} ?>><?php echo $roleName;?></option>
+                                        <?php }?>
+                                    </select>
+                                </div>
+                            </div>
 
-                        <div class="card-body">
-                            <h5 class="card-title">Admin ID</h5>
-                            <div class="input-group mb-3">
-                                <select class="form-select text-bg-secondary" name="adminId" aria-label="Admin Id">
-                                    <option>Open this select menu</option>
+                            <div class="card-footer bg-transparent border-secondary">
+                                <p class="card-text">
+                                    <small class="text-body-dark smallDescText">
+                                        &#9432; Description
+                                    </small>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card text-bg-dark mb-3">
+
+                            <div class="card-body">
+                                <h5 class="card-title">MVP Update Time</h5>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text text-bg-secondary" id="basic-addon1">Pick the Date</span>
+                                    <input type="date" value="<?php echo explode(" ",$dbSelection["mvp_update"])[0];?>" class="form-control text-bg-secondary" name="mvpTime" aria-label="mvpTime" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+
+                            <div class="card-footer bg-transparent border-secondary">
+                                <p class="card-text">
+                                    <small class="text-body-dark smallDescText">
+                                        &#9432; Description
+                                    </small>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="deviderHr">
+
+                <h2 class="subHeadingEloChecker">Teams<h2>
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <div class="col">
+                        <div class="card text-bg-dark mb-3">
+
+                            <div class="card-body">
+                                <h5 class="card-title">Role for Team 1</h5>
+                                <select class="form-select text-bg-secondary" name="roleTeam1" aria-label="Role for Team 1">
+                                    <option selected>Open this select menu</option>
                                     <?php foreach($rolePermissionDic as $roleId => $roleName){ ?>
-                                            <option value="<?php echo $roleId; ?>" <?php if($roleId == $dbSelection["admin_role_id"]){ echo "selected";} ?>><?php echo $roleName;?></option>
+                                            <option value="<?php echo $roleId; ?>"<?php if($roleId == $dbSelection["ff_1_role_id"]){ echo "selected";} ?>><?php echo $roleName;?></option>
                                     <?php }?>
                                 </select>
                             </div>
-                        </div>
 
-                        <div class="card-footer bg-transparent border-secondary">
-                            <p class="card-text">
-                                <small class="text-body-dark">
-                                    &#9432; Description
-                                </small>
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card text-bg-dark mb-3" style="max-width: 540px;">
-
-                        <div class="card-body">
-                            <h5 class="card-title">MVP Update Time</h5>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-bg-secondary" id="basic-addon1">Pick the Date</span>
-                                <input type="date" value="<?php echo explode(" ",$dbSelection["mvp_update"])[0];?>" class="form-control text-bg-secondary" name="mvpTime" aria-label="mvpTime" aria-describedby="basic-addon1">
+                            <div class="card-footer bg-transparent border-secondary">
+                                <p class="card-text">
+                                    <small class="text-body-dark smallDescText">
+                                        &#9432; Description
+                                    </small>
+                                </p>
                             </div>
-                        </div>
 
-                        <div class="card-footer bg-transparent border-secondary">
-                            <p class="card-text">
-                                <small class="text-body-dark">
-                                    &#9432; Description
-                                </small>
-                            </p>
                         </div>
+                    </div>
 
+                    <div class="col">
+                        <div class="card text-bg-dark mb-3">
+
+                            <div class="card-body">
+                                <h5 class="card-title">Role for Team 2</h5>
+                                <select class="form-select text-bg-secondary" name="roleTeam2" aria-label="Role for Team 1">
+                                    <option selected>Open this select menu</option>
+                                    <?php foreach($rolePermissionDic as $roleId => $roleName){ ?>
+                                            <option value="<?php echo $roleId; ?>"<?php if($roleId == $dbSelection["ff_2_role_id"]){ echo "selected";} ?>><?php echo $roleName;?></option>
+                                    <?php }?>
+                                </select>
+                            </div>
+
+                            <div class="card-footer bg-transparent border-secondary">
+                                <p class="card-text">
+                                    <small class="text-body-dark smallDescText">
+                                        &#9432; Description
+                                    </small>
+                                </p>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
 
-                <div class="col">
-                    <div class="card text-bg-dark mb-3" style="max-width: 540px;">
+                <hr class="deviderHr">
 
-                        <div class="card-body">
-                            <h5 class="card-title">Update Channel Selection </h5>
-                            <select class="form-select text-bg-secondary" name="updateChannel" aria-label="Update Channel">
-                                <option selected>Open this select menu</option>
-                                <?php foreach($channelNames as $name){ ?>
-                                        <option value="<?php echo $name; ?>" <?php if($name == $dbSelection["csgo_text_channel"]){ echo "selected";} ?>><?php echo $name;?></option>
-                                <?php }?>
-                            </select>
+                <h2 class="subHeadingEloChecker">Update Channels</h2>
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <div class="col">
+                        <div class="card text-bg-dark mb-3">
+
+                            <div class="card-body">
+                                <h5 class="card-title">Faceit-Elo Update Channel</h5>
+                                <select class="form-select text-bg-secondary" name="updateChannelFaceit" aria-label="Update Channel">
+                                    <option selected>Open this select menu</option>
+                                    <?php foreach($channelNameIdDic as $channelId => $channelName){ ?>
+                                            <option value="<?php echo $channelId; ?>" <?php if($channelId == $dbSelection["csgo_text_channel_id"]){ echo "selected";} ?>><?php echo $channelName;?></option>
+                                    <?php }?>
+                                </select>
+                            </div>
+
+                            <div class="card-footer bg-transparent border-secondary">
+                                <p class="card-text">
+                                    <small class="text-body-dark smallDescText">
+                                        &#9432; Description
+                                    </small>
+                                </p>
+                            </div>
+
                         </div>
+                    </div>
 
-                        <div class="card-footer bg-transparent border-secondary">
-                            <p class="card-text">
-                                <small class="text-body-dark">
-                                    &#9432; Description
-                                </small>
-                            </p>
+                    <div class="col">
+                        <div class="card text-bg-dark mb-3">
+
+                            <div class="card-body">
+                                <h5 class="card-title">League of Legends Update Channel</h5>
+                                <select class="form-select text-bg-secondary" name="updateChannelLol" aria-label="Update Channel">
+                                    <option selected>Open this select menu</option>
+                                    <?php foreach($channelNameIdDic as $channelId => $channelName){ ?>
+                                            <option value="<?php echo $channelId; ?>" <?php if($channelId == $dbSelection["lol_text_channel_id"]){ echo "selected";} ?>><?php echo $channelName;?></option>
+                                    <?php }?>
+                                </select>
+                            </div>
+
+                            <div class="card-footer bg-transparent border-secondary">
+                                <p class="card-text">
+                                    <small class="text-body-dark smallDescText">
+                                        &#9432; Description
+                                    </small>
+                                </p>
+                            </div>
+
                         </div>
-
                     </div>
                 </div>
-
-                <div class="col">
-                    <div class="card text-bg-dark mb-3" style="max-width: 540px;">
-
-                        <div class="card-body">
-                            <h5 class="card-title">Role for Team 1</h5>
-                            <select class="form-select text-bg-secondary" name="roleTeam1" aria-label="Role for Team 1">
-                                <option selected>Open this select menu</option>
-                                <?php foreach($roleNames as $role){ ?>
-                                        <option value="<?php echo $role; ?>"<?php if($role == $dbSelection["ff_1_role_id"]){ echo "selected";} ?>><?php echo $role;?></option>
-                                <?php }?>
-                            </select>
-                        </div>
-
-                        <div class="card-footer bg-transparent border-secondary">
-                            <p class="card-text">
-                                <small class="text-body-dark">
-                                    &#9432; Description
-                                </small>
-                            </p>
-                        </div>
-
+                <hr>
+            
+                    <br>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-success" type="submit">Save</button>
                     </div>
-                </div>
-
-                <div class="col">
-                    <div class="card text-bg-dark mb-3" style="max-width: 540px;">
-
-                        <div class="card-body">
-                            <h5 class="card-title">Role for Team 2</h5>
-                            <select class="form-select text-bg-secondary" name="roleTeam2" aria-label="Role for Team 1">
-                                <option selected>Open this select menu</option>
-                                <?php foreach($roleNames as $role){ ?>
-                                        <option value="<?php echo $role; ?>"<?php if($role == $dbSelection["ff_2_role_id"]){ echo "selected";} ?>><?php echo $role;?></option>
-                                <?php }?>
-                            </select>
-                        </div>
-
-                        <div class="card-footer bg-transparent border-secondary">
-                            <p class="card-text">
-                                <small class="text-body-dark">
-                                    &#9432; Description
-                                </small>
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-            <br><br>
-            <div class="d-grid gap-2">
-                <button class="btn btn-success" type="submit">Save</button>
-            </div>
-        </form>
-
+                    <br>
+            </form>
+        </div>
     </div>
 </body>
 </html>

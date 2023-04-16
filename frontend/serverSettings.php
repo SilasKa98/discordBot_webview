@@ -157,8 +157,10 @@
                             <a class="featureLinkWrapp" href="/discordbot_webview/frontend/eloChecker/eloCheckerSettings.php">
                                 <div class="card-header featureHeader">Elo Checker</div>
                                 <div class="card-body text-secondary">
-                                    <h5 class="card-title">Secondary card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <h3 class="card-title secondaryModuleTitel">What does our elo checker do?</h3>
+                                    <p class="card-text">
+                                        With the Elo Checker module you can display the elo of your Discord members for different games.
+                                    </p>
                                 </div>
                             </a>
                         </div>  
@@ -168,7 +170,7 @@
                         <div class="card border-secondary mb-3 innerYourServersCard" style="max-width: 18rem;">
                             <div class="card-header featureHeader">Foo</div>
                             <div class="card-body text-secondary">
-                                <h5 class="card-title">Secondary card title</h5>
+                                <h5 class="card-title secondaryModuleTitel">Secondary card title</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             </div>
                         </div>
@@ -178,7 +180,7 @@
                         <div class="card border-secondary mb-3 innerYourServersCard" style="max-width: 18rem;">
                             <div class="card-header featureHeader">Bar</div>
                             <div class="card-body text-secondary">
-                                <h5 class="card-title">Secondary card title</h5>
+                                <h5 class="card-title secondaryModuleTitel">Secondary card title</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             </div>
                         </div>
@@ -188,7 +190,7 @@
                         <div class="card border-secondary mb-3 innerYourServersCard" style="max-width: 18rem;">
                             <div class="card-header featureHeader">Buz</div>
                             <div class="card-body text-secondary">
-                                <h5 class="card-title">Secondary card title</h5>
+                                <h5 class="card-title secondaryModuleTitel">Secondary card title</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             </div>
                         </div>

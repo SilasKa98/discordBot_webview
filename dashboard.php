@@ -15,7 +15,9 @@
     require __DIR__ . '/vendor/autoload.php';
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
     $dotenv->load();
-    
+
+    include_once "services/apiRequestService.php";
+    $apiRequests = new ApiRequests();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,10 +71,45 @@
             </div>
             <div class="card-body" id="allServersBody">
                 <div class="row row-cols-1 row-cols-md-6 g-4">
+
+
+                <div class="card" aria-hidden="true">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title placeholder-glow">
+      <span class="placeholder col-6"></span>
+    </h5>
+    <p class="card-text placeholder-glow">
+      <span class="placeholder col-7"></span>
+      <span class="placeholder col-4"></span>
+      <span class="placeholder col-4"></span>
+      <span class="placeholder col-6"></span>
+      <span class="placeholder col-8"></span>
+    </p>
+    <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
+  </div>
+</div>
+
+
+
+
+
+
                     <?php if(count($serverNames) == 0){?>
                        <p id="noServerYet">It seems like you are not connected to any Server yet.</p>
                      <?php } ?>
                     <?php for($i=0;$i<count($serverNames);$i++){ ?>
+                        <?php
+                            $getUserGuildInfo = $apiRequests->getUserGuildInfos($guildIds[$i], $_SESSION["userData"]["discord_id"]);
+                            $bot_id = $_ENV["client_id"];
+                            $isBotOnServer = $apiRequests->checkUserOnServer($guildIds[$i], $bot_id);
+                            
+                            if(isset($getUserGuildInfo["joined_at"])){
+                                $userServerJoinDate = "Joined on ".date("Y/m/d",strtotime($getUserGuildInfo["joined_at"]));
+                            }else{
+                                $userServerJoinDate = "Not Joined Yet";
+                            }
+                        ?>
                         <?php
                             if(isset($serverIcons[$i])){
                                 $serverImg = "https://cdn.discordapp.com/icons/".$guildIds[$i]."/".$serverIcons[$i].".png";
@@ -80,16 +117,21 @@
                                 $serverImg ="/discordBot_webview/media/bergfestBot_logo_v2.png";
                             }
                         ?>
+
                         <div class="col">
                             <a class="dashboardServerCardLinkWrapper" href="services/oAuth/server_oAuth/initServerAuth.php?guildId=<?php echo $guildIds[$i];?>">
                                 <div class="card h-100 innerYourServersCard">
                                     <img src='<?php echo $serverImg; ?>' class="card-img-top" alt="Server Icon">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $serverNames[$i]; ?></h5>
-                                        <p class="card-text">Here could be some nice Information about the server</p>
+                                        <?php if(!isset($isBotOnServer['user']['bot'])){?>
+                                            <p class="card-text">The Bergfest Bot is not on this server yet. Join him now! </p>
+                                        <?php }else{?>
+                                            <p class="card-text">The Bergfest Bot is on this server. Nice! </p>
+                                        <?php }?>
                                     </div>
                                     <div class="card-footer">
-                                        <small class="text-muted" style="color: white !important;">Last updated 3 mins ago</small>
+                                        <small class="text-muted" style="color: white !important;"><?php echo $userServerJoinDate;?></small>
                                     </div>
                                 </div>
                             </a>
