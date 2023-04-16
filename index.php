@@ -32,8 +32,7 @@
             <img class="d-block mx-auto mb-4" src="/discordBot_webview/media/bergfestBot_logo_v2.png" width=300px>
             <h1 class="display-5 fw-bold">Bergfest Bot</h1>
             <div class="col-lg-6 mx-auto">
-                <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit,
-                     featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+                <p class="lead mb-4">A free customizable Discord bot for your server! All settings are easily customizable via our web interface. Get the bot now and enrich your server!</p>
             </div>
         </div>
     </div>
@@ -45,8 +44,7 @@
                 <div class="col-lg-7 text-center text-lg-start">
                     <h1 class="display-4 fw-bold lh-1 mb-3">Start now</h1>
                     <p class="col-lg-10 fs-4">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                     sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                        Log in with discord now and manage which servers you want to have the bot on
                     </p>
                 </div>
                 <div class="col-md-10 mx-auto col-lg-5">
@@ -69,16 +67,16 @@
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6">
                     <!--<img src="/quizVerwaltung/media/insertExamplePicture.png" style="border-radius: 7px;" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">-->
-                    <img src="/quizVerwaltung/media/insertOverviewExamplePicture.PNG" class="d-block mx-lg-auto img-fluid exampleImg" alt="Bootstrap Themes"  loading="lazy">
+                    <img src="/discordBot_webview/media/faceitEloCurveExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" alt="Bootstrap Themes"  loading="lazy">
                 </div>
                 <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Easily upload new Questions</h1>
+                    <h1 class="display-5 fw-bold lh-1 mb-3">Check your Elo History</h1>
                     <p class="lead">
-                        Quickly upload new Questions with our intuitive import Format. It even allows you to import multiple questions at once.
-                        Our import overview helps you to keep track of the Questions and its values you are about to upload.
+                        Check and display your elo and especially your elo history in different games like Counter Strike (Faceit) or League of Legends. 
+                        Additionally you can show your weekly MVP to always know who is performing the best.
                     </p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <a type="button" class="btn btn-primary" href="helpPage.php#importPosibilitys">Read more</a>
+                        <a type="button" class="btn btn-primary" href="#">Read more</a>
                     </div>
                 </div>
             </div>
@@ -90,17 +88,17 @@
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Automatically translate questions in whatever language you need </h1>
+                    <h1 class="display-5 fw-bold lh-1 mb-3">Easily manage your Bot Modules</h1>
                     <p class="lead">
-                        With our connection to the DeepL Api, we can translate all questions into a variety of languages.
-                        Questions that might have been uninteressting for you, are now usable and can also be used by you.
+                        With our webview you can always see which modules are selected and active for your server. 
+                        You can adjust everything interactively and easily.
                     </p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <a type="button" class="btn btn-primary" href="helpPage.php">Read more</a>
+                        <a type="button" class="btn btn-primary" href="#">Read more</a>
                     </div>
                 </div>
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="/quizVerwaltung/media/translateExamplePicture.PNG" class="d-block mx-lg-auto img-fluid exampleImg" width="500" height="300" alt="Bootstrap Themes" loading="lazy">
+                    <img src="/discordBot_webview/media/manageServersExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" width="500" height="300" alt="Bootstrap Themes" loading="lazy">
                 </div>
             </div>
         </div>
@@ -112,16 +110,16 @@
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6">
                     <!--<img src="/quizVerwaltung/media/insertExamplePicture.png" style="border-radius: 7px;" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">-->
-                    <img src="/quizVerwaltung/media/ProfileExamplePicture.PNG" class="d-block mx-lg-auto img-fluid exampleImg" alt="Bootstrap Themes"  loading="lazy">
+                    <img src="/discordBot_webview/media/changeSettingsExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" alt="Bootstrap Themes"  loading="lazy">
                 </div>
                 <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Connect with People and earn Reputation</h1>
+                    <h1 class="display-5 fw-bold lh-1 mb-3">Quickly change your Bot Settings in our webview</h1>
                     <p class="lead">
-                        Follow people whose content you like or get followers yourself by posting good questions.
-                        In addition, questions can be rated by other users, maybe you are the one who uploads the best and most popular questions of the community.
+                        All settings for the bot are easily customizable on our interface. 
+                        You don't need to have any special technical knowledge. Anyone can use and set up the bot!
                     </p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <a type="button" class="btn btn-primary" href="helpPage.php">Read more</a>
+                        <a type="button" class="btn btn-primary" href="#">Read more</a>
                     </div>
                 </div>
             </div>

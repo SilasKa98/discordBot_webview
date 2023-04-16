@@ -18,7 +18,11 @@
 
     include_once "services/apiRequestService.php";
     $apiRequests = new ApiRequests();
+
+    $totalServerNumber = count($serverNames);
+    $totalServersAdminCount = count(array_keys($guildOwnerStatus, 1));
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,54 +62,55 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $name; ?></h5>
-                        <p class="card-text">Here could be some information about the user or other links to something.</p>
-                        <p class="card-text"><small class="text-muted" id="smallProfileCardText">Last updated 3 mins ago</small></p>
+                        <p class="card-text placeholder-glow"><span id="userTotalServersInfo" class="placeholder">Total Servers joined: <?php echo $totalServerNumber;?></span></p>
+                        <p class="card-text placeholder-glow"><span id="userServerAdminInfo" class="placeholder">Admin on <?php echo $totalServersAdminCount;?> Server(s)</span></p>
+                        <p class="card-text placeholder-glow"><small class="text-muted placeholder" id="smallProfileCardText">Last updated just now</small></p>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="card-body" id="allServersBody">
 
-        <div class="card text-center" id="yourServersWrapper">
-            <div class="card-header">
+            <div class="card-header" id="dashboardTitelWrapper">
                 <h3 class="card-title" id="yourServersTitel">Your Servers</h3>
             </div>
-            <div class="card-body" id="allServersBody">
-                <div class="row row-cols-1 row-cols-md-6 g-4">
+            
+                <div class="row row-cols-1 row-cols-md-6 g-4" id="placeholderLoadWrapper">
+                    <?php $opacity = 1;?>
+                    <?php for($i=0;$i<6;$i++){?>
+                        <div class="col">
+                            <div class="card h-100 innerYourServersCard" aria-hidden="true" style="opacity:<?php echo $opacity;?>;">
+                                <img src='/discordBot_webview/media/bergfestBot_logo_v2.png' class="card-img-top" alt="Server Icon">
+                                <div class="card-body">
+                                    <h5 class="card-title placeholder-glow">
+                                    <span class="placeholder col-6"></span>
+                                    </h5>
+                                    <p class="card-text placeholder-glow">
+                                    <span class="placeholder col-7"></span>
+                                    <span class="placeholder col-4"></span>
+                                    <span class="placeholder col-4"></span>
+                                    <span class="placeholder col-6"></span>
+                                    <span class="placeholder col-8"></span>
+                                    </p>
+                                    <div class="card-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php $opacity = $opacity - 0.1;?>
+                    <?php }?>
+                </div>
 
-
-                <div class="card" aria-hidden="true">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title placeholder-glow">
-      <span class="placeholder col-6"></span>
-    </h5>
-    <p class="card-text placeholder-glow">
-      <span class="placeholder col-7"></span>
-      <span class="placeholder col-4"></span>
-      <span class="placeholder col-4"></span>
-      <span class="placeholder col-6"></span>
-      <span class="placeholder col-8"></span>
-    </p>
-    <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
-  </div>
-</div>
-
-
-
-
-
-
+                <div class="row row-cols-1 row-cols-md-6 g-4" id="actualCardWrapper" style="display:none;">
+                    
                     <?php if(count($serverNames) == 0){?>
                        <p id="noServerYet">It seems like you are not connected to any Server yet.</p>
                      <?php } ?>
                     <?php for($i=0;$i<count($serverNames);$i++){ ?>
                         <?php
                             $getUserGuildInfo = $apiRequests->getUserGuildInfos($guildIds[$i], $_SESSION["userData"]["discord_id"]);
-                            $bot_id = $_ENV["client_id"];
-                            $isBotOnServer = $apiRequests->checkUserOnServer($guildIds[$i], $bot_id);
-                            
+                         
                             if(isset($getUserGuildInfo["joined_at"])){
-                                $userServerJoinDate = "Joined on ".date("Y/m/d",strtotime($getUserGuildInfo["joined_at"]));
+                                $userServerJoinDate = "You joined on ".date("Y/m/d",strtotime($getUserGuildInfo["joined_at"]));
                             }else{
                                 $userServerJoinDate = "Not Joined Yet";
                             }
@@ -124,7 +129,7 @@
                                     <img src='<?php echo $serverImg; ?>' class="card-img-top" alt="Server Icon">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $serverNames[$i]; ?></h5>
-                                        <?php if(!isset($isBotOnServer['user']['bot'])){?>
+                                        <?php if(!isset($getUserGuildInfo["joined_at"])){?>
                                             <p class="card-text">The Bergfest Bot is not on this server yet. Join him now! </p>
                                         <?php }else{?>
                                             <p class="card-text">The Bergfest Bot is on this server. Nice! </p>
@@ -136,8 +141,7 @@
                                 </div>
                             </a>
                         </div>
-                    <?php } ?>
-
+                    <?php } ?>      
                 </div>
             </div>
         </div>
@@ -147,14 +151,40 @@
 </body>
 </html>
 
+<script>
+    window.addEventListener('load', function() {
+        document.getElementById("placeholderLoadWrapper").style.display = "none";
+        document.getElementById("actualCardWrapper").style.display = "flex";
+        const timestampReload = Date.now();
+    })
 
-<?php
-/*
-        for($i=0;$i<count($serverNames);$i++){
-           echo "<label>".$serverNames[$i];
-           echo "<img src='https://cdn.discordapp.com/icons/".$guildIds[$i]."/".$serverIcons[$i].".png' width='60' height='48'></label>";
+
+    // Get the timestamp of the page load
+    const startTime = Date.now();
+
+    // Update the timer every second
+    setInterval(function() {
+        const elapsedTime = Date.now() - startTime;
+        
+        // Calculate the hours, minutes and seconds from elapsed time
+        const hours = Math.floor(elapsedTime / (60 * 60 * 1000));
+        const minutes = Math.floor((elapsedTime % (60 * 60 * 1000)) / (60 * 1000));
+
+        // Update the timer display
+        if(minutes === 0){
+            var lastUpdated = "just now";
+        }else if(minutes <= 59){
+            var lastUpdated = minutes+" minute(s) ago";
+        }else{
+            var lastUpdated = hours+" hour(s) ago";
         }
+        document.getElementById('smallProfileCardText').textContent = "Last updated "+lastUpdated;
+    }, 1000);
 
-    */
+    //remove placeholders from user info card
+    document.getElementById('smallProfileCardText').classList.remove("placeholder");
+    document.getElementById('userTotalServersInfo').classList.remove("placeholder");
+    document.getElementById('userServerAdminInfo').classList.remove("placeholder");
 
-    ?>
+</script>
+

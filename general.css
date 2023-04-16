@@ -58,11 +58,19 @@ body{
 
 #yourServersTitel{
     color: #ffffff;
+    font-size: 26pt;
+}
+
+#dashboardTitelWrapper{
+    text-align: center;
+    margin-bottom: 2%;
 }
 
 .innerYourServersCard{
     background-color: #141414 !important;
     color: white !important;
+    text-align: center;
+    min-height: 178px !important;
 }
 
 #getStartedCard{

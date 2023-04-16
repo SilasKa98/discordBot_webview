@@ -6,12 +6,12 @@
         </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link" aria-current="page" href="#">Commands</a>
-                <a class="nav-link" href="#">Join Our Discord</a>
-                <a class="nav-link" href="#">Help</a>
                 <?php if(isset($_SESSION["logged_in"])){ ?>
                     <a class="nav-link" href="/discordbot_webview/dashboard.php">Dashboard</a>
                 <?php }?>
+                <a class="nav-link" aria-current="page" href="/discordbot_webview/frontend/commands.php">Commands</a>
+                <a class="nav-link" href="#">Help</a>
+                <a class="nav-link" target="_blank" href="https://discord.gg/CQVPtKvSCu">Join Our Discord</a>
             </div>
         </div>
 
@@ -25,27 +25,6 @@
                 </a>      
                 <button class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                    <li>
-                        <!--dont remove, needed for bugfix-->
-                        <form></form>
-                    </li>
-                    <li>
-                    <form class="navbar-form navbar-right" method="post" action="#">
-                        <input type="hidden" name="destination" value="#">     
-                        <select name="language" class="form-select" id="changeLangSel" onchange="this.form.submit()">
-                            <option value="de">German</option>
-                            <option value="en-Us" selected="selected">English</option>
-                            <option value="es">Spanish</option>                                    
-                        </select>
-                    </form>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Foo</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Bar</a>
-                    </li>
-                    <li><hr class="dropdown-divider"></li>
                     <li>
                         <form class="navbar-form navbar-right" method="post" action="/discordbot_webview/doTransaction.php">
                             <input type="hidden" name="method" value="logoutAccount">
