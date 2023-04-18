@@ -151,7 +151,7 @@
             </div>
         </div>
     </div>
-
+        <?php include_once "frontend/footer.php"; ?>
 </body>
 
 

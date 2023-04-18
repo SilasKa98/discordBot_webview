@@ -12,6 +12,7 @@
                 <a class="nav-link" aria-current="page" href="/discordbot_webview/frontend/commands.php">Commands</a>
                 <a class="nav-link" href="#">Help</a>
                 <a class="nav-link" target="_blank" href="https://discord.gg/CQVPtKvSCu">Join Our Discord</a>
+                <a class="nav-link" target="_blank" href="/discordbot_webview/frontend/impressum.php">Impressum</a>
             </div>
         </div>
 
