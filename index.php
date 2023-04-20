@@ -136,7 +136,7 @@
                 <form>
                     <div class="form-group">
                         <label for="FormControlInput1" class="contactFormLabel">Your Name*</label>
-                        <input type="email" class="form-control" id="FormControlInput1">
+                        <input type="text" class="form-control" id="FormControlInput1">
                     </div>
                     <div class="form-group">
                         <label for="FormControlInput2" class="contactFormLabel">Your Email*</label>
