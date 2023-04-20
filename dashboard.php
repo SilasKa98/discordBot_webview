@@ -4,17 +4,17 @@
         header("Location:index.php");
         exit();
     }
+    require __DIR__ . '/vendor/autoload.php';
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
     extract($_SESSION["userData"]);
     extract($_SESSION["userServerData"]);
     if(isset($avatar)){
       $avatar_url = "https://cdn.discordapp.com/avatars/".$discord_id."/".$avatar.".jpg";  
     }else{
-        $avatar_url = "/discordbot_webview/media/profileDefault_avatar.png";
+        $avatar_url = $_ENV["app_root"]."media/profileDefault_avatar.png";
     }
 
-    require __DIR__ . '/vendor/autoload.php';
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-    $dotenv->load();
 
     include_once "services/apiRequestService.php";
     $apiRequests = new ApiRequests();
@@ -80,7 +80,7 @@
                     <?php for($i=0;$i<6;$i++){?>
                         <div class="col">
                             <div class="card h-100 innerYourServersCard" aria-hidden="true" style="opacity:<?php echo $opacity;?>;">
-                                <img src='/discordBot_webview/media/bergfestBot_logo_v2.png' class="card-img-top" alt="Server Icon">
+                                <img src='<?php echo $_ENV["app_root"];?>media/bergfestBot_logo_v2.png' class="card-img-top" alt="Server Icon">
                                 <div class="card-body">
                                     <h5 class="card-title placeholder-glow">
                                     <span class="placeholder col-6"></span>
@@ -119,7 +119,7 @@
                             if(isset($serverIcons[$i])){
                                 $serverImg = "https://cdn.discordapp.com/icons/".$guildIds[$i]."/".$serverIcons[$i].".png";
                             }else{
-                                $serverImg ="/discordBot_webview/media/bergfestBot_logo_v2.png";
+                                $serverImg =$_ENV["app_root"]."media/bergfestBot_logo_v2.png";
                             }
                         ?>
 

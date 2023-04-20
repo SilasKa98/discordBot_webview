@@ -1,5 +1,11 @@
 <?php
     session_start();
+
+    $basePath = dirname(__DIR__, 1);
+    require $basePath.'/vendor/autoload.php';
+    $dotenv = Dotenv\Dotenv::createImmutable($basePath);
+    $dotenv->load();
+
     if(!isset($_SESSION["logged_in"])){
         header("Location:../index.php");
     }else{
@@ -7,14 +13,9 @@
         if(isset($avatar)){
             $avatar_url = "https://cdn.discordapp.com/avatars/".$discord_id."/".$avatar.".jpg";  
         }else{
-            $avatar_url = "/discordbot_webview/media/profileDefault_avatar.png";
+            $avatar_url = $_ENV["app_root"]."media/profileDefault_avatar.png";
         }
     }
-
-    $basePath = dirname(__DIR__, 1);
-    require $basePath.'/vendor/autoload.php';
-    $dotenv = Dotenv\Dotenv::createImmutable($basePath);
-    $dotenv->load();
 
     $guild_id = $_GET["guildId"]; // deine Guild-ID hier
     $_SESSION["currentGuildId"] = $guild_id;
@@ -120,7 +121,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Server Settings</title>
-    <link rel="stylesheet" href="/discordbot_webview/general.css">
+    <link rel="stylesheet" href="<?php echo $_ENV["app_root"];?>general.css">
     <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
@@ -132,7 +133,7 @@
             <?php if($serverInfos["icon"] != ""){?>
                 <img id="serverSettingsIcon" src="https://cdn.discordapp.com/icons/<?php echo $serverInfos["id"]."/".$serverInfos["icon"]; ?>.png">
             <?php }else{?>
-                <img id="serverSettingsIcon" src="/discordbot_webview/media/bergfestBot_logo_v2.png" width=110px height=100px>
+                <img id="serverSettingsIcon" src="<?php echo $_ENV["app_root"];?>media/bergfestBot_logo_v2.png" width=110px height=100px>
             <?php }?>
             <span id="serverSettingsName"><?php echo $serverInfos["name"]; ?></span>
         </div>
@@ -154,7 +155,7 @@
 
                     <div class="col">
                         <div class="card border-secondary mb-3 innerYourServersCard" style="max-width: 18rem;">
-                            <a class="featureLinkWrapp" href="/discordbot_webview/frontend/eloChecker/eloCheckerSettings.php">
+                            <a class="featureLinkWrapp" href="<?php echo $_ENV["app_root"];?>frontend/eloChecker/eloCheckerSettings.php">
                                 <div class="card-header featureHeader">Elo Checker</div>
                                 <div class="card-body text-secondary">
                                     <h3 class="card-title secondaryModuleTitel">What does our elo checker do?</h3>

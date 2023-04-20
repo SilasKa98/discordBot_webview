@@ -1,18 +1,19 @@
 <?php
-
+ $basePath = dirname(__DIR__, 1);
+ require $basePath.'/vendor/autoload.php';
+ $dotenv = Dotenv\Dotenv::createImmutable($basePath);
+ $dotenv->load();
 
 class DatabaseService{
 
     function __construct(){
     
-      
-     
-        $this->connection = new mysqli("localhost", "root");
+        $this->connection = new mysqli($_ENV["db_host"], $_ENV["db_username"], $_ENV["db_password"]);
         if (mysqli_connect_errno()) {
             printf("Connect failed: %s\n", mysqli_connect_error());
             exit();
         }
-        if (!$this->connection->select_db("bergfestbot")) {
+        if (!$this->connection->select_db($_ENV["db_database"])) {
           print "DB existiert nicht.";
           $this->connection->close();
           exit();
