@@ -83,14 +83,14 @@
 
     $dbSelection_csgo = $databaseService->selectData("csgo_elo_settings", "discord_id=?", [$guild_id]);
     if(empty($dbSelection_csgo)){
-        $dbSelection_csgo = array("text_channel_id" => "", "mvp_update_rhythm" => "", "mvp_update_delta" => "");
+        $dbSelection_csgo = array("text_channel_id" => "", "mvp_update_rhythm" => "d", "mvp_update_delta" => 0);
     }else{
        $dbSelection_csgo = $dbSelection_csgo[0]; 
     }
 
     $dbSelection_lol = $databaseService->selectData("lol_settings", "discord_id=?", [$guild_id]);
     if(empty($dbSelection_lol)){
-        $dbSelection_lol = array("text_channel_id" => "", "mvp_update_rhythm" => "", "mvp_update_delta" => "");
+        $dbSelection_lol = array("text_channel_id" => "", "mvp_update_rhythm" => "d", "mvp_update_delta" => 0);
     }else{
        $dbSelection_lol = $dbSelection_lol[0]; 
     }
