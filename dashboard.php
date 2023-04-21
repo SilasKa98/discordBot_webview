@@ -108,7 +108,6 @@
                     <?php for($i=0;$i<count($serverNames);$i++){ ?>
                         <?php
                             $getUserGuildInfo = $apiRequests->getUserGuildInfos($guildIds[$i], $_SESSION["userData"]["discord_id"]);
-                         
                             if(isset($getUserGuildInfo["joined_at"])){
                                 $userServerJoinDate = "You joined on ".date("Y/m/d",strtotime($getUserGuildInfo["joined_at"]));
                             }else{

@@ -14,7 +14,7 @@
 
     //redirect to settings page or auth process
     if ($data['user']['bot']) {
-        header("Location:../../../frontend/serverSettings.php?guildId=".$_GET["guildId"]);
+        header("Location:" .$_ENV["app_root"]."frontend/serverSettings.php?guildId=".$_GET["guildId"]);
     } else {
         header("Location:".$_ENV["discord_serverAuth_url"]);
     }

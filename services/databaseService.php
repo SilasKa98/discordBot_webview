@@ -10,7 +10,7 @@ class DatabaseService{
     
         $this->connection = new mysqli($_ENV["db_host"], $_ENV["db_username"], $_ENV["db_password"]);
         if (mysqli_connect_errno()) {
-            printf("Connect failed: %s\n", mysqli_connect_error());
+            printf("[DbError] Connect failed: %s\n", mysqli_connect_error());
             exit();
         }
         if (!$this->connection->select_db($_ENV["db_database"])) {
@@ -18,20 +18,6 @@ class DatabaseService{
           $this->connection->close();
           exit();
       }
-      
-       
-/*
-       $this->connection = new mysqli("db5012083111.hosting-data.io:3306", "dbu4749837", "dsa23iD+1dFs13Kdd!");
-       if (mysqli_connect_errno()) {
-           printf("Connect failed: %s\n", mysqli_connect_error());
-           exit();
-       }
-        if (!$this->connection->select_db("dbs10168586")) {
-            print "DB existiert nicht.";
-            $this->connection->close();
-            exit();
-        }
-    */    
         
     }
 
