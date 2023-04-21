@@ -109,9 +109,9 @@
                         <?php
                             $getUserGuildInfo = $apiRequests->getUserGuildInfos($guildIds[$i], $_SESSION["userData"]["discord_id"]);
                             if(isset($getUserGuildInfo["joined_at"])){
-                                $userServerJoinDate = "You joined on ".date("Y/m/d",strtotime($getUserGuildInfo["joined_at"]));
+                                $userServerJoinDate = "<span class='badge rounded-pill text-bg-success'>Bergfest Bot joined on ".date("Y/m/d",strtotime($getUserGuildInfo["joined_at"]))."</span>";
                             }else{
-                                $userServerJoinDate = "Not Joined Yet";
+                                $userServerJoinDate = "<span class='badge rounded-pill text-bg-warning'>Not Joined Yet</span>";
                             }
                         ?>
                         <?php
