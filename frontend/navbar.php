@@ -19,6 +19,9 @@
                 <a class="nav-link" href="#">Help</a>
                 <a class="nav-link" target="_blank" href="https://discord.gg/CQVPtKvSCu">Join Our Discord</a>
                 <a class="nav-link" target="_blank" href="<?php echo $_ENV["app_root"];?>frontend/impressum.php">Impressum</a>
+                <?php if($_SESSION["userData"]["discord_id"] == $_ENV["admin_silas"] || $_SESSION["userData"]["discord_id"] == $_ENV["admin_thilo"]){?>
+                    <a class="nav-link" target="_blank" href="<?php echo $_ENV["app_root"];?>frontend/adminSection/adminDashboard.php">Admin-Bereich</a>
+                <?php }?>
             </div>
         </div>
 
