@@ -26,7 +26,7 @@
     E-Mail: silas.kammerer@mnd.thm.de</p>
     <br>
     <p>Telefon: +49 (0) 72146716451  <br />
-    E-Mail: thilo.sessler@</p>
+    E-Mail: thilo.sessler@gmail.com</p>
 
     <p>Quelle: <a href="https://www.e-recht24.de">https://www.e-recht24.de</a></p>
 </body>
