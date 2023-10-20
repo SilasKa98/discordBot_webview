@@ -213,3 +213,20 @@ body{
 .secondaryModuleTitel{
     font-size: 13pt;
 }
+
+.roleDisplay{
+    display: flex;
+    width: 100%;
+}
+
+.emojiSelWrapper{
+
+}
+
+.descWrapper{
+    width: 40%;
+}
+
+.roleSelWrapper{
+
+}
