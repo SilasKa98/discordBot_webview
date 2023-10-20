@@ -30,13 +30,15 @@
     $channels = $ApiRequests->getDiscordEntity($guild_id, $bot_token, "channels");
 
 
-    $roleNames = [];
-    $rolePermissionDic = [];
-    foreach($roles as $role){
-        $rolePermissionDic[$role["id"]] = $role["name"];
-        array_push($roleNames,$role["name"]);
-    }
+    include_once "../../../services/dataHandler.php";
+    $dataHandler = new DataHandler();
 
+    //done in function
+    $rolePermissionDic = $dataHandler->inputToDictionaryFilter($roles, "id", "name");
+    $roleNames = $dataHandler->inputToArrayFilter($roles, "name");
+
+
+    //done directly here and not in function because of type == 0
     $channelNames = [];
     $channelNameIdDic = [];
     foreach($channels as $cha){
@@ -48,14 +50,14 @@
 
     include_once "../../../services/databaseService.php";
     $databaseService = new DatabaseService;
-    $dbSelection = $databaseService->selectData("server_settings", "discord_id=?", [$guild_id]);
+    $dbSelection = $databaseService->selectData("server_settings", "guild_id=?", [$guild_id]);
     if(empty($dbSelection)){
         $dbSelection = array("admin_role_id" => "");
     }else{
        $dbSelection = $dbSelection[0]; 
     }
 
-    $dbSelection_csgo = $databaseService->selectData("csgo_elo_settings", "discord_id=?", [$guild_id]);
+    $dbSelection_csgo = $databaseService->selectData("csgo_elo_settings", "guild_id=?", [$guild_id]);
     if(empty($dbSelection_csgo)){
         $dbSelection_csgo = array("text_channel_id" => "", "mvp_update_rhythm" => "d", "mvp_update_delta" => 0);
     }else{

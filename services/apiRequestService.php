@@ -48,7 +48,6 @@
 
             $url = "https://discord.com/api/guilds/{$guild_id}/{$entity}";
 
-            include_once "oAuth/oAuthService.php";
             $oAuthService = new oAuthService();
 
             //curl options for given entity infos
