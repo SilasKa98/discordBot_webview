@@ -43,6 +43,28 @@
             return $data;
         }
 
+
+        function getDiscordEntity($guild_id, $bot_token, $entity){
+
+            $url = "https://discord.com/api/guilds/{$guild_id}/{$entity}";
+
+            include_once "oAuth/oAuthService.php";
+            $oAuthService = new oAuthService();
+
+            //curl options for given entity infos
+            $curlOptions = [
+                CURLOPT_URL=>$url,
+                CURLOPT_RETURNTRANSFER=>true,
+                CURLOPT_HTTPHEADER=>[
+                                        "Authorization: Bot {$bot_token}",
+                                        "Content-Type: application/json"
+                                    ]
+            ];
+
+            $result = $oAuthService->doCurl($curlOptions);
+            return json_decode($result, true);
+        }
+
     }
 
 ?>

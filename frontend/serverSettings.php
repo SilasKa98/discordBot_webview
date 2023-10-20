@@ -155,8 +155,8 @@
 
                     <div class="col">
                         <div class="card border-secondary mb-3 innerYourServersCard" style="max-width: 18rem;">
-                            <a class="featureLinkWrapp" href="<?php echo $_ENV["app_root"];?>frontend/eloChecker/eloCheckerSettings.php">
-                                <div class="card-header featureHeader">Elo Checker</div>
+                            <a class="featureLinkWrapp" href="<?php echo $_ENV["app_root"];?>frontend/modules/faceitElo/eloCheckerSettings.php">
+                                <div class="card-header featureHeader">Faceit elo</div>
                                 <div class="card-body text-secondary">
                                     <h3 class="card-title secondaryModuleTitel">What does our elo checker do?</h3>
                                     <p class="card-text">
@@ -169,17 +169,19 @@
 
                     <div class="col">
                         <div class="card border-secondary mb-3 innerYourServersCard" style="max-width: 18rem;">
-                            <div class="card-header featureHeader">New Module</div>
-                            <div class="card-body text-secondary">
-                                <h5 class="card-title secondaryModuleTitel">Comming soon</h5>
-                                <p class="card-text">In the future we plan to expand our variety of modules. Stay tuned.</p>
-                            </div>
+                            <a class="featureLinkWrapp" href="<?php echo $_ENV["app_root"];?>frontend/modules/roleManager/roleManager.php">
+                                <div class="card-header featureHeader">Role Manager</div>
+                                <div class="card-body text-secondary">
+                                    <h5 class="card-title secondaryModuleTitel">Comming soon</h5>
+                                    <p class="card-text">In the future we plan to expand our variety of modules. Stay tuned.</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="card border-secondary mb-3 innerYourServersCard" style="max-width: 18rem;">
-                            <div class="card-header featureHeader">New Module</div>
+                            <div class="card-header featureHeader">Casino</div>
                             <div class="card-body text-secondary">
                                 <h5 class="card-title secondaryModuleTitel">Comming soon</h5>
                                 <p class="card-text">In the future we plan to expand our variety of modules. Stay tuned.</p>
