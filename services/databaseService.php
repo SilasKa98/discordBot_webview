@@ -30,16 +30,16 @@ class DatabaseService{
         
         // Prepare statement
         $stmt = $this->connection->prepare($query);
-        
+         
         // Bind parameters
         if ($params) {
           $types = str_repeat("s", count($params)); // Assuming all values are strings
           $stmt->bind_param($types, ...$params);
         }
-        
+         
         // Execute statement
         $stmt->execute();
-        
+       
         // Get results
         $result = $stmt->get_result();
         
@@ -51,7 +51,7 @@ class DatabaseService{
         
         // Close statement
         $stmt->close();
-        
+       
         return $data;
     }
       

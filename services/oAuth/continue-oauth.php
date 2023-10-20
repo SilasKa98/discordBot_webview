@@ -5,10 +5,12 @@ if(!isset($_GET["code"])){
     exit();
 }
 
+
 $basePath = dirname(__DIR__, 2);
 require $basePath.'/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable($basePath);
 $dotenv->load();
+
 
 include_once "oAuthService.php";
 
@@ -24,6 +26,7 @@ $payload = [
 ];
 
 $payload_http = http_build_query($payload);
+
 $discord_token_url = $_ENV["discord_token_url"];
 $oAuthService = new oAuthService();
 $curlOptions = [
@@ -32,6 +35,8 @@ $curlOptions = [
     CURLOPT_POSTFIELDS=>$payload_http,
     CURLOPT_RETURNTRANSFER=>true
 ];
+
+
 $result = $oAuthService->doCurl($curlOptions);
 
 
@@ -94,6 +99,7 @@ $_SESSION["userServerData"] = [
     "guildOwnerStatus"=>$guildOwner,
     "guildPermissions"=>$guildPermissions
 ];
+
 
 
 header("Location:../../dashboard.php")
