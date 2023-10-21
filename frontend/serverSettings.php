@@ -111,7 +111,26 @@
 
     include_once "../services/databaseService.php";
     $databaseService = new DatabaseService;
-    $dbActivitiesSelection = $databaseService->selectData("activities", "discord_id=?", [$guild_id]);
+    $dbActivitiesSelection = $databaseService->selectData("activities", "guild_id=?", [$guild_id]);
+
+
+    $dbSelection = $databaseService->selectData("guilds", "guild_id=?", [$guild_id]);
+    if(empty($dbSelection)){
+        $dbSelection = array("admin_role_id" => "");
+    }else{
+       $dbSelection = $dbSelection[0]; 
+    }
+
+
+    include_once "../services/apiRequestService.php";
+    $ApiRequests = new ApiRequests();
+    $roles = $ApiRequests->getDiscordEntity($guild_id, $bot_token, "roles");
+
+
+    include_once "../services/dataHandler.php";
+    $dataHandler = new DataHandler();
+    $rolesIdDic = $dataHandler->inputToDictionaryFilter($roles, "id", "name");
+
 ?>
 
 <!DOCTYPE html>
@@ -147,6 +166,22 @@
             </div>
         </div>
 
+
+        <div class="card displayInfoCard text-bg-dark">
+            <div class="card-body">
+                <h2>General Settings</h2>
+                <h5 class="card-title">Admin ID</h5>
+                <div class="input-group mb-3">
+                    <select class="form-select text-bg-secondary" name="adminId" aria-label="Admin Id">
+                        <option>Open this select menu</option>
+                        <?php foreach($rolesIdDic as $roleId => $roleName){ ?>
+                                <option value="<?php echo $roleId; ?>" <?php if($roleId == $dbSelection["admin_role_id"]){ echo "selected";} ?>><?php echo $roleName;?></option>
+                        <?php }?>
+                    </select>
+                </div>
+            </div>
+        </div>
+
         <div class="card displayInfoCard text-bg-dark">
             <div class="card-body">
                 <h2>Bot Features</h2>
@@ -155,15 +190,15 @@
 
                     <div class="col">
                         <div class="card border-secondary mb-3 innerYourServersCard" style="max-width: 18rem;">
-                            <a class="featureLinkWrapp" href="<?php echo $_ENV["app_root"];?>frontend/modules/faceitElo/eloCheckerSettings.php">
-                                <div class="card-header featureHeader">Faceit elo</div>
-                                <div class="card-body text-secondary">
-                                    <h3 class="card-title secondaryModuleTitel">What does our elo checker do?</h3>
-                                    <p class="card-text">
-                                        With the Elo Checker module you can display the elo of your Discord members for different games.
-                                    </p>
-                                </div>
-                            </a>
+                            
+                            <div class="card-header featureHeader">Faceit elo</div>
+                            <div class="card-body text-secondary">
+                                <h3 class="card-title secondaryModuleTitel">Check and display your Elo!</h3>
+                                <p class="card-text">
+                                    With the faceit elo module you can display your elo history for a freely selected period of time.
+                                </p>
+                            </div>
+                           
                         </div>  
                     </div>
 
