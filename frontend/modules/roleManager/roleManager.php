@@ -25,6 +25,8 @@ include_once "../../../services/apiRequestService.php";
 $apiRequests = new ApiRequests();
 $roles = $apiRequests->getDiscordEntity($guild_id, $bot_token, "roles");
 $channels = $apiRequests->getDiscordEntity($guild_id, $bot_token, "channels");
+$emojis = $apiRequests->getDiscordEntity($guild_id, $bot_token, "emojis");
+print_r($emojis);
 
 include_once "../../../services/dataHandler.php";
 $dataHandler = new DataHandler();
@@ -37,8 +39,6 @@ ksort($roleDic);
 $bergfestBotRoleKey = $dataHandler->getArrayKeyByValue($roleDic, "BergfestBot");
 $slicedRoleDic = array_slice($roleDic, 0, $bergfestBotRoleKey);
 
-print_r($slicedRoleDic);
-
 
 include_once "../../../services/databaseService.php";
 $databaseService = new DatabaseService;
@@ -48,6 +48,9 @@ if(empty($dbSelection)){
 }else{
    $dbSelection = $dbSelection[0]; 
 }
+
+
+
 
 ?>
 
@@ -120,9 +123,9 @@ if(empty($dbSelection)){
                                 <div class="roleSelWrapper">
                                     <select class="form-select" aria-label="Default select example">
                                         <option selected>Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        <?php foreach($slicedRoleDic as $item){ ?>
+                                                <option><?php echo $item ?></option>
+                                        <?php  }?>
                                     </select>
                                 </div>
                             </div>

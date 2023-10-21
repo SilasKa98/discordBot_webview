@@ -86,7 +86,11 @@
             ];
 
             $result = $oAuthService->doCurl($curlOptions);
-            return json_decode($result, true);
+            if($entity == "emojis"){
+                print_r($result); 
+            }
+           
+            return json_decode($result,true);
         }
 
     }
