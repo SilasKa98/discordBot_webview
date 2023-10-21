@@ -121,6 +121,7 @@
        $dbSelection = $dbSelection[0]; 
     }
 
+    print_r($dbSelection);
 
     include_once "../services/apiRequestService.php";
     $ApiRequests = new ApiRequests();
@@ -169,16 +170,20 @@
 
         <div class="card displayInfoCard text-bg-dark">
             <div class="card-body">
-                <h2>General Settings</h2>
-                <h5 class="card-title">Admin ID</h5>
-                <div class="input-group mb-3">
-                    <select class="form-select text-bg-secondary" name="adminId" aria-label="Admin Id">
-                        <option>Open this select menu</option>
-                        <?php foreach($rolesIdDic as $roleId => $roleName){ ?>
-                                <option value="<?php echo $roleId; ?>" <?php if($roleId == $dbSelection["admin_role_id"]){ echo "selected";} ?>><?php echo $roleName;?></option>
-                        <?php }?>
-                    </select>
-                </div>
+                <form action="../doTransaction.php" method="post">
+                    <input type="hidden" name="method" value="changeGeneralSettings">
+                    <h2>General Settings</h2>
+                    <h5 class="card-title">Admin ID</h5>
+                    <div class="input-group mb-3">
+                        <select class="form-select text-bg-secondary" name="adminId" aria-label="Admin Id">
+                            <option>Open this select menu</option>
+                            <?php foreach($rolesIdDic as $roleId => $roleName){ ?>
+                                    <option value="<?php echo $roleId; ?>" <?php if($roleId == $dbSelection["admin_role_id"]){ echo "selected";} ?>><?php echo $roleName;?></option>
+                            <?php }?>
+                        </select>
+                    </div>
+                    <input type="submit" class="btn btn-success" value="Save">
+                </form>
             </div>
         </div>
 
@@ -187,23 +192,22 @@
                 <h2>Bot Features</h2>
 
                 <div class="row row-cols-1 row-cols-md-4 g-2">
+                    <div class="col">
+                        <div class="card border-secondary mb-3 innerYourServersCard" style="max-width: 18rem;">
+                            <div class="moduleSwitch"><label class="switch"><input id="box1" type="checkbox" name="changeStatus" onchange="changeModulStatus(this,'cs')" <?php if($dbSelection["cs"] == 1){ echo "checked";}?>><span class="slider round"></span></label></div>
+                                <div class="card-header featureHeader">Faceit elo</div>
+                                <div class="card-body text-secondary">
+                                    <h3 class="card-title secondaryModuleTitel">Check and display your Elo!</h3>
+                                    <p class="card-text">
+                                     With the faceit elo module you can display your elo history for a freely selected period of time.
+                                    </p>
+                                </div>
+                            </div>  
+                        </div>
 
                     <div class="col">
                         <div class="card border-secondary mb-3 innerYourServersCard" style="max-width: 18rem;">
-                            
-                            <div class="card-header featureHeader">Faceit elo</div>
-                            <div class="card-body text-secondary">
-                                <h3 class="card-title secondaryModuleTitel">Check and display your Elo!</h3>
-                                <p class="card-text">
-                                    With the faceit elo module you can display your elo history for a freely selected period of time.
-                                </p>
-                            </div>
-                           
-                        </div>  
-                    </div>
-
-                    <div class="col">
-                        <div class="card border-secondary mb-3 innerYourServersCard" style="max-width: 18rem;">
+                            <div class="moduleSwitch"><label class="switch"><input id="box1" type="checkbox" name="changeStatus"  onchange="changeModulStatus(this,'reaction_role')" <?php if($dbSelection["reaction_role"] == 1){ echo "checked";}?>><span class="slider round"></span></label></div>
                             <a class="featureLinkWrapp" href="<?php echo $_ENV["app_root"];?>frontend/modules/roleManager/roleManager.php">
                                 <div class="card-header featureHeader">Role Manager</div>
                                 <div class="card-body text-secondary">
@@ -216,6 +220,7 @@
 
                     <div class="col">
                         <div class="card border-secondary mb-3 innerYourServersCard" style="max-width: 18rem;">
+                            <div class="moduleSwitch"><label class="switch"><input id="box1" type="checkbox" name="changeStatus"  onchange="changeModulStatus(this,'gamble')" <?php if($dbSelection["gamble"] == 1){ echo "checked";}?>><span class="slider round"></span></label></div>
                             <div class="card-header featureHeader">Casino</div>
                             <div class="card-body text-secondary">
                                 <h5 class="card-title secondaryModuleTitel">Comming soon</h5>
@@ -226,7 +231,8 @@
 
                     <div class="col">
                         <div class="card border-secondary mb-3 innerYourServersCard" style="max-width: 18rem;">
-                            <div class="card-header featureHeader">New Module</div>
+                            <div class="moduleSwitch"><label class="switch"><input id="box1" type="checkbox" name="changeStatus"  onchange="changeModulStatus(this,'lol')" <?php if($dbSelection["lol"] == 1){ echo "checked";}?>><span class="slider round"></span></label></div>
+                            <div class="card-header featureHeader">League Of Legends</div>
                             <div class="card-body text-secondary">
                                 <h5 class="card-title secondaryModuleTitel">Comming soon</h5>
                                 <p class="card-text">In the future we plan to expand our variety of modules. Stay tuned.</p>
@@ -258,3 +264,30 @@
     </div>
 </body>
 </html>
+
+<script>
+
+    function changeModulStatus(elem, moduleName){
+        let moduleStatus;
+        if(elem.checked == true){
+            moduleStatus = 1;
+        }else{
+            moduleStatus = 0;
+        }
+        $.ajax({
+            type: "POST",
+            url: "../doTransaction.php",
+            data: {
+                method: "changeModulStatus",
+                moduleName: moduleName,
+                moduleStatus: moduleStatus
+            },
+					success: function(response, message, result) {
+						console.log(response);
+						console.log(message);
+						console.log(result);
+					}
+        });
+    }
+
+</script>
