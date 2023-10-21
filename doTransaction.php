@@ -40,6 +40,12 @@ if(isset($_POST["method"]) && $_POST["method"] == "changeGeneralSettings"){
         $databaseService->updateData("guilds", $data, $condition, $params, $types);
     }
 
+    $activityMessage = "Updated the general settings: changed Admin ID to ".$adminId;
+
+    //insert into activitys
+    $activity = array("guild_id" =>$guild_id, "author" => $_SESSION["userData"]["name"], "action" => $activityMessage, "date"=> date("Y-m-d H:i:s"));
+    $databaseService->insertData("activities", $activity, "isss");
+
     header("Location:frontend/serverSettings.php?guildId={$guild_id}&insert=success");
 }
 
@@ -65,6 +71,18 @@ if(isset($_POST["method"]) && $_POST["method"] == "changeModulStatus"){
     $params = [$guild_id];
     $types = "ii";
     $databaseService->updateData("guilds", $data, $condition, $params, $types);
+
+
+    $activityMessage = "";
+    if($moduleStatus == 1){
+        $activityMessage = "enabled the module ".$modulName;
+    }else{
+        $activityMessage = "disabled the module ".$modulName;
+    }
+
+    //insert into activitys
+    $activity = array("guild_id" =>$guild_id, "author" => $_SESSION["userData"]["name"], "action" => $activityMessage, "date"=> date("Y-m-d H:i:s"));
+    $databaseService->insertData("activities", $activity, "isss");
 }
 
 

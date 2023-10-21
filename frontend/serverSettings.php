@@ -170,7 +170,7 @@
 
         <div class="card displayInfoCard text-bg-dark">
             <div class="card-body">
-                <form action="../doTransaction.php" method="post">
+                <form action="<?php echo $_ENV["app_root"];?>doTransaction.php" method="post">
                     <input type="hidden" name="method" value="changeGeneralSettings">
                     <h2>General Settings</h2>
                     <h5 class="card-title">Admin ID</h5>
