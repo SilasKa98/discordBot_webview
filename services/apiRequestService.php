@@ -14,16 +14,41 @@
                 'Content-Type: application/json'
             );
             $curlOptions = [
-                CURLOPT_HTTPHEADER=>$header,
-                CURLOPT_URL=>$url,
-                CURLOPT_POST=>false,
-                CURLOPT_RETURNTRANSFER=>true
+                CURLOPT_HTTPHEADER => $header,
+                CURLOPT_URL => $url,
+                CURLOPT_POST => false,
+                CURLOPT_RETURNTRANSFER => true
             ];
             $oAuthService = new oAuthService();
-            $result = $oAuthService->doCurl($curlOptions);
-            $result = json_decode($result, true);
-            return $result;   
+            $curlOptionsArray = [$curlOptions];
+            $results = $oAuthService->doAsyncCurl($curlOptionsArray);
+            // Ergebnisse verarbeiten
+            foreach ($results as $index => $result) {
+                $final_result = json_decode($result, true);
+            }
+            return $final_result;   
         }
+
+
+        function generateCurlOptionsForUserGuildInfos($guildId, $userId){ 
+
+            $url = "https://discord.com/api/guilds/{$guildId}/members/{$userId}";
+            $token = $_ENV["bot_token"];
+            // Set the request headers
+            $header = array(
+                'Authorization: Bot ' . $token,
+                'Content-Type: application/json'
+            );
+            $curlOptions = [
+                CURLOPT_HTTPHEADER => $header,
+                CURLOPT_URL => $url,
+                CURLOPT_POST => false,
+                CURLOPT_RETURNTRANSFER => true
+            ];
+
+            return $curlOptions;
+        }
+
 
         function checkUserOnServer($guildId, $userId){
             $bot_token = $_ENV["bot_token"];

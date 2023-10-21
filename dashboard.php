@@ -74,7 +74,7 @@
             <div class="card-header" id="dashboardTitelWrapper">
                 <h3 class="card-title" id="yourServersTitel">Your Servers</h3>
             </div>
-            
+
                 <div class="row row-cols-1 row-cols-md-6 g-4" id="placeholderLoadWrapper">
                     <?php $opacity = 1;?>
                     <?php for($i=0;$i<6;$i++){?>
@@ -105,14 +105,32 @@
                     <?php if(count($serverNames) == 0){?>
                        <p id="noServerYet">It seems like you are not connected to any Server yet.</p>
                      <?php } ?>
+                     <?php 
+                        //first collecting all curl options for every server in an array
+                        $curlOptionsArray = [];
+                        for($i=0;$i<count($serverNames);$i++){
+                            $curlOptions= $apiRequests->generateCurlOptionsForUserGuildInfos($guildIds[$i], $_ENV["client_id"]); 
+                            array_push($curlOptionsArray,$curlOptions);
+                        }
+                        //send all options to the async function
+                        include_once "services/oAuth/oAuthService.php";
+                        $oAuthService = new oAuthService();
+                        $getUserGuildInfo = $oAuthService->doAsyncCurl($curlOptionsArray);
+
+                        //decode each result from json to array and push it in a new array which contains the final result
+                        $userGuideInfoArray = [];
+                        for($i=0;$i<count($getUserGuildInfo);$i++){
+                            array_push($userGuideInfoArray,json_decode($getUserGuildInfo[$i], true));
+                        }
+
+                     ?>
                     <?php for($i=0;$i<count($serverNames);$i++){ ?>
                         <?php
-                            $getUserGuildInfo = $apiRequests->getUserGuildInfos($guildIds[$i], $_SESSION["userData"]["discord_id"]);
-                            if(isset($getUserGuildInfo["joined_at"])){
-                                $userServerJoinDate = "<span class='badge rounded-pill text-bg-success'>Bergfest Bot joined on ".date("Y/m/d",strtotime($getUserGuildInfo["joined_at"]))."</span>";
+                            if(isset($userGuideInfoArray[$i]["joined_at"])){
+                                $userServerJoinDate = "<span class='badge rounded-pill text-bg-success'>Bergfest Bot joined on ".date("Y/m/d",strtotime($userGuideInfoArray[$i]["joined_at"]))."</span>";
                             }else{
                                 $userServerJoinDate = "<span class='badge rounded-pill text-bg-warning'>Not Joined Yet</span>";
-                            }
+                            }                            
                         ?>
                         <?php
                             if(isset($serverIcons[$i])){
@@ -128,7 +146,7 @@
                                     <img src='<?php echo $serverImg; ?>' class="card-img-top" alt="Server Icon">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $serverNames[$i]; ?></h5>
-                                        <?php if(!isset($getUserGuildInfo["joined_at"])){?>
+                                        <?php if(!isset($userGuideInfoArray[$i]["joined_at"])){?>
                                             <p class="card-text">The Bergfest Bot is not on this server yet. Join him now! </p>
                                         <?php }else{?>
                                             <p class="card-text">The Bergfest Bot is on this server. Nice! </p>
@@ -151,11 +169,13 @@
 </html>
 
 <script>
+    
     window.addEventListener('load', function() {
         document.getElementById("placeholderLoadWrapper").style.display = "none";
         document.getElementById("actualCardWrapper").style.display = "flex";
         const timestampReload = Date.now();
     })
+    
 
 
     // Get the timestamp of the page load
