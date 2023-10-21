@@ -1,4 +1,20 @@
 <?php
+
+/**
+ * 
+ * 
+ * FILE IST DEPRECATED AND NOT IN USE ANY LONGER !
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
+ //remove when using again
+    exit();
+
     session_start();
 
     $basePath = dirname(__DIR__, 3);
