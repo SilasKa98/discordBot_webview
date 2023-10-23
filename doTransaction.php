@@ -86,6 +86,60 @@ if(isset($_POST["method"]) && $_POST["method"] == "changeModulStatus"){
 }
 
 
+if(isset($_POST["method"]) && $_POST["method"] == "reaction_role"){
+    echo $_POST["reaction_role_channel"]."<br>";
+    echo $_POST["mainHeaderText"]."<br>";
+    print_r($_POST["emoji"]);
+    print_r($_POST["roleDescription"]);
+    print_r($_POST["roleSelection"]);
+
+    //TODO
+    //sanitse and check if roleSelections_id contains 2 same values if so, error and back.
+
+    $channel_id = $_POST["reaction_role_channel"];
+    $message_id = 12314142;
+    $message = $_POST["mainHeaderText"];
+
+    $roleDescriptions = $_POST["roleDescription"];
+    $roleSelections_id = $_POST["roleSelection"];
+    $emojis = $_POST["emoji"];
+
+    session_start();
+    $guild_id = $_SESSION["currentGuildId"];
+
+    //insert or update the reaction_messages table
+    $dbSelection = $databaseService->selectData("reaction_messages", "guild_id=?", [$guild_id]);
+
+    if(empty($dbSelection)){
+        //insert reaction_message
+        $data = array("guild_id" => $guild_id, "channel_id" => $channel_id, "message_id" => $message_id, "message" => $message);
+        $types = "iiis";
+        $databaseService->insertData("reaction_messages", $data, $types);
+    }else{
+        //update
+        $data = array("channel_id" => $channel_id, "message_id" => $message_id, "message" => $message );
+        $condition = "guild_id=?";
+        $params = [$guild_id];
+        $types = "iisi";
+        $databaseService->updateData("reaction_messages", $data, $condition, $params, $types);
+
+    }
+
+    //get the current reaction_messages_id for the current guild
+    $reaction_messages_id = $databaseService->selectData("reaction_messages", "guild_id=?", [$guild_id]);
+    $reaction_messages_id = $reaction_messages_id[0]["reaction_messages_id"];
+
+    print_r($reaction_messages_id);
+    //del all from reaction_roles table what belongs to reaction_message_id of this guild (to understand check the relation to reaction_messages table)
+    $databaseService->deleteData("reaction_roles", $reaction_messages_id, "reaction_messages_id");
+    //insert into reaction_roles table
+    for($i=0;$i<count($roleDescriptions);$i++){
+        $data = array("reaction_messages_id" => $reaction_messages_id, "role_id" => $roleSelections_id[$i], "emoji" => $emojis[$i], "description" => $roleDescriptions[$i]);
+        $types = "iibs";
+        $databaseService->insertData("reaction_roles", $data, $types);
+    }
+}
+
 
 //NOT IN USE ANY LONGER
 /*

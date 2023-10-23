@@ -220,16 +220,33 @@ body{
 }
 
 .emojiSelWrapper{
+    max-width: 106px;
+}
 
+.openEmojiPickerBtn{
+    background: none;
+    border: none;
+    font-size: 19px;
 }
 
 .descWrapper{
     width: 40%;
+    margin-right: 1%;
 }
 
-.roleSelWrapper{
-
+.emojiPicker{
+    position: absolute;
+    margin-top: 40px;
+    z-index: 1000;
 }
+
+.selectedEmoji{
+    text-align: center !important;
+    width: 27% !important;
+    float: left;
+    min-width: 60px;
+}
+
 
 
 
@@ -238,7 +255,7 @@ body{
     position: relative;
     display: inline-block;
     width: 49px;
-    height: 18px;
+    height: 22px;
   }
   
   /* Hide default HTML checkbox */
@@ -264,10 +281,10 @@ body{
   .slider:before {
     position: absolute;
     content: "";
-    height: 14px;
-    width: 16px;
+    height: 16px;
+    width: 17px;
     left: 3px;
-    bottom: 2px;
+    bottom: 2.5px;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
@@ -301,3 +318,5 @@ body{
     margin-top: 4px;
     margin-left: 230px;
   }
+
+ 
