@@ -28,6 +28,7 @@ class DatabaseService{
           $query .= " WHERE $condition";
         }
         
+        print $query;
         // Prepare statement
         $stmt = $this->connection->prepare($query);
          
@@ -44,7 +45,7 @@ class DatabaseService{
         $result = $stmt->get_result();
         
         // Fetch data
-        $data = array();
+        $data = [];
         while ($row = $result->fetch_assoc()) {
           $data[] = $row;
         }
@@ -118,9 +119,9 @@ class DatabaseService{
       
    
 
-    function deleteData($table, $id_to_delete){
+    function deleteData($table, $id_to_delete, $delConditionColumn){
       // Build prepared statement
-      $sql = "DELETE FROM ".$table." WHERE id = ?";
+      $sql = "DELETE FROM ".$table." WHERE ".$delConditionColumn." = ?";
       
       // Prepare statement
       $stmt = $this->connection->prepare($sql);

@@ -85,9 +85,6 @@ class oAuthService{
         return $bearer_token;
     }
 
-    function initOAuth(){
-
-    }
 
 }
 

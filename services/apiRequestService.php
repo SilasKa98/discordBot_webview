@@ -53,7 +53,7 @@
         function checkUserOnServer($guildId, $userId){
             $bot_token = $_ENV["bot_token"];
         
-            $url = "https://discord.com/api/v9/guilds/$guildId/members/$userId";
+            $url = "https://discord.com/api/guilds/$guildId/members/$userId";
             $oAuthService = new oAuthService();
             $curlOptions = [
                 CURLOPT_RETURNTRANSFER=>true,
@@ -86,10 +86,7 @@
             ];
 
             $result = $oAuthService->doCurl($curlOptions);
-            if($entity == "emojis"){
-                print_r($result); 
-            }
-           
+   
             return json_decode($result,true);
         }
 
