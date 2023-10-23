@@ -282,11 +282,11 @@
                 moduleName: moduleName,
                 moduleStatus: moduleStatus
             },
-					success: function(response, message, result) {
-						console.log(response);
-						console.log(message);
-						console.log(result);
-					}
+            success: function(response, message, result) {
+                console.log(response);
+                console.log(message);
+                console.log(result);
+            }
         });
     }
 
