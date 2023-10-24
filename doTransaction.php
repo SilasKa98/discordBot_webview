@@ -123,7 +123,7 @@ if(isset($_POST["method"]) && $_POST["method"] == "reaction_role2"){
  
     $jsonData = json_encode($allPostData);
 
-    $url = "https://bergfestbot.free.beeceptor.com";
+    $url = $_ENV["enpoint_id"].":".$_ENV["endpoint_port"]."/set_reaction_role_message";
     $bot_token = $_ENV["bot_token"];
     $options = [
         CURLOPT_URL=>$url,
@@ -143,6 +143,7 @@ if(isset($_POST["method"]) && $_POST["method"] == "reaction_role2"){
 }
 
 
+
 if(isset($_POST["method"]) && $_POST["method"] == "del_reaction_role2"){
     $id = $sanitiser->sanitiseInput($_POST["id"]);
     session_start();
@@ -156,14 +157,10 @@ if(isset($_POST["method"]) && $_POST["method"] == "del_reaction_role2"){
         $allPostData = [
             "reaction_role_id" => $id
         ];
-
-        print_r($allPostData);
     
         $jsonData = json_encode($allPostData);
-    
-        print $jsonData;
 
-        $url = "https://bergfestbot.free.beeceptor.com";
+        $url = $_ENV["enpoint_id"].":".$_ENV["endpoint_port"]."/remove_reaction_role";
         $bot_token = $_ENV["bot_token"];
         $options = [
             CURLOPT_URL=>$url,
@@ -185,6 +182,41 @@ if(isset($_POST["method"]) && $_POST["method"] == "del_reaction_role2"){
 }
 
 
+
+if(isset($_POST["method"]) && $_POST["method"] == "delete_reaction_message"){
+    $reaction_message_id = $sanitiser->sanitiseInput($_POST["reaction_message_id"]);
+    session_start();
+    $guild_id = $_SESSION["currentGuildId"];
+
+    $dbSelection = $databaseService->selectData("reaction_messages", "reaction_message_id=?", [$reaction_message_id]);
+
+    if($dbSelection[0]["guild_id"] == $guild_id){
+
+        $allPostData = [
+            "reaction_message_id" => $reaction_message_id
+        ];
+    
+        $jsonData = json_encode($allPostData);
+
+        #$url = $_ENV["enpoint_id"].":".$_ENV["endpoint_port"]."/delete_reaction_role_message";
+        $url = "https://bergfestbot.free.beeceptor.com";
+        $bot_token = $_ENV["bot_token"];
+        $options = [
+            CURLOPT_URL=>$url,
+            CURLOPT_RETURNTRANSFER=>true,
+            CURLOPT_CUSTOMREQUEST => "POST", 
+            CURLOPT_POSTFIELDS => $jsonData,
+            CURLOPT_HTTPHEADER=>[
+                                    "Authorization: Bot {$bot_token}",
+                                    "Content-Type: application/json"
+                                ]
+        ];
+    
+        $oAuthService->doCurl($options);
+    }
+}
+
+/*
 if(isset($_POST["method"]) && $_POST["method"] == "reaction_role"){
 
     //TODO
@@ -260,6 +292,7 @@ if(isset($_POST["method"]) && $_POST["method"] == "del_reaction_role"){
     }
 
 }
+*/
 
 
 
