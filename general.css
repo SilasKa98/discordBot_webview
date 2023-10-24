@@ -115,6 +115,7 @@ body{
     color: white;
     margin-top: 1%;
     margin-bottom: 1%;
+    margin-left: 2%;
 }
 
 #ankerWrapUserLink{
@@ -230,13 +231,13 @@ body{
 }
 
 .descWrapper{
-    width: 40%;
+    width: 50%;
     margin-right: 1%;
 }
 
 .emojiPicker{
     position: absolute;
-    margin-top: 40px;
+    margin-top: 11px;
     z-index: 1000;
 }
 
@@ -247,8 +248,66 @@ body{
     min-width: 60px;
 }
 
+.delWrapper{
+    margin-left: 1% !important;
+}
+
+#roleManagerMain{
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100vh;
+    height: -webkit-fill-available;
+    max-height: 100vh;
+    overflow-x: auto;
+    overflow-y: auto;
+    margin-top: 25px;
+}
+
+#roleManagerBody{
+    height: 80vh;
+    min-height: -webkit-fill-available;
+}
+
+.formRoleMessageWrapper{
+    margin-bottom: 7%;
+}
 
 
+#sideBarWrapper{
+    margin-left: 6px;
+    border-radius: 10px;
+    padding: 7px !important;
+}
+
+.roleMsgSidebarBtn{
+    border-radius: 10px !important;
+}
+
+.roleMsgSidebarBtn:hover{
+    background-color: #919191 !important;
+    transition: 0.5s ease-out;
+}
+
+
+.saveAllRoleBtn{
+    width: 98%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+
+.addNewMsgBtn{
+    margin-top: 4%;
+}
+
+.addNewRoleLineBtn{
+    margin: 1%;
+}
+
+.delWholeMessageBtn{
+    position: absolute;
+    right: 14px;
+    top: 15%;
+}
 
 /* The switch - the box around the slider */
 .switch {

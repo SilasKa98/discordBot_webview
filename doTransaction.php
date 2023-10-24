@@ -6,8 +6,10 @@ $dotenv->load();
 
 include_once "services/databaseService.php";
 include_once "services/sanitiseInputService.php";
+include_once "services/oAuth/oAuthService.php";
 $databaseService = new DatabaseService;
 $sanitiser = new SanitiseInputService;
+$oAuthService = new oAuthService;
 
 if(isset($_POST["method"]) && $_POST["method"] == "logoutAccount"){
     session_start();
@@ -86,26 +88,123 @@ if(isset($_POST["method"]) && $_POST["method"] == "changeModulStatus"){
 }
 
 
+//Send data to endpoint
+if(isset($_POST["method"]) && $_POST["method"] == "reaction_role2"){
+
+    session_start();
+    $guild_id = $_SESSION["currentGuildId"];
+
+    $allPostData = [];
+    $channel_id = $sanitiser->sanitiseInput($_POST["reaction_role_channel"]);
+    $message = $sanitiser->sanitiseInput($_POST["mainHeaderText"]);
+    $sel_reaction_message_id = $sanitiser->sanitiseInput($_POST["sel_reaction_message_id"]);
+    $roleDescriptions = $_POST["roleDescription"];
+    $roleSelections_id = $_POST["roleSelection"];
+    $emojis = $_POST["emoji"];
+
+    $roleContent = [];
+    for($i=0;$i<count($roleDescriptions);$i++){
+       $tempRoleArray = [
+                            "description" => $roleDescriptions[$i],
+                            "role_Id" => $roleSelections_id[$i],
+                            "emojis" => $emojis[$i]
+                        ];
+        array_push($roleContent,$tempRoleArray);
+    }
+
+    $allPostData = [
+        "reaction_message_id"=>$sel_reaction_message_id,
+        "guild_id"=>$guild_id,
+        "channel_id"=>$channel_id,
+        "message"=>$message,
+        "roles"=> $roleContent
+
+    ];
+ 
+    $jsonData = json_encode($allPostData);
+
+    $url = "https://bergfestbot.free.beeceptor.com";
+    $bot_token = $_ENV["bot_token"];
+    $options = [
+        CURLOPT_URL=>$url,
+        CURLOPT_RETURNTRANSFER=>true,
+        CURLOPT_CUSTOMREQUEST => "POST", 
+        CURLOPT_POSTFIELDS => $jsonData,
+        CURLOPT_HTTPHEADER=>[
+                                "Authorization: Bot {$bot_token}",
+                                "Content-Type: application/json"
+                            ]
+    ];
+
+    $oAuthService->doCurl($options);
+
+    print http_response_code();
+    header("Location:frontend/modules/roleManager/roleManager.php?insert=success");
+}
+
+
+if(isset($_POST["method"]) && $_POST["method"] == "del_reaction_role2"){
+    $id = $sanitiser->sanitiseInput($_POST["id"]);
+    session_start();
+    $guild_id = $_SESSION["currentGuildId"];
+
+
+    $dbSelection = $databaseService->selectData("reaction_messages as m left join reaction_roles as r on (m.reaction_message_id = r.reaction_message_id)", "reaction_role_id=?", [$id]);
+    
+    if($dbSelection[0]["guild_id"] == $guild_id){
+        
+        $allPostData = [
+            "reaction_role_id" => $id
+        ];
+
+        print_r($allPostData);
+    
+        $jsonData = json_encode($allPostData);
+    
+        print $jsonData;
+
+        $url = "https://bergfestbot.free.beeceptor.com";
+        $bot_token = $_ENV["bot_token"];
+        $options = [
+            CURLOPT_URL=>$url,
+            CURLOPT_RETURNTRANSFER=>true,
+            CURLOPT_CUSTOMREQUEST => "POST", 
+            CURLOPT_POSTFIELDS => $jsonData,
+            CURLOPT_HTTPHEADER=>[
+                                    "Authorization: Bot {$bot_token}",
+                                    "Content-Type: application/json"
+                                ]
+        ];
+    
+        $oAuthService->doCurl($options);
+
+    }else{
+        print "Error: Illegal Id submitted! (ID does not belong to your guild)";
+        exit();
+    }
+}
+
+
 if(isset($_POST["method"]) && $_POST["method"] == "reaction_role"){
-    echo $_POST["reaction_role_channel"]."<br>";
-    echo $_POST["mainHeaderText"]."<br>";
-    print_r($_POST["emoji"]);
-    print_r($_POST["roleDescription"]);
-    print_r($_POST["roleSelection"]);
 
     //TODO
     //sanitse and check if roleSelections_id contains 2 same values if so, error and back.
 
-    $channel_id = $_POST["reaction_role_channel"];
+
+    $channel_id = $sanitiser->sanitiseInput($_POST["reaction_role_channel"]);
     $message_id = 12314142;
-    $message = $_POST["mainHeaderText"];
+    $message = $sanitiser->sanitiseInput($_POST["mainHeaderText"]);
 
     $roleDescriptions = $_POST["roleDescription"];
     $roleSelections_id = $_POST["roleSelection"];
     $emojis = $_POST["emoji"];
 
+
     session_start();
     $guild_id = $_SESSION["currentGuildId"];
+
+
+
 
     //insert or update the reaction_messages table
     $dbSelection = $databaseService->selectData("reaction_messages", "guild_id=?", [$guild_id]);
@@ -127,18 +226,41 @@ if(isset($_POST["method"]) && $_POST["method"] == "reaction_role"){
 
     //get the current reaction_messages_id for the current guild
     $reaction_messages_id = $databaseService->selectData("reaction_messages", "guild_id=?", [$guild_id]);
-    $reaction_messages_id = $reaction_messages_id[0]["reaction_messages_id"];
+    $reaction_messages_id = $reaction_messages_id[0]["reaction_message_id"];
 
     print_r($reaction_messages_id);
     //del all from reaction_roles table what belongs to reaction_message_id of this guild (to understand check the relation to reaction_messages table)
-    $databaseService->deleteData("reaction_roles", $reaction_messages_id, "reaction_messages_id");
+    $databaseService->deleteData("reaction_roles", $reaction_messages_id, "reaction_message_id");
     //insert into reaction_roles table
     for($i=0;$i<count($roleDescriptions);$i++){
-        $data = array("reaction_messages_id" => $reaction_messages_id, "role_id" => $roleSelections_id[$i], "emoji" => $emojis[$i], "description" => $roleDescriptions[$i]);
-        $types = "iibs";
+        $emojis[$i] = utf8_encode($emojis[$i]);
+        $data = array("reaction_message_id" => $reaction_messages_id, "role_id" => $roleSelections_id[$i], "emoji" => $emojis[$i], "description" => $roleDescriptions[$i]);
+        $types = "iiss";
         $databaseService->insertData("reaction_roles", $data, $types);
     }
+
+    header("Location:frontend/modules/roleManager/roleManager.php?insert=success");
 }
+
+if(isset($_POST["method"]) && $_POST["method"] == "del_reaction_role"){
+    $id = $sanitiser->sanitiseInput($_POST["id"]);
+    session_start();
+    $guild_id = $_SESSION["currentGuildId"];
+
+
+    $dbSelection = $databaseService->selectData("reaction_messages as m left join reaction_roles as r on (m.reaction_message_id = r.reaction_message_id)", "reaction_role_id=?", [$id]);
+    
+    print_r($dbSelection);
+    if($dbSelection[0]["guild_id"] == $guild_id){
+        $databaseService->deleteData("reaction_roles", $id, "reaction_role_id");
+        print "Successfully deleted the selected role";
+    }else{
+        print "Error: Illegal Id submitted! (ID does not belong to your guild)";
+        exit();
+    }
+
+}
+
 
 
 //NOT IN USE ANY LONGER

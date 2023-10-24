@@ -121,7 +121,6 @@
        $dbSelection = $dbSelection[0]; 
     }
 
-    print_r($dbSelection);
 
     include_once "../services/apiRequestService.php";
     $ApiRequests = new ApiRequests();

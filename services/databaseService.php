@@ -28,7 +28,6 @@ class DatabaseService{
           $query .= " WHERE $condition";
         }
         
-        print $query;
         // Prepare statement
         $stmt = $this->connection->prepare($query);
          
