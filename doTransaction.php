@@ -87,10 +87,10 @@ if(isset($_POST["method"]) && $_POST["method"] == "changeModulStatus"){
     $databaseService->insertData("activities", $activity, "isss");
 }
 
-
+print "test1!";
 //Send data to endpoint
 if(isset($_POST["method"]) && $_POST["method"] == "reaction_role2"){
-
+    print "test2!";
     session_start();
     $guild_id = $_SESSION["currentGuildId"];
 
@@ -120,10 +120,11 @@ if(isset($_POST["method"]) && $_POST["method"] == "reaction_role2"){
         "roles"=> $roleContent
 
     ];
- 
+
     $jsonData = json_encode($allPostData);
 
-    $url = $_ENV["enpoint_id"].":".$_ENV["endpoint_port"]."/set_reaction_role_message";
+    $url = $_ENV["endpoint_id"].":".$_ENV["endpoint_port"]."/set_reaction_role_message";
+    print "<br>".$url."<br>";
     $bot_token = $_ENV["bot_token"];
     $options = [
         CURLOPT_URL=>$url,
@@ -139,7 +140,7 @@ if(isset($_POST["method"]) && $_POST["method"] == "reaction_role2"){
     $oAuthService->doCurl($options);
 
     print http_response_code();
-    header("Location:frontend/modules/roleManager/roleManager.php?insert=success");
+    //header("Location:frontend/modules/roleManager/roleManager.php?insert=success");
 }
 
 
@@ -160,7 +161,7 @@ if(isset($_POST["method"]) && $_POST["method"] == "del_reaction_role2"){
     
         $jsonData = json_encode($allPostData);
 
-        $url = $_ENV["enpoint_id"].":".$_ENV["endpoint_port"]."/remove_reaction_role";
+        $url = $_ENV["endpoint_id"].":".$_ENV["endpoint_port"]."/remove_reaction_role";
         $bot_token = $_ENV["bot_token"];
         $options = [
             CURLOPT_URL=>$url,
@@ -198,8 +199,7 @@ if(isset($_POST["method"]) && $_POST["method"] == "delete_reaction_message"){
     
         $jsonData = json_encode($allPostData);
 
-        #$url = $_ENV["enpoint_id"].":".$_ENV["endpoint_port"]."/delete_reaction_role_message";
-        $url = "https://bergfestbot.free.beeceptor.com";
+        $url = $_ENV["endpoint_id"].":".$_ENV["endpoint_port"]."/delete_reaction_role_message";
         $bot_token = $_ENV["bot_token"];
         $options = [
             CURLOPT_URL=>$url,

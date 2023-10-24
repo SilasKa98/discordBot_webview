@@ -53,6 +53,7 @@ $databaseService = new DatabaseService;
 $dbSelection = $databaseService->selectData("reaction_messages", "guild_id=?", [$guild_id]);
 if(empty($dbSelection)){
     $dbSelection = array();
+    $dbSelection_messages  = array();
 }else{
    $dbSelection_messages = $dbSelection;
    $dbSelection = $dbSelection[0]; 

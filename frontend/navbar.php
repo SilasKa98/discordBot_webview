@@ -3,7 +3,9 @@
   require $basePath.'/vendor/autoload.php';
   $dotenv = Dotenv\Dotenv::createImmutable($basePath);
   $dotenv->load();
-  $guild_id = $_SESSION["currentGuildId"];
+  if(session_status() === PHP_SESSION_NONE){
+    session_start();
+  } 
 ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
@@ -16,7 +18,9 @@
                 <?php if(isset($_SESSION["logged_in"])){ ?>
                     <a class="nav-link" href="<?php echo $_ENV["app_root"];?>dashboard.php">Dashboard</a>
                 <?php }?>
-                <a class="nav-link" aria-current="page" href="<?php echo $_ENV["app_root"] ;?>frontend/serverSettings.php?guildId=<?php echo $guild_id;?>">Server Settings</a>
+                <?php if(isset($_SESSION["currentGuildId"])){ ?>
+                    <a class="nav-link" aria-current="page" href="<?php echo $_ENV["app_root"] ;?>frontend/serverSettings.php?guildId=<?php echo $_SESSION["currentGuildId"];?>">Server Settings</a>
+                <?php }?>
                 <a class="nav-link" aria-current="page" href="<?php echo $_ENV["app_root"] ;?>frontend/commands.php">Commands</a>
                 <a class="nav-link" href="#">Help</a>
                 <a class="nav-link" target="_blank" href="https://discord.gg/CQVPtKvSCu">Join Our Discord</a>
