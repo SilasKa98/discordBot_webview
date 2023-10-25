@@ -87,10 +87,9 @@ if(isset($_POST["method"]) && $_POST["method"] == "changeModulStatus"){
     $databaseService->insertData("activities", $activity, "isss");
 }
 
-print "test1!";
+
 //Send data to endpoint
 if(isset($_POST["method"]) && $_POST["method"] == "reaction_role2"){
-    print "test2!";
     session_start();
     $guild_id = $_SESSION["currentGuildId"];
 
@@ -106,7 +105,7 @@ if(isset($_POST["method"]) && $_POST["method"] == "reaction_role2"){
     for($i=0;$i<count($roleDescriptions);$i++){
        $tempRoleArray = [
                             "description" => $roleDescriptions[$i],
-                            "role_Id" => $roleSelections_id[$i],
+                            "role_id" => $roleSelections_id[$i],
                             "emojis" => $emojis[$i]
                         ];
         array_push($roleContent,$tempRoleArray);
@@ -120,6 +119,12 @@ if(isset($_POST["method"]) && $_POST["method"] == "reaction_role2"){
         "roles"=> $roleContent
 
     ];
+
+    //unset it if its empty (new entry)
+    if($allPostData["reaction_message_id"] == ""){
+        unset($allPostData["reaction_message_id"]);
+    }
+
 
     $jsonData = json_encode($allPostData);
 
@@ -140,7 +145,7 @@ if(isset($_POST["method"]) && $_POST["method"] == "reaction_role2"){
     $oAuthService->doCurl($options);
 
     print http_response_code();
-    //header("Location:frontend/modules/roleManager/roleManager.php?insert=success");
+    header("Location:frontend/modules/roleManager/roleManager.php?insert=success");
 }
 
 
