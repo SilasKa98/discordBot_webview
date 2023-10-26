@@ -14,6 +14,16 @@ $oAuthService = new oAuthService;
 if(isset($_POST["method"]) && $_POST["method"] == "logoutAccount"){
     session_start();
     session_destroy();
+
+    //delete cookies
+    setcookie("logged_in", "", time()-3600);
+    setcookie("userData", "", time()-3600);
+    setcookie("serverNames", "", time()-3600);
+    setcookie("serverIcons", "", time()-3600);
+    setcookie("guildIds", "", time()-3600);
+    setcookie("guildOwnerStatus", "", time()-3600);
+    setcookie("guildPermissions", "", time()-3600);
+
     header("Location: index.php?logout=success");
     exit();
 }
@@ -62,13 +72,13 @@ if(isset($_POST["method"]) && $_POST["method"] == "changeModulStatus"){
 
     // needs to be checked again. Not working properly WIP
     if(!in_array($modulName,$allowedModules)){
-        exit();
         print "illegal Paramas submitted!";
+        exit();
     }
 
     $dbSelection = $databaseService->selectData("guilds", "guild_id=?", [$guild_id]);
     //update
-    $data = array("{$modulName}" => $moduleStatus);
+    $data = array($modulName => $moduleStatus);
     $condition = "guild_id=?";
     $params = [$guild_id];
     $types = "ii";
@@ -219,6 +229,35 @@ if(isset($_POST["method"]) && $_POST["method"] == "delete_reaction_message"){
     
         $oAuthService->doCurl($options);
     }
+}
+
+if(isset($_POST["method"]) && $_POST["method"] == "acceptCookies"){
+    session_start();
+    /*
+    $username = $_SESSION["userData"]["name"];
+    $userId = $_SESSION["userData"]["discord_id"];
+    $avatar = $_SESSION["userData"]["avatar"];
+    $logged_in = $_SESSION["logged_in"];
+    setcookie('name', $username, time() + 3600 * 24 * 30); // Gültig für 30 Tage
+    setcookie('discord_id', $userId, time() + 3600 * 24 * 30); // Gültig für 30 Tage
+    setcookie('avatar', $avatar, time() + 3600 * 24 * 30); // Gültig für 30 Tage
+    setcookie('logged_in', $logged_in, time() + 3600 * 24 * 30); // Gültig für 30 Tage
+    */
+    $userData = serialize($_SESSION["userData"]);
+    $logged_in = $_SESSION["logged_in"];
+    $serverNames = serialize($_SESSION["userServerData"]["serverNames"]);
+    $serverIcons = serialize($_SESSION["userServerData"]["serverIcons"]);
+    $guildIds = serialize($_SESSION["userServerData"]["guildIds"]);
+    $guildOwnerStatus = serialize($_SESSION["userServerData"]["guildOwnerStatus"]);
+    $guildPermissions = serialize($_SESSION["userServerData"]["guildPermissions"]);
+    
+    setcookie('logged_in', $logged_in, time() + 3600 * 24 * 30); // Gültig für 30 Tage
+    setcookie('userData', $userData, time() + 3600 * 24 * 30); // Gültig für 30 Tage
+    setcookie('serverNames', $serverNames, time() + 3600 * 24 * 30); // Gültig für 30 Tage
+    setcookie('serverIcons', $serverIcons, time() + 3600 * 24 * 30); // Gültig für 30 Tage
+    setcookie('guildIds', $guildIds, time() + 3600 * 24 * 30); // Gültig für 30 Tage
+    setcookie('guildOwnerStatus', $guildOwnerStatus, time() + 3600 * 24 * 30); // Gültig für 30 Tage
+    setcookie('guildPermissions', $guildPermissions, time() + 3600 * 24 * 30); // Gültig für 30 Tage
 }
 
 /*

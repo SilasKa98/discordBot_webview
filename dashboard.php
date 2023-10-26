@@ -163,12 +163,42 @@
             </div>
         </div>
     </div>
-    
-
+    <?php 
+        if(!isset($_COOKIE['logged_in'])){
+            include_once "frontend/cookie_alert.php";
+        }
+    ?>
 </body>
 </html>
 
 <script>
+
+    //hide cookie question if pressed reject.
+    let cookieState = localStorage.getItem("cookies");
+    if(cookieState == "rejected"){
+        document.getElementById("cookie_check").style.display = "none";
+    }
+
+    function acceptCookies(){
+        $.ajax({
+            type: "POST",
+            url: "doTransaction.php",
+            data: {
+                method: "acceptCookies"
+            },
+            success: function(response, message, result) {
+                console.log(response);
+                console.log(message);
+                console.log(result);
+                document.getElementById("cookie_check").style.display = "none";
+            }
+        });
+    }
+
+    function rejectCookies(){
+        document.getElementById("cookie_check").style.display = "none";
+        localStorage.setItem("cookies", "rejected");
+    }
     
     window.addEventListener('load', function() {
         document.getElementById("placeholderLoadWrapper").style.display = "none";

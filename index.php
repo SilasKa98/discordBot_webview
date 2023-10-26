@@ -1,5 +1,20 @@
 <?php
     session_start();
+
+    //check if cookies exist to loggin user automatically
+    if (isset($_COOKIE['logged_in'])) {
+        $_SESSION["userData"] = unserialize($_COOKIE["userData"]);
+        $_SESSION["userServerData"] = [
+            "serverNames" => unserialize($_COOKIE["serverNames"]),
+            "serverIcons" => unserialize($_COOKIE["serverIcons"]),
+            "guildIds" => unserialize($_COOKIE["guildIds"]),
+            "guildOwnerStatus" => unserialize($_COOKIE["guildOwnerStatus"]),
+            "guildPermissions" => unserialize($_COOKIE["guildPermissions"])
+        ];
+        $_SESSION["logged_in"] = $_COOKIE["logged_in"];
+    }
+
+
     require __DIR__ . '/vendor/autoload.php';
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
     $dotenv->load();

@@ -25,6 +25,7 @@
                 <a class="nav-link" href="#">Help</a>
                 <a class="nav-link" target="_blank" href="https://discord.gg/CQVPtKvSCu">Join Our Discord</a>
                 <a class="nav-link" target="_blank" href="<?php echo $_ENV["app_root"];?>frontend/impressum.php">Impressum</a>
+                <a class="nav-link" target="_blank" href="<?php echo $_ENV["app_root"];?>frontend/datenschutzerklaerung.php">Data privacy</a>
                 <?php if($_SESSION["userData"]["discord_id"] == $_ENV["admin_silas"] || $_SESSION["userData"]["discord_id"] == $_ENV["admin_thilo"]){?>
                     <a class="nav-link" target="_blank" href="<?php echo $_ENV["app_root"];?>frontend/adminSection/adminDashboard.php">Admin-Bereich</a>
                 <?php }?>
@@ -44,7 +45,7 @@
                     <li>
                         <form class="navbar-form navbar-right" method="post" action="<?php echo $_ENV["app_root"];?>doTransaction.php">
                             <input type="hidden" name="method" value="logoutAccount">
-                            <button class="dropdown-item" type="submit" name="logoutAccount">Logout</button>
+                            <button class="dropdown-item" type="submit" name="logoutAccount" onclick="localStorage.removeItem('cookies')">Logout</button>
                         </form>
                     </li>
                 </ul>
