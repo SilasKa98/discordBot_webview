@@ -210,8 +210,8 @@
                             <a class="featureLinkWrapp" href="<?php echo $_ENV["app_root"];?>frontend/modules/roleManager/roleManager.php">
                                 <div class="card-header featureHeader">Role Manager</div>
                                 <div class="card-body text-secondary">
-                                    <h5 class="card-title secondaryModuleTitel">Comming soon</h5>
-                                    <p class="card-text">In the future we plan to expand our variety of modules. Stay tuned.</p>
+                                    <h5 class="card-title secondaryModuleTitel">Create Reaction Roles</h5>
+                                    <p class="card-text">Through the role Manager you can make all roles of your Discord self assignable for others.</p>
                                 </div>
                             </a>
                         </div>
@@ -219,11 +219,11 @@
 
                     <div class="col">
                         <div class="card border-secondary mb-3 innerYourServersCard" style="max-width: 18rem;">
-                            <div class="moduleSwitch"><label class="switch"><input id="box1" type="checkbox" name="changeStatus"  onchange="changeModulStatus(this,'gamble')" <?php if($dbSelection["gamble"] == 1){ echo "checked";}?>><span class="slider round"></span></label></div>
-                            <div class="card-header featureHeader">Casino</div>
+                            <div class="moduleSwitch"><label class="switch"><input id="box1" type="checkbox" name="changeStatus"  onchange="changeModulStatus(this,'point_system')" <?php if($dbSelection["point_system"] == 1){ echo "checked";}?>><span class="slider round"></span></label></div>
+                            <div class="card-header featureHeader">Point System</div>
                             <div class="card-body text-secondary">
-                                <h5 class="card-title secondaryModuleTitel">Comming soon</h5>
-                                <p class="card-text">In the future we plan to expand our variety of modules. Stay tuned.</p>
+                                <h5 class="card-title secondaryModuleTitel">Earn and Gamble Points</h5>
+                                <p class="card-text">Reward loyal members with points and try your luck multiplying them on the slot machine. </p>
                             </div>
                         </div>
                     </div>
