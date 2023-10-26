@@ -192,7 +192,7 @@ if(isset($sel_reaction_message_id)){
                             <?php for($x=0;$x<count($dbSelection_r_roles);$x++){?> 
                                 <div class="input-group mb-3 roleDisplay">
                                     <div class="emojiSelWrapper">
-                                        <input type="text" class="form-control selectedEmoji" value="<?php if(isset($dbSelection_r_roles[$x])){  echo utf8_decode($dbSelection_r_roles[$x]["emoji"]); } ?>" minlength="1" maxlength="1" name="emoji[]">
+                                        <input type="text" class="form-control selectedEmoji" value="<?php if(isset($dbSelection_r_roles[$x])){  echo hex2bin(bin2hex($dbSelection_r_roles[$x]["emoji"])); } ?>" minlength="1" maxlength="1" name="emoji[]">
                                         <button class="openEmojiPickerBtn" type="button" onclick="handleEmojiPicker(this)">😀</button>
                                         <emoji-picker class="emojiPicker" style="display:none;"></emoji-picker>
                                     </div>
@@ -366,7 +366,7 @@ if(isset($sel_reaction_message_id)){
                     console.log(response);
                     console.log(message);
                     console.log(result);
-                    //location.reload();
+                    location.reload();
                 }
             });                                                                                                                                                                                                                                                                                                                                             
         }
@@ -385,7 +385,7 @@ if(isset($sel_reaction_message_id)){
                 console.log(response);
                 console.log(message);
                 console.log(result);
-                //location.reload();
+                location.reload();
             }
         });
     }
