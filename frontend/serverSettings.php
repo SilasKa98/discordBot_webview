@@ -113,7 +113,7 @@
 
     include_once "../services/databaseService.php";
     $databaseService = new DatabaseService;
-    $dbActivitiesSelection = $databaseService->selectData("activities", "guild_id=?", [$guild_id]);
+    $dbActivitiesSelection = $databaseService->selectData("activities", "guild_id=? order by date desc", [$guild_id]);
 
 
     $dbSelection = $databaseService->selectData("guilds", "guild_id=?", [$guild_id]);
@@ -226,7 +226,7 @@
                     <div class="col">
                         <div class="card border-secondary mb-3 innerYourServersCard" style="max-width: 18rem;">
                             <div class="moduleSwitch"><label class="switch"><input id="box1" type="checkbox" name="changeStatus"  onchange="changeModulStatus(this,'point_system')" <?php if($dbSelection["point_system"] == 1){ echo "checked";}?>><span class="slider round"></span></label></div>
-                            <a class="featureLinkWrapp" href="">
+                            <a class="featureLinkWrapp" href="<?php echo $_ENV["app_root"];?>frontend/modules/pointSystem/pointSystem.php?guildId=<?php echo $guild_id;?>">
                                 <div class="card-header featureHeader">Point System</div>
                                 <div class="card-body text-secondary">
                                     <h5 class="card-title secondaryModuleTitel">Earn and Gamble Points</h5>
