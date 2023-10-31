@@ -24,7 +24,7 @@
                 <?php if(isset($_SESSION["currentGuildId"])){ ?>
                     <a class="nav-link" aria-current="page" href="<?php echo $_ENV["app_root"] ;?>frontend/serverSettings.php?guildId=<?php echo $_SESSION["currentGuildId"];?>">Server Settings</a>
                 <?php }?>
-                <a class="nav-link" aria-current="page" href="<?php echo $_ENV["app_root"] ;?>frontend/commands.php">Commands</a>
+                <!--<a class="nav-link" aria-current="page" href="<?php //echo $_ENV["app_root"] ;?>frontend/commands.php">Commands</a>-->
                 <a class="nav-link" href="#">Help</a>
                 <a class="nav-link" target="_blank" href="https://discord.gg/CQVPtKvSCu">Join Our Discord</a>
                 <a class="nav-link" target="_blank" href="<?php echo $_ENV["app_root"];?>frontend/impressum.php">Impressum</a>
