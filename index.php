@@ -79,33 +79,11 @@
     </div>
 <?php }?>
 
-    <div class="card wrapperCard" id="uploadSection">
-        <div class="container col-xxl-8 px-4 py-5">
-            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-10 col-sm-8 col-lg-6">
-                    <!--<img src="/quizVerwaltung/media/insertExamplePicture.png" style="border-radius: 7px;" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">-->
-                    <img src="<?php echo $_ENV["app_root"];?>media/faceitEloCurveExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" alt="Bootstrap Themes"  loading="lazy">
-                </div>
-                <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Check your Elo History</h1>
-                    <p class="lead">
-                        Check and display your elo and especially your elo history in different games like Counter Strike (Faceit) or League of Legends. 
-                        Additionally you can show your weekly MVP to always know who is performing the best.
-                    </p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <a type="button" class="btn btn-primary" href="#">Read more</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <div class="card wrapperCard wrapp2" id="translateSection">
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Easily manage your Bot Modules</h1>
+                    <h1 class="display-5 fw-bold lh-1 mb-3">Choose from many useful modules</h1>
                     <p class="lead">
                         With our webview you can always see which modules are selected and active for your server. 
                         You can adjust everything interactively and easily.
@@ -121,19 +99,18 @@
         </div>
     </div>
 
-
     <div class="card wrapperCard" id="connectWithOthersSection">
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6">
                     <!--<img src="/quizVerwaltung/media/insertExamplePicture.png" style="border-radius: 7px;" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">-->
-                    <img src="<?php echo $_ENV["app_root"];?>media/changeSettingsExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" alt="Bootstrap Themes"  loading="lazy">
+                    <img src="<?php echo $_ENV["app_root"];?>media/roleManagerExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" alt="Bootstrap Themes"  loading="lazy">
                 </div>
                 <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Quickly change your Bot Settings in our webview</h1>
+                    <h1 class="display-5 fw-bold lh-1 mb-3">Make the server roles assignable for your users themselves</h1>
                     <p class="lead">
-                        All settings for the bot are easily customizable on our interface. 
-                        You don't need to have any special technical knowledge. Anyone can use and set up the bot!
+                    Through the role manager, you can make all server roles available to other users. 
+                    Each user can assign himself a role by a reaction. Our web application supports you with a very easy administration.
                     </p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                         <a type="button" class="btn btn-primary" href="#">Read more</a>
@@ -142,6 +119,71 @@
             </div>
         </div>
     </div>
+
+
+    <div class="card wrapperCard wrapp2" id="translateSection">
+        <div class="container col-xxl-8 px-4 py-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-lg-6">
+                    <h1 class="display-5 fw-bold lh-1 mb-3">Create personalized welcome messages for new users</h1>
+                    <p class="lead">
+                    With our greeting manager you can easily create welcome messages for new users. 
+                    You can freely decide whether they are welcomed via a personal message or publicly in the discord.
+                    </p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <a type="button" class="btn btn-primary" href="#">Read more</a>
+                    </div>
+                </div>
+                <div class="col-10 col-sm-8 col-lg-6">
+                    <img src="<?php echo $_ENV["app_root"];?>media/greetingManagerExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" width="500" height="300" alt="Bootstrap Themes" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card wrapperCard" id="uploadSection">
+        <div class="container col-xxl-8 px-4 py-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                    <!--<img src="/quizVerwaltung/media/insertExamplePicture.png" style="border-radius: 7px;" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">-->
+                    <img src="<?php echo $_ENV["app_root"];?>media/faceitEloCurveExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" alt="Bootstrap Themes"  loading="lazy">
+                </div>
+                <div class="col-lg-6">
+                    <h1 class="display-5 fw-bold lh-1 mb-3">Check your Faceit Elo History</h1>
+                    <p class="lead">
+                        This Module is especially for all our Counter Strike fans. With the Faceit Elo Module you can check and display your or anyone else's faceit elo. 
+                        You can print a nice graph in every channel of your discord by using /faceit_elo
+                    </p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <a type="button" class="btn btn-primary" href="#">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card wrapperCard wrapp2" id="translateSection">
+        <div class="container col-xxl-8 px-4 py-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-lg-6">
+                    <h1 class="display-5 fw-bold lh-1 mb-3">Earn and Gamble Points with enabling our rewarding point System</h1>
+                    <p class="lead">
+                        Reward loyal members with points for staying active in the voice Channels. 
+                        The lucky gamblers of you might be lucky multiplying their points on the slot machine.
+                    </p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <a type="button" class="btn btn-primary" href="#">Read more</a>
+                    </div>
+                </div>
+                <div class="col-10 col-sm-8 col-lg-6">
+                    <img src="<?php echo $_ENV["app_root"];?>media/pointSystemExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" width="500" height="300" alt="Bootstrap Themes" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="card wrapperCard wrapp2" id="contactUs">
         <div class="px-4 py-5 my-5 text-center">
