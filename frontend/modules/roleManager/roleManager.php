@@ -246,6 +246,7 @@ if(isset($sel_reaction_message_id)){
             </form>
         </div>
     </main>
+    <?php include_once "../../notificationToast.php";?>
 </body>
 </html>
 
@@ -368,12 +369,15 @@ if(isset($sel_reaction_message_id)){
                 },
                 success: function(response, message, result) {
                     if(response == "illegalGuildId"){
-                        location.href="../../../index.php?error=illegalGuildId";
+                        location.href="../../../dashboard.php?error=illegalGuildId";
                     }
-                    console.log(response);
-                    console.log(message);
-                    console.log(result);
-                    location.reload();
+                    if(message == "success"){
+                        $(".toast").toast('show');
+                        $("#toastMsgBody").html("Changes saved successfully!");
+                    }
+                    setTimeout(function(){ 
+                        location.reload();
+                    },1500);
                 }
             });                                                                                                                                                                                                                                                                                                                                             
         }
@@ -392,12 +396,16 @@ if(isset($sel_reaction_message_id)){
             },
             success: function(response, message, result) {
                 if(response == "illegalGuildId"){
-                    location.href="../../../index.php?error=illegalGuildId";
+                    location.href="../../../dashboard.php?error=illegalGuildId";
                 }
-                console.log(response);
-                console.log(message);
-                console.log(result);
-                location.reload();
+
+                if(message == "success"){
+                    $(".toast").toast('show');
+                    $("#toastMsgBody").html("Changes saved successfully!");
+                }
+                setTimeout(function(){ 
+                    location.reload();
+                },1500);
             }
         });
     }
@@ -408,10 +416,17 @@ if(isset($sel_reaction_message_id)){
             type: 'POST',
             url: $("#formRoleWrapper").attr("action"),
             data: $("#formRoleWrapper").serialize(),
-            success: function(response) {
+            success: function(response,message) {
                 if(response == "illegalGuildId"){
-                    location.href="../../../index.php?error=illegalGuildId";
+                    location.href="../../../dashboard.php?error=illegalGuildId";
                 }
+                if(message == "success"){
+                    $(".toast").toast('show');
+                    $("#toastMsgBody").html("Changes saved successfully!");
+                }
+                setTimeout(function(){ 
+                    location.reload();
+                },1500);
              },
         });
     }

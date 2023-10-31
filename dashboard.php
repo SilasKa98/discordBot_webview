@@ -168,6 +168,21 @@
             include_once "frontend/cookie_alert.php";
         }
     ?>
+
+    <?php
+        include_once "frontend/notificationToast.php";
+        if(isset($_GET["error"])){
+            if($_GET["error"] == "illegalGuildId"){
+                print"
+                <script>
+                    setTimeout(function(){ 
+                        $(\".toast\").toast('show');
+                        $(\"#toastMsgBody\").html(\"An Error occured, please try again.\");
+                    }, 1000);
+                </script>";
+            }
+        }
+    ?>
 </body>
 </html>
 

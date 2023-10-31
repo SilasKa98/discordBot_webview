@@ -133,6 +133,9 @@
     $dataHandler = new DataHandler();
     $rolesIdDic = $dataHandler->inputToDictionaryFilter($roles, "id", "name");
 
+
+    
+
 ?>
 
 <!DOCTYPE html>
@@ -146,6 +149,7 @@
     <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body>
     <?php include_once "navbar.php"; ?>
@@ -238,8 +242,8 @@
                             <a class="featureLinkWrapp" href="<?php echo $_ENV["app_root"];?>frontend/modules/greeter/greeter.php?guildId=<?php echo $guild_id;?>">
                                 <div class="card-header featureHeader">Greeting Message</div>
                                 <div class="card-body text-secondary">
-                                    <h5 class="card-title secondaryModuleTitel">Comming soon</h5>
-                                    <p class="card-text">In the future we plan to expand our variety of modules. Stay tuned.</p>
+                                    <h5 class="card-title secondaryModuleTitel">Manage Welcome Messages</h5>
+                                    <p class="card-text">Send a text with crucial informations to your new server members.</p>
                                 </div>
                             </a>
                         </div>
@@ -267,10 +271,29 @@
             </div>
         </div>
     </div>
+    <?php
+        include_once "notificationToast.php";
+        if(isset($_GET["error"])){
+            if($_GET["error"] == "tooManyRequests"){
+                print"
+                <script>
+                    setTimeout(function(){ 
+                        $(\".toast\").toast('show');
+                        $(\"#toastMsgBody\").html(\"Too many Requests! Please slow down.\");
+                    }, 1000);
+                </script>";
+            }
+        }
+    ?>
 </body>
 </html>
 
 <script>
+
+
+
+
+
 
     function changeModulStatus(elem, moduleName){
         let moduleStatus;

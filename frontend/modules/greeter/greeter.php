@@ -148,6 +148,7 @@
 
             <button type="button" class="btn btn-success greeter_saveAllBtn" onclick="saveAll()">Save</button>
         </div>
+        <?php include_once "../../notificationToast.php";?>
     </body>
 </html>
 <script src="<?php echo $_ENV["app_root"];?>frontend/embedPreview.js"></script>
@@ -248,11 +249,13 @@
                 },
                 success: function(response, message, result) {
                     if(response == "illegalGuildId"){
-                        location.href="../../../index.php?error=illegalGuildId";
+                        location.href="../../../dashboard.php?error=illegalGuildId";
                     }
-                    console.log(response);
-                    console.log(message);
-                    console.log(result);
+
+                    if(message == "success"){
+                        $(".toast").toast('show');
+                        $("#toastMsgBody").html("Changes saved successfully!");
+                    }
                 }
             });   
         
