@@ -103,6 +103,9 @@ if(isset($_POST["method"]) && $_POST["method"] == "changeModulStatus"){
 if(isset($_POST["method"]) && $_POST["method"] == "reaction_role2"){
     session_start();
     $guild_id = $_SESSION["currentGuildId"];
+    $getGuildId = $sanitiser->sanitiseInput($_POST["getGuildId"]);
+
+    $sanitiser->guildIdValidator($getGuildId, $guild_id);
 
     $allPostData = [];
     $channel_id = $sanitiser->sanitiseInput($_POST["reaction_role_channel"]);
@@ -163,8 +166,11 @@ if(isset($_POST["method"]) && $_POST["method"] == "reaction_role2"){
 
 if(isset($_POST["method"]) && $_POST["method"] == "del_reaction_role2"){
     $id = $sanitiser->sanitiseInput($_POST["id"]);
+    $getGuildId = $sanitiser->sanitiseInput($_POST["getGuildId"]);
     session_start();
     $guild_id = $_SESSION["currentGuildId"];
+
+    $sanitiser->guildIdValidator($getGuildId, $guild_id);
 
 
     $dbSelection = $databaseService->selectData("reaction_messages as m left join reaction_roles as r on (m.reaction_message_id = r.reaction_message_id)", "reaction_role_id=?", [$id]);
@@ -201,9 +207,13 @@ if(isset($_POST["method"]) && $_POST["method"] == "del_reaction_role2"){
 
 
 if(isset($_POST["method"]) && $_POST["method"] == "delete_reaction_message"){
+    $getGuildId = $sanitiser->sanitiseInput($_POST["getGuildId"]);
     $reaction_message_id = $sanitiser->sanitiseInput($_POST["reaction_message_id"]);
     session_start();
     $guild_id = $_SESSION["currentGuildId"];
+
+    $sanitiser->guildIdValidator($getGuildId, $guild_id);
+
 
     $dbSelection = $databaseService->selectData("reaction_messages", "reaction_message_id=?", [$reaction_message_id]);
 
@@ -232,7 +242,15 @@ if(isset($_POST["method"]) && $_POST["method"] == "delete_reaction_message"){
     }
 }
 
+
+
 if(isset($_POST["method"]) && $_POST["method"] == "greeting_message"){
+    $getUrlGuildId = $sanitiser->sanitiseInput($_POST["getUrlGuildId"]);
+    session_start();
+    $guild_id = $_SESSION["currentGuildId"];
+
+    $sanitiser->guildIdValidator($getUrlGuildId, $guild_id);
+    
     $checkboxPrivate = $sanitiser->sanitiseInput($_POST["checkboxPrivate"]);
     $checkboxGuild = $sanitiser->sanitiseInput($_POST["checkboxGuild"]);
     $privateTitel = $sanitiser->sanitiseInput($_POST["privateTitel"]);
@@ -242,8 +260,7 @@ if(isset($_POST["method"]) && $_POST["method"] == "greeting_message"){
     $guildMessage = $sanitiser->sanitiseInput($_POST["guildMessage"]);
 
     //convert color from hex to rgb 
-    list($r, $g, $b) = sscanf($privateColor, "#%02x%02x%02x");
-    $convertedPrivateColor = intval($r."".$g."".$b);
+    $convertedPrivateColor = hexdec(substr($privateColor, 1));
     
 
     //unset values if checkbox is handed over with value 0 
@@ -258,8 +275,6 @@ if(isset($_POST["method"]) && $_POST["method"] == "greeting_message"){
         $guildMessage = "";
     }
 
-    session_start();
-    $guild_id = $_SESSION["currentGuildId"];
 
     //db update
     $data = array("greeting_channel_id" => $guildChannel_id, "private_greeting_message" => $privateMessage, "guild_greeting_message" => $guildMessage, "private_greeting_color" => $convertedPrivateColor, "private_greeting_title" => $privateTitel);

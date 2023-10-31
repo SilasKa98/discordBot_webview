@@ -139,7 +139,7 @@ if(isset($sel_reaction_message_id)){
         <span class="fs-5 fw-semibold" style="color:white;text-align:center;padding:1%;margin-bottom: 6%;">Reaction Messages</span>
         <div class="list-group list-group-flush border-bottom scrollarea">
             <?php for($i=0;$i<count($dbSelection_messages);$i++){?>
-                <form action="roleManager.php" method="post" class="formRoleMessageWrapper">
+                <form action="roleManager.php?guildId=<?php echo $_GET["guildId"];?>" method="post" class="formRoleMessageWrapper">
                     <input type="hidden" name="sel_reaction_message_id" value="<?php echo $dbSelection_messages[$i]["reaction_message_id"];?>">
                     <button type="submit" class="list-group-item list-group-item-action py-3 text-bg-secondary roleMsgSidebarBtn" aria-current="true">
                         <div class="d-flex w-100 align-items-center justify-content-between">
@@ -150,7 +150,7 @@ if(isset($sel_reaction_message_id)){
                 </form>
             <?php }?>
         </div>
-        <form action="roleManager.php" method="post">
+        <form action="roleManager.php?guildId=<?php echo $_GET["guildId"];?>" method="post">
             <button type="submit" class="btn btn-success addNewMsgBtn">Add new Message</button>
         </form>
     </div>
@@ -158,7 +158,8 @@ if(isset($sel_reaction_message_id)){
 
     <div class="container-fluid">
         <div id="eloCheckerWrapper">
-            <form action="<?php echo $_ENV["app_root"];?>doTransaction.php" method="POST">
+            <form action="<?php echo $_ENV["app_root"];?>doTransaction.php" id="formRoleWrapper" method="POST">
+                <input type="hidden" value="<?php echo $_GET["guildId"];?>" name="getGuildId" id="getGuildId">
                 <input type="hidden" name="method" value="reaction_role2">
                     <input type="hidden" name="sel_reaction_message_id" value="<?php if(isset($sel_reaction_message_id)){ echo $sel_reaction_message_id; }?>">
                     <div class="card text-bg-dark mb-3">
@@ -239,7 +240,7 @@ if(isset($sel_reaction_message_id)){
             
                     <br>
                     
-                        <button class="btn btn-success saveAllRoleBtn" type="submit" >Save</button>
+                        <button class="btn btn-success saveAllRoleBtn" onclick="saveAllBtn()" type="button" >Save</button>
                    
                     <br>
             </form>
@@ -354,6 +355,7 @@ if(isset($sel_reaction_message_id)){
 
     function deleteMessage(){
         let current_reaction_message_id = document.getElementById("current_reaction_message_id").value;
+        let getGuildId = document.getElementById("getGuildId").value;
         console.log(current_reaction_message_id);
         if(current_reaction_message_id != ""){
             $.ajax({
@@ -361,9 +363,13 @@ if(isset($sel_reaction_message_id)){
                 url: "../../../doTransaction.php",
                 data: {
                     method: "delete_reaction_message",
-                    reaction_message_id: current_reaction_message_id
+                    reaction_message_id: current_reaction_message_id,
+                    getGuildId: getGuildId
                 },
                 success: function(response, message, result) {
+                    if(response == "illegalGuildId"){
+                        location.href="../../../index.php?error=illegalGuildId";
+                    }
                     console.log(response);
                     console.log(message);
                     console.log(result);
@@ -375,14 +381,19 @@ if(isset($sel_reaction_message_id)){
 
 
     function delRole(id){
+        let getGuildId = document.getElementById("getGuildId").value;
         $.ajax({
             type: "POST",
             url: "../../../doTransaction.php",
             data: {
                 method: "del_reaction_role2",
-                id: id
+                id: id,
+                getGuildId: getGuildId
             },
             success: function(response, message, result) {
+                if(response == "illegalGuildId"){
+                    location.href="../../../index.php?error=illegalGuildId";
+                }
                 console.log(response);
                 console.log(message);
                 console.log(result);
@@ -391,53 +402,17 @@ if(isset($sel_reaction_message_id)){
         });
     }
 
-    /*
-    function handleEmojiPicker(elem){
-        const picker = elem.nextElementSibling;
-        if(picker.style.display == "none"){
-            picker.style.display = "block";
-        }else{
-            picker.style.display = "none";
-        }
 
-
-         // Event Listener für das emoji-click-Event hinzufügen -> einfügen in input feld
-        picker.addEventListener('emoji-click', (event) => {
-            let emojiPickerTarget = event.target.previousElementSibling.previousElementSibling;
-            const selectedEmoji = event.detail.emoji;
-            emojiPickerTarget.value = selectedEmoji.unicode;
-            picker.style.display = "none";
-            //document.getElementById("selectedEmoji").value = selectedEmoji.unicode;
-        });
-
-        picker.addEventListener("blur", (event) => {
-            picker.style.display = "none";
-        });
-
-        // Adjust twemoji styles
-        const style = document.createElement('style')
-        style.textContent = `.twemoji {
-            width: var(--emoji-size);
-            height: var(--emoji-size);
-            pointer-events: none;
-        }`
-        picker.shadowRoot.appendChild(style)
-
-        const observer = new MutationObserver(() => {
-            for (const emoji of picker.shadowRoot.querySelectorAll('.emoji')) {
-                // Avoid infinite loops of MutationObserver
-                if (!emoji.querySelector('.twemoji')) {
-                // Do not use default 'emoji' class name because it conflicts with emoji-picker-element's
-                twemoji.parse(emoji, { className: 'twemoji' })
-                //console.log(twemoji);
-
+    function saveAllBtn(){
+        $.ajax({
+            type: 'POST',
+            url: $("#formRoleWrapper").attr("action"),
+            data: $("#formRoleWrapper").serialize(),
+            success: function(response) {
+                if(response == "illegalGuildId"){
+                    location.href="../../../index.php?error=illegalGuildId";
                 }
-            }
-        })
-        observer.observe(picker.shadowRoot, {
-            subtree: true,
-            childList: true
-        })
+             },
+        });
     }
-    */
 </script>

@@ -209,7 +209,7 @@
                     <div class="col">
                         <div class="card border-secondary mb-3 innerYourServersCard" style="max-width: 18rem;">
                             <div class="moduleSwitch"><label class="switch"><input id="box1" type="checkbox" name="changeStatus"  onchange="changeModulStatus(this,'reaction_role')" <?php if($dbSelection["reaction_role"] == 1){ echo "checked";}?>><span class="slider round"></span></label></div>
-                            <a class="featureLinkWrapp" href="<?php echo $_ENV["app_root"];?>frontend/modules/roleManager/roleManager.php">
+                            <a class="featureLinkWrapp" href="<?php echo $_ENV["app_root"];?>frontend/modules/roleManager/roleManager.php?guildId=<?php echo $guild_id;?>">
                                 <div class="card-header featureHeader">Role Manager</div>
                                 <div class="card-body text-secondary">
                                     <h5 class="card-title secondaryModuleTitel">Create Reaction Roles</h5>
@@ -234,8 +234,8 @@
 
                     <div class="col">
                         <div class="card border-secondary mb-3 innerYourServersCard" style="max-width: 18rem;">
-                            <div class="moduleSwitch"><label class="switch"><input id="box1" type="checkbox" name="changeStatus"  onchange="changeModulStatus(this,'lol')" <?php if($dbSelection["lol"] == 1){ echo "checked";}?>><span class="slider round"></span></label></div>
-                            <a class="featureLinkWrapp" href="<?php echo $_ENV["app_root"];?>frontend/modules/greeter/greeter.php">
+                            <div class="moduleSwitch"><label class="switch"><input id="box1" type="checkbox" name="changeStatus"  onchange="changeModulStatus(this,'greetings')" <?php if($dbSelection["greetings"] == 1){ echo "checked";}?>><span class="slider round"></span></label></div>
+                            <a class="featureLinkWrapp" href="<?php echo $_ENV["app_root"];?>frontend/modules/greeter/greeter.php?guildId=<?php echo $guild_id;?>">
                                 <div class="card-header featureHeader">Greeting Message</div>
                                 <div class="card-body text-secondary">
                                     <h5 class="card-title secondaryModuleTitel">Comming soon</h5>

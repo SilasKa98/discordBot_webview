@@ -15,6 +15,12 @@ class SanitiseInputService{
         $clean_html = $purifier->purify($inputText);
         return $clean_html;
     }
+
+    function guildIdValidator($urlId, $sessionId){
+        if($urlId != $sessionId){
+            return exit("illegalGuildId");
+        }
+    }
     
 }
 
