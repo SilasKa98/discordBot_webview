@@ -303,6 +303,35 @@ if(isset($_POST["method"]) && $_POST["method"] == "greeting_message"){
     $databaseService->insertData("activities", $activity, "isss");
 }
 
+if(isset($_POST["method"]) && $_POST["method"] == "payment_per_minute"){
+
+    $getUrlGuildId = $sanitiser->sanitiseInput($_POST["getGuildId"]);
+    
+    $ppm = $sanitiser->sanitiseInput($_POST["ppm"]);
+    session_start();
+    $guild_id = $_SESSION["currentGuildId"];
+
+    $sanitiser->guildIdValidator($getUrlGuildId, $guild_id);
+
+
+    $dbSelection = $databaseService->selectData("guilds", "guild_id=?", [$guild_id]);
+
+    if($dbSelection[0]["guild_id"] == $guild_id){
+        //db update
+        $data = array("payment_per_minute" => $ppm);
+        $condition = "guild_id=?";
+        $params = [$guild_id];
+        $types = "ii";
+        $databaseService->updateData("guilds", $data, $condition, $params, $types);
+
+
+        $activityMessage = "updated the Point System settings.";
+        //insert into activitys
+        $activity = array("guild_id" =>$guild_id, "author" => $_SESSION["userData"]["name"], "action" => $activityMessage, "date"=> date("Y-m-d H:i:s"));
+        $databaseService->insertData("activities", $activity, "isss");
+    }
+}
+
 
 if(isset($_POST["method"]) && $_POST["method"] == "acceptCookies"){
     session_start();
