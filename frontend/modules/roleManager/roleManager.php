@@ -2,13 +2,9 @@
 
 session_start();
 
-$basePath = dirname(__DIR__, 3);
-require $basePath.'/vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable($basePath);
-$dotenv->load();
-
 if(!isset($_SESSION["logged_in"])){
     header("Location:../../index.php");
+    exit();
 }else{
     extract($_SESSION["userData"]);
     if(isset($avatar)){
@@ -18,6 +14,13 @@ if(!isset($_SESSION["logged_in"])){
     }
 }
 
+
+$basePath = dirname(__DIR__, 3);
+require $basePath.'/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable($basePath);
+$dotenv->load();
+
+
 $guild_id = $_SESSION["currentGuildId"];
 $bot_token = $_ENV["bot_token"];
 
@@ -25,11 +28,10 @@ include_once "../../../services/apiRequestService.php";
 $apiRequests = new ApiRequests();
 $roles = $apiRequests->getDiscordEntity($guild_id, $bot_token, "roles");
 $channels = $apiRequests->getDiscordEntity($guild_id, $bot_token, "channels");
-$emojis = $apiRequests->getDiscordEntity($guild_id, $bot_token, "emojis");
 
 
 //check for too many requests and then send user back to serverSettings.php page
-if(isset($roles["message"]) || isset($channels["message"])|| isset($emojis["message"])){
+if(isset($roles["message"]) || isset($channels["message"])){
     header("Location:". $_ENV["app_root"]."frontend/serverSettings.php?error=tooManyRequests&guildId=".$guild_id);
     exit();
 }
@@ -94,7 +96,6 @@ if(isset($sel_reaction_message_id)){
     $dbSelection_r_roles = array();
 }
 
-
 ?>
 
 
@@ -108,9 +109,12 @@ if(isset($sel_reaction_message_id)){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <title>Manage Roles</title>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
+    
+    <script src="<?php echo $_ENV["app_root"];?>frontend/twemoji.min.js" integrity="sha384-gPMUf7aEYa6qc3MgqTrigJqf4gzeO6v11iPCKv+AP2S4iWRWCoWyiR+Z7rWHM/hU" crossorigin="anonymous"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+    <script src="<?php echo $_ENV["app_root"];?>frontend/emojiPicker.js"></script>
     
 </head>
 <body id="roleManagerBody">
@@ -247,9 +251,6 @@ if(isset($sel_reaction_message_id)){
 <!--<script src="https://twemoji.maxcdn.com/v/13.1.0/twemoji.min.js" integrity="sha384-gPMUf7aEYa6qc3MgqTrigJqf4gzeO6v11iPCKv+AP2S4iWRWCoWyiR+Z7rWHM/hU" crossorigin="anonymous"></script>
 <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>-->
 
-
-<script src="<?php echo $_ENV["app_root"];?>twemoji.min.js" integrity="sha384-gPMUf7aEYa6qc3MgqTrigJqf4gzeO6v11iPCKv+AP2S4iWRWCoWyiR+Z7rWHM/hU" crossorigin="anonymous"></script>
-<script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 
 
 <script>
@@ -390,6 +391,7 @@ if(isset($sel_reaction_message_id)){
         });
     }
 
+    /*
     function handleEmojiPicker(elem){
         const picker = elem.nextElementSibling;
         if(picker.style.display == "none"){
@@ -437,4 +439,5 @@ if(isset($sel_reaction_message_id)){
             childList: true
         })
     }
+    */
 </script>
