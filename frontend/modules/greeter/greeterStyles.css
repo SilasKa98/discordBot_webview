@@ -1,0 +1,124 @@
+#greeter_mainHeader{
+    margin-left: 20px;
+    color: white;
+    margin-bottom: 1%;
+}
+
+#innerCardLeft{
+    width: 50%;
+    margin-right: 1%;
+}
+
+#leftInnerContentBody, #rightInnerContentBody{
+    opacity: 0.5;
+}
+
+#innerCardRight{
+    width: 50%;
+    margin-left: 1%;
+}
+
+#privateTitel, #privateMessage, #privateColor, #guildMessage, #guildChannel_id:disabled{
+    cursor: not-allowed;
+}
+
+#bodyCardWrapper{
+    display : flex;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-bottom: 1%;
+}
+
+.moduleSwitch{
+    position: absolute;
+    right: 31px;
+    top: 27px;
+}
+
+.mainHeader{
+    text-align: center !important;
+}
+
+#colorPicker{
+    display: flex;
+    margin-bottom: 2%;
+    width: fit-content;
+}
+
+#colorPickerText{
+    margin-top: 5px;
+    margin-right: 1%;
+    margin-left: 4px;
+    margin-bottom: 0;
+    min-width: 122px;
+}
+
+.discordVariable{
+    color: rgb(243, 125, 96);
+    font-weight: bold;
+}
+
+#variableInformationWrapper{
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.allGreeterWrapper{
+    margin: 1%;
+}
+
+.greeter_saveAllBtn{
+    width: 98%;
+    margin-left: 1%;
+}
+
+.text-bg-secondary{
+    min-height: 250px;
+}
+
+#embedPreview{
+    width: fit-content;
+    background-color: rgba(46, 48, 54, 0.3);
+    border-radius: 0;
+    border-radius: 4px;
+    border-left: 4px solid;
+    max-width: 485px;
+    margin-left: 5%;
+}
+
+
+#embedPreviewBotLine{
+    margin: 0;
+    margin-top: 5%;
+    margin-left: 41px;
+}
+
+#botBadge{
+    border-radius: 3px;
+    flex-shrink: 0;
+    font-size: 10px;
+    line-height: 45px;
+    margin-left: 6px;
+    padding: 1px 2px;
+    vertical-align: bottom;
+    background: #7289da;
+    color: #fff;
+    font-weight: bold;
+}
+
+#botLineTime{
+    font-size: 10px;
+    margin-left: 5px;
+    color: rgb(206, 206, 206);
+}
+
+#embedPreviewTitel{
+    font-weight: bold;
+}
+
+#botLineImg{
+    width: 50px;
+    height:45px;
+    border-radius: 50%;
+    margin-left: -50px;
+}

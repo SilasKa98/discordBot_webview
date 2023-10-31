@@ -1,13 +1,9 @@
 <?php
     session_start();
 
-    $basePath = dirname(__DIR__, 1);
-    require $basePath.'/vendor/autoload.php';
-    $dotenv = Dotenv\Dotenv::createImmutable($basePath);
-    $dotenv->load();
-
     if(!isset($_SESSION["logged_in"])){
         header("Location:../index.php");
+        exit();
     }else{
         extract($_SESSION["userData"]);
         if(isset($avatar)){
@@ -16,6 +12,12 @@
             $avatar_url = $_ENV["app_root"]."media/profileDefault_avatar.png";
         }
     }
+
+
+    $basePath = dirname(__DIR__, 1);
+    require $basePath.'/vendor/autoload.php';
+    $dotenv = Dotenv\Dotenv::createImmutable($basePath);
+    $dotenv->load();
 
     $guild_id = $_GET["guildId"]; // deine Guild-ID hier
     $_SESSION["currentGuildId"] = $guild_id;
@@ -220,22 +222,26 @@
                     <div class="col">
                         <div class="card border-secondary mb-3 innerYourServersCard" style="max-width: 18rem;">
                             <div class="moduleSwitch"><label class="switch"><input id="box1" type="checkbox" name="changeStatus"  onchange="changeModulStatus(this,'point_system')" <?php if($dbSelection["point_system"] == 1){ echo "checked";}?>><span class="slider round"></span></label></div>
-                            <div class="card-header featureHeader">Point System</div>
-                            <div class="card-body text-secondary">
-                                <h5 class="card-title secondaryModuleTitel">Earn and Gamble Points</h5>
-                                <p class="card-text">Reward loyal members with points and try your luck multiplying them on the slot machine. </p>
-                            </div>
+                            <a class="featureLinkWrapp" href="">
+                                <div class="card-header featureHeader">Point System</div>
+                                <div class="card-body text-secondary">
+                                    <h5 class="card-title secondaryModuleTitel">Earn and Gamble Points</h5>
+                                    <p class="card-text">Reward loyal members with points and try your luck multiplying them on the slot machine. </p>
+                                </div>
+                            </a>
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="card border-secondary mb-3 innerYourServersCard" style="max-width: 18rem;">
                             <div class="moduleSwitch"><label class="switch"><input id="box1" type="checkbox" name="changeStatus"  onchange="changeModulStatus(this,'lol')" <?php if($dbSelection["lol"] == 1){ echo "checked";}?>><span class="slider round"></span></label></div>
-                            <div class="card-header featureHeader">League Of Legends</div>
-                            <div class="card-body text-secondary">
-                                <h5 class="card-title secondaryModuleTitel">Comming soon</h5>
-                                <p class="card-text">In the future we plan to expand our variety of modules. Stay tuned.</p>
-                            </div>
+                            <a class="featureLinkWrapp" href="<?php echo $_ENV["app_root"];?>frontend/modules/greeter/greeter.php">
+                                <div class="card-header featureHeader">Greeting Message</div>
+                                <div class="card-body text-secondary">
+                                    <h5 class="card-title secondaryModuleTitel">Comming soon</h5>
+                                    <p class="card-text">In the future we plan to expand our variety of modules. Stay tuned.</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     

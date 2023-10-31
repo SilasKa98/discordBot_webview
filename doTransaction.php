@@ -16,6 +16,7 @@ if(isset($_POST["method"]) && $_POST["method"] == "logoutAccount"){
     session_destroy();
 
     //delete cookies
+    
     setcookie("logged_in", "", time()-3600);
     setcookie("userData", "", time()-3600);
     setcookie("serverNames", "", time()-3600);
@@ -231,6 +232,45 @@ if(isset($_POST["method"]) && $_POST["method"] == "delete_reaction_message"){
     }
 }
 
+if(isset($_POST["method"]) && $_POST["method"] == "greeting_message"){
+    $checkboxPrivate = $sanitiser->sanitiseInput($_POST["checkboxPrivate"]);
+    $checkboxGuild = $sanitiser->sanitiseInput($_POST["checkboxGuild"]);
+    $privateTitel = $sanitiser->sanitiseInput($_POST["privateTitel"]);
+    $privateMessage = $sanitiser->sanitiseInput($_POST["privateMessage"]);
+    $privateColor = $sanitiser->sanitiseInput($_POST["privateColor"]);
+    $guildChannel_id = $sanitiser->sanitiseInput($_POST["guildChannel_id"]);
+    $guildMessage = $sanitiser->sanitiseInput($_POST["guildMessage"]);
+
+    //convert color from hex to rgb 
+    list($r, $g, $b) = sscanf($privateColor, "#%02x%02x%02x");
+    $convertedPrivateColor = intval($r."".$g."".$b);
+    
+
+    //unset values if checkbox is handed over with value 0 
+    if($checkboxPrivate == 0){
+        $privateTitel = "";
+        $privateMessage = "";
+        $privateColor = 0;
+    }
+
+    if($checkboxGuild == 0){
+        $guildChannel_id = 0;
+        $guildMessage = "";
+    }
+
+    session_start();
+    $guild_id = $_SESSION["currentGuildId"];
+
+    //db update
+    $data = array("greeting_channel_id" => $guildChannel_id, "private_greeting_message" => $privateMessage, "guild_greeting_message" => $guildMessage, "private_greeting_color" => $convertedPrivateColor, "private_greeting_title" => $privateTitel);
+    $condition = "guild_id=?";
+    $params = [$guild_id];
+    $types = "issisi";
+    $databaseService->updateData("guilds", $data, $condition, $params, $types);
+
+}
+
+
 if(isset($_POST["method"]) && $_POST["method"] == "acceptCookies"){
     session_start();
     /*
@@ -243,6 +283,7 @@ if(isset($_POST["method"]) && $_POST["method"] == "acceptCookies"){
     setcookie('avatar', $avatar, time() + 3600 * 24 * 30); // Gültig für 30 Tage
     setcookie('logged_in', $logged_in, time() + 3600 * 24 * 30); // Gültig für 30 Tage
     */
+    /*
     $userData = serialize($_SESSION["userData"]);
     $logged_in = $_SESSION["logged_in"];
     $serverNames = serialize($_SESSION["userServerData"]["serverNames"]);
@@ -258,6 +299,7 @@ if(isset($_POST["method"]) && $_POST["method"] == "acceptCookies"){
     setcookie('guildIds', $guildIds, time() + 3600 * 24 * 30); // Gültig für 30 Tage
     setcookie('guildOwnerStatus', $guildOwnerStatus, time() + 3600 * 24 * 30); // Gültig für 30 Tage
     setcookie('guildPermissions', $guildPermissions, time() + 3600 * 24 * 30); // Gültig für 30 Tage
+    */
 }
 
 /*
