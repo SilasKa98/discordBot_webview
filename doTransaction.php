@@ -54,7 +54,6 @@ if(isset($_POST["method"]) && $_POST["method"] == "changeGeneralSettings"){
     }
 
     $activityMessage = "Updated the general settings: changed Admin ID to ".$adminId;
-
     //insert into activitys
     $activity = array("guild_id" =>$guild_id, "author" => $_SESSION["userData"]["name"], "action" => $activityMessage, "date"=> date("Y-m-d H:i:s"));
     $databaseService->insertData("activities", $activity, "isss");
@@ -158,7 +157,12 @@ if(isset($_POST["method"]) && $_POST["method"] == "reaction_role2"){
 
     $oAuthService->doCurl($options);
 
-    print http_response_code();
+
+    $activityMessage = "changed the reaction role settings";
+    //insert into activitys
+    $activity = array("guild_id" =>$guild_id, "author" => $_SESSION["userData"]["name"], "action" => $activityMessage, "date"=> date("Y-m-d H:i:s"));
+    $databaseService->insertData("activities", $activity, "isss");
+    
     header("Location:frontend/modules/roleManager/roleManager.php?insert=success");
 }
 
@@ -197,6 +201,11 @@ if(isset($_POST["method"]) && $_POST["method"] == "del_reaction_role2"){
         ];
     
         $oAuthService->doCurl($options);
+
+        $activityMessage = "deleted a reaction role";
+        //insert into activitys
+        $activity = array("guild_id" =>$guild_id, "author" => $_SESSION["userData"]["name"], "action" => $activityMessage, "date"=> date("Y-m-d H:i:s"));
+        $databaseService->insertData("activities", $activity, "isss");
 
     }else{
         print "Error: Illegal Id submitted! (ID does not belong to your guild)";
@@ -239,6 +248,11 @@ if(isset($_POST["method"]) && $_POST["method"] == "delete_reaction_message"){
         ];
     
         $oAuthService->doCurl($options);
+
+        $activityMessage = "deleted a reaction role message";
+        //insert into activitys
+        $activity = array("guild_id" =>$guild_id, "author" => $_SESSION["userData"]["name"], "action" => $activityMessage, "date"=> date("Y-m-d H:i:s"));
+        $databaseService->insertData("activities", $activity, "isss");
     }
 }
 
@@ -283,6 +297,10 @@ if(isset($_POST["method"]) && $_POST["method"] == "greeting_message"){
     $types = "issisi";
     $databaseService->updateData("guilds", $data, $condition, $params, $types);
 
+    $activityMessage = "updated the greeting messages";
+    //insert into activitys
+    $activity = array("guild_id" =>$guild_id, "author" => $_SESSION["userData"]["name"], "action" => $activityMessage, "date"=> date("Y-m-d H:i:s"));
+    $databaseService->insertData("activities", $activity, "isss");
 }
 
 
