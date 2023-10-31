@@ -56,6 +56,7 @@
         <title>Greeting Message</title>
     </head>
     <body onload="enablePrivateMessage();enableGuildMessage();initialEmbedPreviewLoad();">
+        <?php include_once "../../navbar.php"; ?>
         <input type="hidden" value="<?php echo $_GET["guildId"];?>" id="getGuildId">
         <div class="allGreeterWrapper">
             <h1 id="greeter_mainHeader">Greeting Message</h1>
