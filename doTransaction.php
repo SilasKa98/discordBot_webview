@@ -332,6 +332,30 @@ if(isset($_POST["method"]) && $_POST["method"] == "payment_per_minute"){
     }
 }
 
+if(isset($_POST["method"]) && $_POST["method"] == "sendContactForm"){
+    include_once "services/mailService.php";
+    $mailService = new MailService;
+
+    $mailAdress = $sanitiser->sanitiseInput($_POST["mailAdress"]);
+    $name = $sanitiser->sanitiseInput($_POST["name"]);
+    $message = $sanitiser->sanitiseInput($_POST["message"]);
+
+    if(strlen($name) == 0 || strlen($message) == 0 || strlen($mailAdress) == 0){
+        print "Please fill in all required fields!";
+        exit();
+    }elseif(!filter_var($mailAdress, FILTER_VALIDATE_EMAIL)){
+        print "Please enter a valid mail address!";
+        exit();
+    }else{
+
+        print "Thank you for your message, we will get back to you as soon as possible.";
+        $mailService->sendContactMail($mailAdress, $name, $message); 
+    }
+
+    
+}
+
+
 
 if(isset($_POST["method"]) && $_POST["method"] == "acceptCookies"){
     session_start();

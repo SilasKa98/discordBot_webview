@@ -192,28 +192,52 @@
                 <p class="lead mb-4">
                     Do you have any questions or suggestions for us? Feel free to leave us a message using the form below
                 </p>
-                <form>
+                <form id="contactForm" action="<?php echo $_ENV["app_root"];?>doTransaction.php" method="post">
+                    <input type="hidden" name="method" value="sendContactForm">
                     <div class="form-group">
                         <label for="FormControlInput1" class="contactFormLabel">Your Name*</label>
-                        <input type="text" class="form-control" id="FormControlInput1">
+                        <input type="text" class="form-control" name="name" id="FormControlInputName">
                     </div>
                     <div class="form-group">
                         <label for="FormControlInput2" class="contactFormLabel">Your Email*</label>
-                        <input type="email" class="form-control" id="FormControlInput2">
+                        <input type="email" class="form-control" name="mailAdress" id="FormControlInputMail">
                     </div>
                     <div class="form-group">
                         <label for="FormControlTextarea3" class="contactFormLabel">Your Message*</label>
-                        <textarea class="form-control" id="FormControlTextarea3" rows="3"></textarea>
+                        <textarea class="form-control" id="FormControlTextareaMessage" name="message" rows="4"></textarea>
                     </div>
-                    <input id="submitContactFormular" type="submit" value="SEND MESSAGE" class="btn btn-success">
+                    <input id="submitContactFormular" onclick="sendContactForm()" type="button" value="SEND MESSAGE" class="btn btn-success">
                 </form>
             </div>
         </div>
     </div>
         <?php include_once "frontend/footer.php"; ?>
+        <?php include_once "frontend/notificationToast.php"; ?>
 </body>
 
+<script>
+    function sendContactForm(){
+        let name = document.getElementById("FormControlInputName");
+        let mail = document.getElementById("FormControlInputMail");
+        let message = document.getElementById("FormControlTextareaMessage");
 
+        $.ajax({
+            type: 'POST',
+            url: $("#contactForm").attr("action"),
+            data: $("#contactForm").serialize(),
+            success: function(response,message) {
+                if(message == "success"){
+                    document.getElementById("FormControlInputName").value = "";
+                    document.getElementById("FormControlInputMail").value = "";
+                    document.getElementById("FormControlTextareaMessage").value = "";
+                    $(".toast").toast('show');
+                    $("#toastMsgBody").html(response);
+                }
+            }
+        });
+        
+    }
+</script>
 
 
 
