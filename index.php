@@ -192,7 +192,7 @@
                 <p class="lead mb-4">
                     Do you have any questions or suggestions for us? Feel free to leave us a message using the form below
                 </p>
-                <form id="contactForm" action="<?php echo $_ENV["app_root"];?>doTransaction.php" method="post">
+                <form id="contactForm">
                     <input type="hidden" name="method" value="sendContactForm">
                     <div class="form-group">
                         <label for="FormControlInput1" class="contactFormLabel">Your Name*</label>
@@ -206,6 +206,7 @@
                         <label for="FormControlTextarea3" class="contactFormLabel">Your Message*</label>
                         <textarea class="form-control" id="FormControlTextareaMessage" name="message" rows="4"></textarea>
                     </div>
+                    <div class="g-recaptcha" style="margin-top:2%;" data-sitekey="6Lc2RwQpAAAAAJZlCV5warFuvzEuVjCwIE_UbsDv"></div>
                     <input id="submitContactFormular" onclick="sendContactForm()" type="button" value="SEND MESSAGE" class="btn btn-success">
                 </form>
             </div>
@@ -213,31 +214,36 @@
     </div>
         <?php include_once "frontend/footer.php"; ?>
         <?php include_once "frontend/notificationToast.php"; ?>
-</body>
 
-<script>
-    function sendContactForm(){
-        let name = document.getElementById("FormControlInputName");
-        let mail = document.getElementById("FormControlInputMail");
-        let message = document.getElementById("FormControlTextareaMessage");
 
-        $.ajax({
-            type: 'POST',
-            url: $("#contactForm").attr("action"),
-            data: $("#contactForm").serialize(),
-            success: function(response,message) {
-                if(message == "success"){
-                    document.getElementById("FormControlInputName").value = "";
-                    document.getElementById("FormControlInputMail").value = "";
-                    document.getElementById("FormControlTextareaMessage").value = "";
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        function sendContactForm(){
+            let name = document.getElementById("FormControlInputName");
+            let mail = document.getElementById("FormControlInputMail");
+            let message = document.getElementById("FormControlTextareaMessage");
+
+            $.ajax({
+                type: 'POST',
+                url: "doTransaction.php",
+                data: $("#contactForm").serialize(),
+                success: function(response,message) {
+                    if(response == "Thank you for your message, we will get back to you as soon as possible."){
+                        document.getElementById("FormControlInputName").value = "";
+                        document.getElementById("FormControlInputMail").value = "";
+                        document.getElementById("FormControlTextareaMessage").value = "";
+                    }
                     $(".toast").toast('show');
                     $("#toastMsgBody").html(response);
+                    grecaptcha.reset();
                 }
-            }
-        });
-        
-    }
-</script>
+            });
+            
+        }
+    </script>
+
+</body>
+
 
 
 
