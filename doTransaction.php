@@ -357,7 +357,6 @@ if(isset($_POST["method"]) && $_POST["method"] == "sendContactForm"){
     $result = file_get_contents($url, false, $context);
     $reCaptcha_response = json_decode($result, true);
 
-
     if (!$reCaptcha_response["success"]) {
         print "Please verify the reCAPTCHA.";
         exit();
@@ -365,6 +364,12 @@ if(isset($_POST["method"]) && $_POST["method"] == "sendContactForm"){
         $mailAdress = $sanitiser->sanitiseInput($_POST["mailAdress"]);
         $name = $sanitiser->sanitiseInput($_POST["name"]);
         $message = $sanitiser->sanitiseInput($_POST["message"]);
+
+        if(isset($_POST["userEmailAcceptance"])){
+            $userEmailAcceptance = $sanitiser->sanitiseInput($_POST["userEmailAcceptance"]);
+        }else{
+            $userEmailAcceptance = "off";
+        }
 
         if(strlen($name) == 0 || strlen($message) == 0 || strlen($mailAdress) == 0){
             print "Please fill in all required fields!";
@@ -374,8 +379,13 @@ if(isset($_POST["method"]) && $_POST["method"] == "sendContactForm"){
             exit();
         }else{
 
-            print "Thank you for your message, we will get back to you as soon as possible.";
-            $mailService->sendContactMail($mailAdress, $name, $message); 
+            if($userEmailAcceptance == "on"){
+               print "Thank you for your message, we will get back to you as soon as possible."; 
+            }else{
+                print "Thank you for your message."; 
+            }
+            
+            $mailService->sendContactMail($mailAdress, $name, $message, $userEmailAcceptance); 
         }
     }
     

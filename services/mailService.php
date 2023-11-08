@@ -30,7 +30,7 @@ class MailService{
         
     }
 
-    function sendContactMail($mailAdress, $name, $message){
+    function sendContactMail($mailAdress, $name, $message, $userEmailAcceptance){
         
         //make sure alle line breaks work and are shown correct in gmail
         $convMessage = nl2br($message);
@@ -42,7 +42,7 @@ class MailService{
             //Content
             $this->mail->isHTML(true);                                  //Set email format to HTML
             $this->mail->Subject = "New Message from ".$name;
-            $this->mail->Body    = "$convMessage"."<br>---------------------------<br>Given mail address for answering: ".$mailAdress;
+            $this->mail->Body    = "$convMessage"."<br>---------------------------<br>Given mail address for answering: ".$mailAdress."<br><br>User wants to be contacted via mail: ".$userEmailAcceptance;
             $this->mail->send();
             return 0;
         } catch (Exception $e) {

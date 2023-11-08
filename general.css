@@ -379,7 +379,19 @@ body{
   }
 
  
+  #recaptchaWrapper{
+    display: flex;
+  }
 
+  #userEmailAgreeCheckbox{
+    margin-left: 10px;
+    width: 23px;
+    height: 23px;
+    padding: 0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+  }
 
 
 
