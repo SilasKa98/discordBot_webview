@@ -49,7 +49,9 @@
             <img class="d-block mx-auto mb-4" src="<?php echo $_ENV["app_root"];?>media/bergfestBot_logo_v2.png" width=300px>
             <h1 class="display-5 fw-bold">Bergfest Bot</h1>
             <div class="col-lg-6 mx-auto">
-                <p class="lead mb-4">A free customizable Discord bot for your server! All settings are easily customizable via our web interface. Get the bot now and enrich your server!</p>
+                <p class="lead mb-4">
+                    Enhance Your Server with Our Free, Customizable Discord Bot! Experience seamless customization with our user-friendly web interface. Elevate your server today by adding our versatile bot.
+                </p>
             </div>
         </div>
     </div>
@@ -61,7 +63,7 @@
                 <div class="col-lg-7 text-center text-lg-start">
                     <h1 class="display-4 fw-bold lh-1 mb-3">Start now</h1>
                     <p class="col-lg-10 fs-4">
-                        Log in with discord now and manage which servers you want to have the bot on
+                        Login with Discord to instantly start managing your bot!
                     </p>
                 </div>
                 <div class="col-md-10 mx-auto col-lg-5">
@@ -83,10 +85,9 @@
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Choose from many useful modules</h1>
+                    <h1 class="display-5 fw-bold lh-1 mb-3">Explore a wide range of modules for your server</h1>
                     <p class="lead">
-                        With our webview you can always see which modules are selected and active for your server. 
-                        You can adjust everything interactively and easily.
+                    The intuitive Web Interface empowers you to browse our various modules for your server, all at your fingertips. Experience quick and effortless customization!
                     </p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                         <a type="button" class="btn btn-primary" href="#">Read more</a>
@@ -107,10 +108,10 @@
                     <img src="<?php echo $_ENV["app_root"];?>media/roleManagerExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" alt="Bootstrap Themes"  loading="lazy">
                 </div>
                 <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Make the server roles assignable for your users themselves</h1>
+                    <h1 class="display-5 fw-bold lh-1 mb-3">Create self assiganble server roles for your users</h1>
                     <p class="lead">
-                    Through the role manager, you can make all server roles available to other users. 
-                    Each user can assign himself a role by a reaction. Our web application supports you with a very easy administration.
+                    Our role manager lets you create specific server roles accessible to other users, allowing each member to assign themselves a role through a simple reaction. 
+                    Be ready to expect an effortlessly intuitive administration experience.
                     </p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                         <a type="button" class="btn btn-primary" href="#">Read more</a>
@@ -127,8 +128,8 @@
                 <div class="col-lg-6">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Create personalized welcome messages for new users</h1>
                     <p class="lead">
-                    With our greeting manager you can easily create welcome messages for new users. 
-                    You can freely decide whether they are welcomed via a personal message or publicly in the discord.
+                    Use our greeting manager to  cast memorable welcomes:<br> personalize custom welcome messages for new users! 
+                    You can freely choose between personal messages or public greetings within your discord.
                     </p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                         <a type="button" class="btn btn-primary" href="#">Read more</a>
@@ -150,10 +151,10 @@
                     <img src="<?php echo $_ENV["app_root"];?>media/faceitEloCurveExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" alt="Bootstrap Themes"  loading="lazy">
                 </div>
                 <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Check your Faceit Elo History</h1>
+                    <h1 class="display-5 fw-bold lh-1 mb-3">FACEIT ELO Module</h1>
                     <p class="lead">
-                        This Module is especially for all our Counter Strike fans. With the Faceit Elo Module you can check and display your or anyone else's faceit elo. 
-                        You can print a nice graph in every channel of your discord by using /faceit_elo
+                        Catering to Counter-Strike Enthusiasts: The FACEIT Elo Module allows you to analyse any player's FACEIT ELO. 
+                        Share sleek graphs in any of your channels simply by typing the command /faceit_elo.
                     </p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                         <a type="button" class="btn btn-primary" href="#">Read more</a>
@@ -170,8 +171,8 @@
                 <div class="col-lg-6">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Earn and Gamble Points with enabling our rewarding point System</h1>
                     <p class="lead">
-                        Reward loyal members with points for staying active in the voice Channels. 
-                        The lucky gamblers of you might be lucky multiplying their points on the slot machine.
+                    Encourage Loyalty: Recognize and reward dedicated members of your community with points for their activity in voice channels. 
+                    Adventurous souls may venture forth into the world of the slots to embrace a nerve wracking experience.
                     </p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                         <a type="button" class="btn btn-primary" href="#">Read more</a>
@@ -206,7 +207,12 @@
                         <label for="FormControlTextarea3" class="contactFormLabel">Your Message*</label>
                         <textarea class="form-control" id="FormControlTextareaMessage" name="message" rows="4"></textarea>
                     </div>
-                    <div class="g-recaptcha" style="margin-top:2%;" data-sitekey="6Lc2RwQpAAAAAJZlCV5warFuvzEuVjCwIE_UbsDv"></div>
+                    <div id="recaptchaWrapper">
+                        <div class="g-recaptcha" style="margin-top:2%;" data-sitekey="6Lc2RwQpAAAAAJZlCV5warFuvzEuVjCwIE_UbsDv"></div>
+                        <label style="margin-top: 4%; margin-left: 29%;">I agree to be contacted about the issue via the email address provided here
+                            <input type="checkbox" id="userEmailAgreeCheckbox" name="userEmailAcceptance">
+                        </label>
+                    </div>
                     <input id="submitContactFormular" onclick="sendContactForm()" type="button" value="SEND MESSAGE" class="btn btn-success">
                 </form>
             </div>
@@ -228,7 +234,9 @@
                 url: "doTransaction.php",
                 data: $("#contactForm").serialize(),
                 success: function(response,message) {
-                    if(response == "Thank you for your message, we will get back to you as soon as possible."){
+                    console.log(response);
+                    console.log(message);
+                    if(response == "Thank you for your message, we will get back to you as soon as possible." || response = "Thank you for your message."){
                         document.getElementById("FormControlInputName").value = "";
                         document.getElementById("FormControlInputMail").value = "";
                         document.getElementById("FormControlTextareaMessage").value = "";
