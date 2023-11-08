@@ -382,6 +382,7 @@ body{
   #recaptchaWrapper{
     display: flex;
   }
+  
 
   #userEmailAgreeCheckbox{
     margin-left: 10px;
@@ -393,6 +394,11 @@ body{
     top: -1px;
   }
 
+
+  #userEmailAgreeLabel{
+    margin-top: 4%;
+    margin-left: 29%;
+  }
 
 
   /*cookie popup*/
@@ -424,3 +430,7 @@ body{
         border: 1px solid green;
         background-color: green;
     }
+
+
+
+

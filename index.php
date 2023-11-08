@@ -34,6 +34,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="general.css">
+    <link rel="stylesheet" href="mediaQueryStyles.css">
     <title>Bergfest Bot</title>
     <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -66,7 +67,7 @@
                         Login with Discord to instantly start managing your bot!
                     </p>
                 </div>
-                <div class="col-md-10 mx-auto col-lg-5">
+                <div class="col-md-10 mx-auto col-lg-5" id="loginBtnWrapper">
                 <a href="<?php echo $_ENV["app_root"];?>services/oAuth/init-oauth.php">
                     <button type="button" class="btn btn-primary" id="bigSignInBtn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-discord" viewBox="0 0 16 16">
@@ -93,7 +94,7 @@
                         <a type="button" class="btn btn-primary" href="#">Read more</a>
                     </div>
                 </div>
-                <div class="col-10 col-sm-8 col-lg-6">
+                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper">
                     <img src="<?php echo $_ENV["app_root"];?>media/manageServersExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" width="500" height="300" alt="Bootstrap Themes" loading="lazy">
                 </div>
             </div>
@@ -103,7 +104,7 @@
     <div class="card wrapperCard" id="connectWithOthersSection">
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-10 col-sm-8 col-lg-6">
+                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper">
                     <!--<img src="/quizVerwaltung/media/insertExamplePicture.png" style="border-radius: 7px;" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">-->
                     <img src="<?php echo $_ENV["app_root"];?>media/roleManagerExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" alt="Bootstrap Themes"  loading="lazy">
                 </div>
@@ -135,7 +136,7 @@
                         <a type="button" class="btn btn-primary" href="#">Read more</a>
                     </div>
                 </div>
-                <div class="col-10 col-sm-8 col-lg-6">
+                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper">
                     <img src="<?php echo $_ENV["app_root"];?>media/greetingManagerExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" width="500" height="300" alt="Bootstrap Themes" loading="lazy">
                 </div>
             </div>
@@ -146,7 +147,7 @@
     <div class="card wrapperCard" id="uploadSection">
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-10 col-sm-8 col-lg-6">
+                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper">
                     <!--<img src="/quizVerwaltung/media/insertExamplePicture.png" style="border-radius: 7px;" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">-->
                     <img src="<?php echo $_ENV["app_root"];?>media/faceitEloCurveExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" alt="Bootstrap Themes"  loading="lazy">
                 </div>
@@ -178,7 +179,7 @@
                         <a type="button" class="btn btn-primary" href="#">Read more</a>
                     </div>
                 </div>
-                <div class="col-10 col-sm-8 col-lg-6">
+                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper">
                     <img src="<?php echo $_ENV["app_root"];?>media/pointSystemExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" width="500" height="300" alt="Bootstrap Themes" loading="lazy">
                 </div>
             </div>
@@ -187,7 +188,7 @@
 
 
     <div class="card wrapperCard wrapp2" id="contactUs">
-        <div class="px-4 py-5 my-5 text-center">
+        <div class="px-4 py-5 my-5 text-center" id="contactFormDivWrapper">
                 <h1 class="display-5 fw-bold">Contact us</h1>
                 <div class="col-lg-6 mx-auto" style="width: 70%;">
                 <p class="lead mb-4">
@@ -209,7 +210,7 @@
                     </div>
                     <div id="recaptchaWrapper">
                         <div class="g-recaptcha" style="margin-top:2%;" data-sitekey="6Lc2RwQpAAAAAJZlCV5warFuvzEuVjCwIE_UbsDv"></div>
-                        <label style="margin-top: 4%; margin-left: 29%;">I agree to be contacted about the issue via the email address provided here
+                        <label id="userEmailAgreeLabel">I agree to be contacted about the issue via the email address provided here
                             <input type="checkbox" id="userEmailAgreeCheckbox" name="userEmailAcceptance">
                         </label>
                     </div>
