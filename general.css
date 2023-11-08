@@ -143,8 +143,11 @@ body{
     background-color: #202228 !important;
     color: white;
 }
+
 .exampleImg{
     border-radius: 7px;
+    margin: 0 !important;
+    width: 96% !important;
 }
 
 .wrapp2{
@@ -432,5 +435,9 @@ body{
     }
 
 
+
+    .infoImgWrapper{
+        width: 100% !important;
+    }
 
 
