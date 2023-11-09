@@ -56,8 +56,10 @@
             </div>
         </div>
         <nav class="nav" id="menuBar" style="margin: 0 auto;">   
-            <a class="nav-link menuLink" name="#loginSection">LOGIN</a>
-            <a class="nav-link menuLink" name="#loginSection">MODULES</a>
+            <?php if(!isset($_SESSION["logged_in"])){?>
+                <a class="nav-link menuLink" name="#loginSection">LOGIN</a>
+            <?php }?>
+            <a class="nav-link menuLink" name="#index_moduleSection">MODULES</a>
             <a class="nav-link menuLink" name="#index_recationRoleSection">REACTION ROLES</a>
             <a class="nav-link menuLink" name="#index_welcomeMsgSection">WELCOME MESSAGE</a>
             <a class="nav-link menuLink" name="#index_faceitEloSection">FACEIT ELO</a>
@@ -245,8 +247,6 @@
                 url: "doTransaction.php",
                 data: $("#contactForm").serialize(),
                 success: function(response,message) {
-                    console.log(response);
-                    console.log(message);
                     if(response == "Thank you for your message, we will get back to you as soon as possible." || response == "Thank you for your message."){
                         document.getElementById("FormControlInputName").value = "";
                         document.getElementById("FormControlInputMail").value = "";
@@ -364,7 +364,6 @@
 
         /**animate menu click - scroll too */
         $(".menuLink").click(function(event) {
-            console.log(event);
             $('html,body').animate({
                 scrollTop: $(event.target.name).offset().top -100},
             'slow');
