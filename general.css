@@ -142,6 +142,7 @@ body{
     margin-top: 1%;
     background-color: #202228 !important;
     color: white;
+    overflow: hidden;
 }
 
 .exampleImg{
@@ -440,4 +441,69 @@ body{
         width: 100% !important;
     }
 
+    #loginBtnWrapper,#manageServersWrapper,#roleManagerWrapper,#greetingManagerWrapper,#faceitEloWrapper,#pointSystemWrapper,#contactFormDivWrapper{
+        opacity: 0;
+    }
+
+    #loginInfoTextWrapper,#modulesInfoTextWrapper,#reactionRoleInfoTextWrapper,#welcomeMessageInfoTextWrapper,#faceitInfoTextWrapper,#pointsInfoTextWrapper{
+        opacity: 0;
+    }
+
+    
+    @keyframes flyInFromBottom {
+        0% {
+          transform: translateY(10%);
+        }
+        100% {
+          transform: translateY(0);
+        }
+    }
+
+    .animated_bottomFadeIn {
+        opacity: 1 !important;
+        animation: flyInFromBottom 1.2s ease-in-out;
+        transition: opacity 1s, transform 1s !important;
+    }
+
+
+
+
+    @keyframes flyInFromLeftSide {
+        0% {
+          transform: translateX(-15%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+    }
+
+    .animated_leftSideFadeIn {
+        opacity: 1 !important;
+        animation: flyInFromLeftSide 1s ease-in-out;
+        transition: opacity 1s, transform 1s !important;
+    }
+
+
+
+
+    @keyframes flyInFromRightSide {
+        0% {
+          transform: translateX(15%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+    }
+
+    .animated_rightSideFadeIn {
+        opacity: 1 !important;
+        animation: flyInFromRightSide 1s ease-in-out;
+        transition: opacity 1s, transform 1s !important;
+    }
+
+
+    #startSection{
+        height: 86vh;
+        padding-top: 6%;
+    }
 

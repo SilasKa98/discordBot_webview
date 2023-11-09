@@ -45,7 +45,7 @@
 <?php include_once "frontend/navbar.php"; ?>
 <div id="topSection"></div>
 
-    <div class="card wrapperCard wrapp2" id="loginSection">
+    <div class="card wrapperCard wrapp2" id="startSection">
         <div class="px-4 py-5 my-5 text-center">
             <img class="d-block mx-auto mb-4" src="<?php echo $_ENV["app_root"];?>media/bergfestBot_logo_v2.png" width=300px>
             <h1 class="display-5 fw-bold">Bergfest Bot</h1>
@@ -59,10 +59,10 @@
 
     <?php if(!isset($_SESSION["logged_in"])){ ?>
     <div class="card wrapperCard wrapp2" id="loginSection">
-        <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+        <div class="container col-xl-10 col-xxl-8 px-4 py-5 hidden-element-right" id="index_inner_loginSection">
             <div class="row align-items-center g-lg-5 py-5">
-                <div class="col-lg-7 text-center text-lg-start">
-                    <h1 class="display-4 fw-bold lh-1 mb-3">Start now</h1>
+                <div class="col-lg-7 text-center text-lg-start" id="loginInfoTextWrapper">
+                    <h1 class="display-4 fw-bold lh-1 mb-3">START NOW</h1>
                     <p class="col-lg-10 fs-4">
                         Login with Discord to instantly start managing your bot!
                     </p>
@@ -82,11 +82,11 @@
     </div>
 <?php }?>
 
-    <div class="card wrapperCard wrapp2" id="translateSection">
-        <div class="container col-xxl-8 px-4 py-5 infoImgWrapper">
+    <div class="card wrapperCard wrapp2" id="index_moduleSection">
+        <div class="container col-xxl-8 px-4 py-5 infoImgWrapper hidden-element-left" id="index_inner_moduleSection">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Explore a wide range of modules for your server</h1>
+                <div class="col-lg-6" id="modulesInfoTextWrapper">
+                    <h1 class="display-5 fw-bold lh-1 mb-3">EXPLORE A WIDE RANGE OF MODULES</h1>
                     <p class="lead">
                     The intuitive Web Interface empowers you to browse our various modules for your server, all at your fingertips. Experience quick and effortless customization!
                     </p>
@@ -94,22 +94,22 @@
                         <a type="button" class="btn btn-primary" href="#">Read more</a>
                     </div>
                 </div>
-                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper">
+                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper" id="manageServersWrapper">
                     <img src="<?php echo $_ENV["app_root"];?>media/manageServersExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" width="500" height="300" alt="Bootstrap Themes" loading="lazy">
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="card wrapperCard" id="connectWithOthersSection">
-        <div class="container col-xxl-8 px-4 py-5 infoImgWrapper">
+    <div class="card wrapperCard" id="index_recationRoleSection">
+        <div class="container col-xxl-8 px-4 py-5 infoImgWrapper hidden-element-right" id="index_inner_recationRoleSection">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper">
+                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper" id="roleManagerWrapper">
                     <!--<img src="/quizVerwaltung/media/insertExamplePicture.png" style="border-radius: 7px;" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">-->
                     <img src="<?php echo $_ENV["app_root"];?>media/roleManagerExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" alt="Bootstrap Themes"  loading="lazy">
                 </div>
-                <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Create self assiganble server roles for your users</h1>
+                <div class="col-lg-6" id="reactionRoleInfoTextWrapper">
+                    <h1 class="display-5 fw-bold lh-1 mb-3">CREATE SELF ASSIGNABLE SERVER ROLES</h1>
                     <p class="lead">
                     Our role manager lets you create specific server roles accessible to other users, allowing each member to assign themselves a role through a simple reaction. 
                     Be ready to expect an effortlessly intuitive administration experience.
@@ -123,11 +123,11 @@
     </div>
 
 
-    <div class="card wrapperCard wrapp2" id="translateSection">
-        <div class="container col-xxl-8 px-4 py-5 infoImgWrapper">
+    <div class="card wrapperCard wrapp2" id="index_welcomeMsgSection">
+        <div class="container col-xxl-8 px-4 py-5 infoImgWrapper hidden-element-left"  id="index_inner_welcomeMsgSection">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Create personalized welcome messages for new users</h1>
+                <div class="col-lg-6" id="welcomeMessageInfoTextWrapper">
+                    <h1 class="display-5 fw-bold lh-1 mb-3">CREATE PERSONALIZED WELCOME MESSAGES</h1>
                     <p class="lead">
                     Use our greeting manager to  cast memorable welcomes:<br> personalize custom welcome messages for new users! 
                     You can freely choose between personal messages or public greetings within your discord.
@@ -136,7 +136,7 @@
                         <a type="button" class="btn btn-primary" href="#">Read more</a>
                     </div>
                 </div>
-                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper">
+                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper" id="greetingManagerWrapper">
                     <img src="<?php echo $_ENV["app_root"];?>media/greetingManagerExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" width="500" height="300" alt="Bootstrap Themes" loading="lazy">
                 </div>
             </div>
@@ -144,15 +144,15 @@
     </div>
 
 
-    <div class="card wrapperCard" id="uploadSection">
-        <div class="container col-xxl-8 px-4 py-5 infoImgWrapper">
+    <div class="card wrapperCard" id="index_faceitEloSection">
+        <div class="container col-xxl-8 px-4 py-5 infoImgWrapper hidden-element-right" id="index_inner_faceitEloSection">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper">
+                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper" id="faceitEloWrapper">
                     <!--<img src="/quizVerwaltung/media/insertExamplePicture.png" style="border-radius: 7px;" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">-->
                     <img src="<?php echo $_ENV["app_root"];?>media/faceitEloCurveExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" alt="Bootstrap Themes"  loading="lazy">
                 </div>
-                <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">FACEIT ELO Module</h1>
+                <div class="col-lg-6" id="faceitInfoTextWrapper">
+                    <h1 class="display-5 fw-bold lh-1 mb-3">FACEIT ELO MODULE</h1>
                     <p class="lead">
                         Catering to Counter-Strike Enthusiasts: The FACEIT Elo Module allows you to analyse any player's FACEIT ELO. 
                         Share sleek graphs in any of your channels simply by typing the command /faceit_elo.
@@ -166,11 +166,11 @@
     </div>
 
 
-    <div class="card wrapperCard wrapp2" id="translateSection">
-        <div class="container col-xxl-8 px-4 py-5 infoImgWrapper">
+    <div class="card wrapperCard wrapp2" id="index_pointSystemSection">
+        <div class="container col-xxl-8 px-4 py-5 infoImgWrapper hidden-element-left" id="index_inner_pointSystemSection">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Earn and Gamble Points with enabling our rewarding point System</h1>
+                <div class="col-lg-6" id="pointsInfoTextWrapper">
+                    <h1 class="display-5 fw-bold lh-1 mb-3">EARN AND GAMBLE POINTS</h1>
                     <p class="lead">
                     Encourage Loyalty: Recognize and reward dedicated members of your community with points for their activity in voice channels. 
                     Adventurous souls may venture forth into the world of the slots to embrace a nerve wracking experience.
@@ -179,7 +179,7 @@
                         <a type="button" class="btn btn-primary" href="#">Read more</a>
                     </div>
                 </div>
-                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper">
+                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper" id="pointSystemWrapper">
                     <img src="<?php echo $_ENV["app_root"];?>media/pointSystemExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" width="500" height="300" alt="Bootstrap Themes" loading="lazy">
                 </div>
             </div>
@@ -187,9 +187,9 @@
     </div>
 
 
-    <div class="card wrapperCard wrapp2" id="contactUs">
-        <div class="px-4 py-5 my-5 text-center" id="contactFormDivWrapper">
-                <h1 class="display-5 fw-bold">Contact us</h1>
+    <div class="card wrapperCard wrapp2 " id="index_contactSection">
+        <div class="px-4 py-5 my-5 text-center hidden-element-right" id="contactFormDivWrapper">
+                <h1 class="display-5 fw-bold">CONTACT US</h1>
                 <div class="col-lg-6 mx-auto" style="width: 70%;">
                 <p class="lead mb-4">
                     Do you have any questions or suggestions for us? Feel free to leave us a message using the form below
@@ -237,7 +237,7 @@
                 success: function(response,message) {
                     console.log(response);
                     console.log(message);
-                    if(response == "Thank you for your message, we will get back to you as soon as possible." || response = "Thank you for your message."){
+                    if(response == "Thank you for your message, we will get back to you as soon as possible." || response == "Thank you for your message."){
                         document.getElementById("FormControlInputName").value = "";
                         document.getElementById("FormControlInputMail").value = "";
                         document.getElementById("FormControlTextareaMessage").value = "";
@@ -249,6 +249,106 @@
             });
             
         }
+    </script>
+    <script>
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        function bottomFadeInOnScroll(domElem) {
+            $(domElem).each(function (i) {
+                var bottom_of_object = $(this).offset().top + $(this).outerHeight()-100;
+                var bottom_of_window = $(window).scrollTop() + $(window).height();
+                
+                /**only do if its not a mobile device */
+                if(!isMobile){
+                    /* If the object is completely or partially visible in the window, adjust opacity */
+                    if (bottom_of_window > bottom_of_object) {
+                        if (!$(this).hasClass('animated_bottomFadeIn')) {
+                            $(this).addClass('animated_bottomFadeIn');
+                        }
+                    }
+                }
+            });
+        }
+
+        function leftSideFadeInOnScroll(domElem) {
+            $(domElem).each(function (i) {
+                var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+                var bottom_of_window = $(window).scrollTop() + $(window).height();
+                
+                /**only do if its not a mobile device */
+                if(!isMobile){
+                    /* If the object is completely or partially visible in the window, adjust opacity */
+                    if (bottom_of_window > bottom_of_object) {
+                        if (!$(this).hasClass('animated_leftSideFadeIn')) {
+                            $(this).addClass('animated_leftSideFadeIn');
+                        }
+                    }
+                }
+            });
+        }
+
+        function rightSideFadeInOnScroll(domElem) {
+            $(domElem).each(function (i) {
+                var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+                var bottom_of_window = $(window).scrollTop() + $(window).height();
+                
+                /**only do if its not a mobile device */
+                if(!isMobile){
+                    /* If the object is completely or partially visible in the window, adjust opacity */
+                    if (bottom_of_window > bottom_of_object) {
+                        if (!$(this).hasClass('animated_rightSideFadeIn')) {
+                            $(this).addClass('animated_rightSideFadeIn');
+                        }
+                    }
+                }
+            });
+        }
+
+
+        $(document).ready(function() {
+            
+            //if isMobile remove all hidden-element classes to show all divs instantly
+            if(isMobile){
+                document.getElementById("loginBtnWrapper").style.opacity = 1;
+                document.getElementById("manageServersWrapper").style.opacity = 1;
+                document.getElementById("roleManagerWrapper").style.opacity = 1;
+                document.getElementById("greetingManagerWrapper").style.opacity = 1;
+                document.getElementById("faceitEloWrapper").style.opacity = 1;
+                document.getElementById("pointSystemWrapper").style.opacity = 1;
+                document.getElementById("contactFormDivWrapper").style.opacity = 1;
+
+                document.getElementById("loginInfoTextWrapper").style.opacity = 1;
+                document.getElementById("modulesInfoTextWrapper").style.opacity = 1;
+                document.getElementById("reactionRoleInfoTextWrapper").style.opacity = 1;
+                document.getElementById("welcomeMessageInfoTextWrapper").style.opacity = 1;
+                document.getElementById("faceitInfoTextWrapper").style.opacity = 1;
+                document.getElementById("pointsInfoTextWrapper").style.opacity = 1;
+            }
+            
+            //call the function for all divs that should be animated
+            $(window).scroll( function(){
+                bottomFadeInOnScroll('#loginBtnWrapper');
+                leftSideFadeInOnScroll('#loginInfoTextWrapper');
+
+                bottomFadeInOnScroll('#manageServersWrapper');
+                rightSideFadeInOnScroll('#modulesInfoTextWrapper');
+
+                bottomFadeInOnScroll('#roleManagerWrapper');
+                leftSideFadeInOnScroll('#reactionRoleInfoTextWrapper');
+
+                bottomFadeInOnScroll('#greetingManagerWrapper');
+                rightSideFadeInOnScroll('#welcomeMessageInfoTextWrapper');
+
+                bottomFadeInOnScroll('#faceitEloWrapper');
+                leftSideFadeInOnScroll('#faceitInfoTextWrapper');
+
+                bottomFadeInOnScroll('#pointSystemWrapper');
+                rightSideFadeInOnScroll('#pointsInfoTextWrapper');
+
+                bottomFadeInOnScroll('#contactFormDivWrapper');
+            });
+        });
+
     </script>
 
 </body>
