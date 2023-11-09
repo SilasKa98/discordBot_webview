@@ -319,6 +319,7 @@
             
             //if isMobile remove all hidden-element classes to show all divs instantly
             if(isMobile){
+                
                 document.getElementById("loginBtnWrapper").style.opacity = 1;
                 document.getElementById("manageServersWrapper").style.opacity = 1;
                 document.getElementById("roleManagerWrapper").style.opacity = 1;
@@ -333,6 +334,7 @@
                 document.getElementById("welcomeMessageInfoTextWrapper").style.opacity = 1;
                 document.getElementById("faceitInfoTextWrapper").style.opacity = 1;
                 document.getElementById("pointsInfoTextWrapper").style.opacity = 1;
+                
             }
             
             //call the function for all divs that should be animated

@@ -31,6 +31,9 @@
     #menuBar{
         display: none !important;
     }
+    body{
+        padding-top: 0 !important;
+    }
 }
 
 @media only screen and (max-width: 650px) {
