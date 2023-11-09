@@ -27,6 +27,10 @@
     .exampleImg{
         width: 100%;
     }
+
+    #menuBar{
+        display: none !important;
+    }
 }
 
 @media only screen and (max-width: 650px) {

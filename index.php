@@ -42,8 +42,8 @@
 </head>
 
 <body style="background-color: #cbc8c8">
+
 <?php include_once "frontend/navbar.php"; ?>
-<div id="topSection"></div>
 
     <div class="card wrapperCard wrapp2" id="startSection">
         <div class="px-4 py-5 my-5 text-center">
@@ -55,6 +55,16 @@
                 </p>
             </div>
         </div>
+        <nav class="nav" id="menuBar" style="margin: 0 auto;">   
+            <a class="nav-link menuLink" name="#loginSection">LOGIN</a>
+            <a class="nav-link menuLink" name="#loginSection">MODULES</a>
+            <a class="nav-link menuLink" name="#index_recationRoleSection">REACTION ROLES</a>
+            <a class="nav-link menuLink" name="#index_welcomeMsgSection">WELCOME MESSAGE</a>
+            <a class="nav-link menuLink" name="#index_faceitEloSection">FACEIT ELO</a>
+            <a class="nav-link menuLink" name="#index_pointSystemSection">POINT SYSTEM</a>
+            <a class="nav-link menuLink" name="#index_contactSection">CONTACT US</a>
+        </nav>
+        <div id="topSection"></div>
     </div>
 
     <?php if(!isset($_SESSION["logged_in"])){ ?>
@@ -348,6 +358,33 @@
                 bottomFadeInOnScroll('#contactFormDivWrapper');
             });
         });
+
+
+        /**animate menu click - scroll too */
+        $(".menuLink").click(function(event) {
+            console.log(event);
+            $('html,body').animate({
+                scrollTop: $(event.target.name).offset().top -100},
+            'slow');
+        });
+
+
+
+        document.addEventListener("DOMContentLoaded", function(){
+            var rect = document.getElementById("menuBar").getBoundingClientRect();
+            window.addEventListener('scroll', function() {
+                if (window.scrollY+40 > rect.top) {
+                    document.getElementById('menuBar').classList.add('fixed-top');
+                    // add padding top to show content behind navbar
+                    navbar_height = document.querySelector('.navbar').offsetHeight;
+                    document.body.style.paddingTop = navbar_height + 'px';
+                } else {
+                    document.getElementById('menuBar').classList.remove('fixed-top');
+                    // remove padding top from body
+                    document.body.style.paddingTop = '0';
+                } 
+            });
+        }); 
 
     </script>
 

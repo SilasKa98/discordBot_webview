@@ -507,3 +507,27 @@ body{
         padding-top: 6%;
     }
 
+
+
+    .menuLink{
+        color: white !important;
+        text-decoration: underline !important; 
+    }
+
+    .menuLink:hover{
+        color: #0d6efd !important;
+    }
+
+
+    .fixed-top{
+    background-color: rgb(85 85 85 / 90%) !important;
+    border-bottom-left-radius: 19px;
+    border-bottom-right-radius: 19px;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    }
+
+    .menuLink{
+        cursor: pointer;
+    }
