@@ -1,0 +1,39 @@
+.graph-container {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    border-top: none;
+    border-right: none;
+    border-left: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+.line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80%;
+    background-color: rgb(56, 114, 66);
+    clip-path: polygon(0 100%, 10% 70%, 20% 40%, 30% 60%, 40% 30%, 50% 80%, 60% 50%, 70% 20%, 80% 70%, 90% 40%, 90% 100%);
+    animation: drawLine 3s ease-in-out forwards;
+}
+
+
+@keyframes drawLine {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+
+/*adjusting animation index positions*/
+#graph {
+    margin-top: 51px;
+    margin-left: 81px;
+}

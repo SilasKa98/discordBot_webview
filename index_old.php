@@ -26,10 +26,6 @@
             $avatar_url = $_ENV["app_root"]."media/profileDefault_avatar.png";
         }
     }
-
-
-    include_once "services/componentRendererService.php";
-    $componentRendererService = new componentRendererService();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +48,7 @@
     <div class="card wrapperCard wrapp2" id="startSection">
         <div class="px-4 py-5 my-5 text-center">
             <img class="d-block mx-auto mb-4" src="<?php echo $_ENV["app_root"];?>media/bergfestBot_logo_v2.png" width=300px>
-            <h1 class="display-5 fw-bold bergfestBot_mainHeading">Bergfest Bot</h1>
+            <h1 class="display-5 fw-bold">Bergfest Bot</h1>
             <div class="col-lg-6 mx-auto">
                 <p class="lead mb-4">
                     Enhance Your Server with Our Free, Customizable Discord Bot! Experience seamless customization with our user-friendly web interface. Elevate your server today by adding our versatile bot.
@@ -101,37 +97,17 @@
     <div class="card wrapperCard wrapp2" id="index_moduleSection">
         <div class="container col-xxl-8 px-4 py-5 infoImgWrapper hidden-element-left" id="index_inner_moduleSection">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                </div>
-                <div class="carousel-inner">
-                        <?php
-                            $componentRendererService->createCarouselModule("CREATE SELF ASSIGNABLE SERVER ROLES", "Our role manager lets you create specific server roles accessible to other users, allowing each member to assign themselves a role through a simple reaction. 
-                            Be ready to expect an effortlessly intuitive administration experience.", "active" ,"reaction_role_card_body", "layerStack");
-                     
-                            $componentRendererService->createCarouselModule("CREATE PERSONALIZED WELCOME MESSAGES", "Use our greeting manager to  cast memorable welcomes:<br> personalize custom welcome messages for new users! 
-                            You can freely choose between personal messages or public greetings within your discord.", "", "cardBody", "messageBubbles");
-                       
-                            $componentRendererService->createCarouselModule("FACEIT ELO MODULE", "Catering to Counter-Strike Enthusiasts: The FACEIT Elo Module allows you to analyse any player's FACEIT ELO. 
-                            Share sleek graphs in any of your channels simply by typing the command /faceit_elo.", "", "cardBody","graph");
-
-                            $componentRendererService->createCarouselModule("EARN AND GAMBLE POINTS", "Encourage Loyalty: Recognize and reward dedicated members of your community with points for their activity in voice channels. 
-                            Adventurous souls may venture forth into the world of the slots to embrace a nerve wracking experience.", "", "cardBody","levelSystem");  
-                        ?>
+                <div class="col-lg-6" id="modulesInfoTextWrapper">
+                    <h1 class="display-5 fw-bold lh-1 mb-3">EXPLORE A WIDE RANGE OF MODULES</h1>
+                    <p class="lead">
+                    The intuitive Web Interface empowers you to browse our various modules for your server, all at your fingertips. Experience quick and effortless customization!
+                    </p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <a type="button" class="btn btn-primary" href="#">Read more</a>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper" id="manageServersWrapper">
+                    <img src="<?php echo $_ENV["app_root"];?>media/manageServersExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" width="500" height="300" alt="Bootstrap Themes" loading="lazy">
                 </div>
             </div>
         </div>
@@ -258,6 +234,7 @@
         <?php include_once "frontend/footer.php"; ?>
         <?php include_once "frontend/notificationToast.php"; ?>
 
+
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
         function sendContactForm(){
@@ -283,7 +260,6 @@
             
         }
     </script>
-
     <script>
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
@@ -339,24 +315,6 @@
         }
 
 
-        function startStackedLayersAnimation(domElem) {
-            console.log(domElem);
-            $(domElem).each(function (i) {
-                var bottom_of_object = $(this).offset().top + $(this).outerHeight();
-                var bottom_of_window = $(window).scrollTop() + $(window).height();
-        
-                /* If the object is completely or partially visible in the window, adjust opacity */
-                if (bottom_of_window > bottom_of_object) {
-                    var container = document.getElementById(domElem.substring(1));
-                    setTimeout(function(){ 
-                        container.classList.add('animation-started');
-                    }, 1000);
-                }
-        
-            });
-        }
-
-
         $(document).ready(function() {
             
             //if isMobile remove all hidden-element classes to show all divs instantly
@@ -400,8 +358,6 @@
                 rightSideFadeInOnScroll('#pointsInfoTextWrapper');
 
                 bottomFadeInOnScroll('#contactFormDivWrapper');
-
-                startStackedLayersAnimation("#animatedLayersContainer");
             });
         });
 
@@ -432,7 +388,6 @@
         }); 
 
     </script>
-    <script src="<?php echo $_ENV["app_root"]?>frontend/animations/animationStarter.js"></script>
 
 </body>
 

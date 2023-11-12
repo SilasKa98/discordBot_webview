@@ -15,6 +15,7 @@ body{
     margin-left: 2%;
 }
 
+
 #logoutBtn, #loginWithDiscord_btn{
     position: absolute;
     top: 18px;
@@ -512,6 +513,7 @@ body{
     .menuLink{
         color: white !important;
         text-decoration: underline !important; 
+        font-weight: bolder !important;
     }
 
     .menuLink:hover{
@@ -531,3 +533,36 @@ body{
     .menuLink{
         cursor: pointer;
     }
+
+
+    .moduleCard{
+        background-color: #202228 !important;
+        border: none !important;
+    }
+
+    .moduleCard .card-header{
+        border: none !important;
+    }
+
+    .moduleCard .card-body{
+        text-align: center;
+        margin: 0 auto;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .moduleCard .card-body .card-title{
+        font-size: 5vh !important;
+    }
+
+    .moduleCard .card-body .card-text{
+        font-size: 3vh !important;
+    }
+
+
+    .carousel-item{
+        margin-bottom: 5%;
+    }
+
+
+

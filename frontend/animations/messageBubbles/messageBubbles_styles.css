@@ -1,0 +1,105 @@
+
+  .sprechblase-container {
+    perspective: 800px;
+    transform-style: preserve-3d;
+    position: relative;
+    animation: stackAnimation 2s ease-in-out forwards;
+  }
+
+.sprechblase {
+  width: 200px;
+  height: 100px;
+  margin: 5px;
+  background: linear-gradient(45deg, #3b3b3b, #2e2e2e); /* Verlauf für den Glanzeffekt */
+  border-radius: 10px;
+  position: absolute;
+  transform-origin: bottom center;
+  transform: rotateY(20deg) rotateX(0deg) rotateZ(45deg); /* 3D-Effekt */
+  backface-visibility: hidden;
+  padding: 30px;
+  color: white;
+  text-align: center;
+  transition: transform 0.5s ease-in-out, top 0.5s ease-in-out;
+  /* Glas-Glanz-Effekt */
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+.sprechblase:nth-child(1) {
+    z-index: 0;
+}
+
+  .sprechblase:nth-child(2) {
+    width: 300px;
+    height: 100px;
+    margin: 5px;
+    background: linear-gradient(45deg, #c0c0c0, #808080); /* Verlauf für den Glanzeffekt */
+    border-radius: 10px;
+    position: absolute;
+    transform-origin: bottom center;
+    transform: rotateX(0deg) rotateZ(45deg); /* Hier war der Fehler */
+    backface-visibility: hidden;
+    transition: transform 0.5s ease-in-out, top 0.5s ease-in-out;
+    z-index: 1000;
+  }
+
+  .sprechblase:nth-child(1) { transform: translateY(0px) rotateX(25deg) rotateZ(-20deg); top: 0; }
+  .sprechblase:nth-child(2) { transform: translateY(0px) rotateX(45deg) rotateZ(-20deg); top: 0; }
+
+  @media only screen and (max-width: 600px) {
+    .sprechblase {
+      width: 100px;
+      height: 40px;
+    }
+    .sprechblase:nth-child(2) {
+      width: 100px;
+      height: 40px;
+    }
+  }
+
+
+  @keyframes stackAnimation {
+    0% {
+      transform: translateY(0px) rotateX(0deg) rotateZ(20deg);
+    }
+    100% {
+      transform: translateY(0px) rotateX(0deg) rotateZ(30deg);
+    }
+  }
+
+  @keyframes moveUp {
+    0% {
+      top: 0;
+    }
+    100% {
+      top: -50px;
+    }
+  }
+
+  @keyframes moveDown {
+    0% {
+      top: 0;
+    }
+    100% {
+      top: 50px;
+    }
+  }
+
+  .animation-started .sprechblase-container {
+    animation: stackAnimation 2s ease-in-out forwards;
+  }
+
+  .animation-started .sprechblase:nth-child(1) {
+    animation: moveUp 2s ease-in-out forwards;
+  }
+
+  .animation-started .sprechblase:nth-child(2) {
+    animation: moveDown 2s ease-in-out forwards;
+  }
+
+
+  /*adjusting animation index positions*/
+  #messageBubbles{
+    margin-top: 130px !important;
+    margin-left: 170px !important;
+  }

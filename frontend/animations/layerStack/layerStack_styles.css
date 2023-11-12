@@ -1,0 +1,90 @@
+
+  .animatedLayers-container {
+    perspective: 800px;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+
+  .animatedLayers {
+    width: 200px;
+    height: 255px;
+    margin: 5px;
+    background-color: black;
+    border-radius: 10px;
+    position: absolute;
+    transform-origin: bottom center;
+    transform: rotateX(90deg) rotateZ(90deg);
+    backface-visibility: hidden;
+    transition: transform 0.5s ease-in-out, top 0.5s ease-in-out;
+  }
+
+  .animatedLayers:nth-child(2) { background-color: gray; }
+  .animatedLayers:nth-child(3) { background-color: black; }
+
+  .animatedLayers:nth-child(1) { transform: translateY(0) rotateX(90deg) rotateZ(45deg); top: 0; }
+  .animatedLayers:nth-child(2) { transform: translateY(0) rotateX(90deg) rotateZ(45deg); top: 0; }
+  .animatedLayers:nth-child(3) { transform: translateY(0) rotateX(90deg) rotateZ(45deg); top: 0; }
+
+  @media only screen and (max-width: 600px) {
+    .animatedLayers {
+      width: 100px;
+      height: 150px;
+    }
+    .animatedLayers:nth-child(1) { margin-left: -50px; }
+    .animatedLayers:nth-child(3) { margin-left: 50px; }
+  }
+
+  .animate-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  @keyframes stackAnimation {
+    0% {
+      transform: translateY(-50px) rotateX(90deg) rotateZ(90deg);
+    }
+    100% {
+      transform: translateY(0) rotateX(90deg) rotateZ(90deg);
+    }
+  }
+
+  @keyframes moveUp {
+    0% {
+      top: 0;
+    }
+    100% {
+      top: -50px;
+    }
+  }
+
+  @keyframes moveDown {
+    0% {
+      top: 0;
+    }
+    100% {
+      top: 50px;
+    }
+  }
+
+  .animation-started .animatedLayers-container {
+    animation: stackAnimation 2s ease-in-out forwards;
+  }
+
+  .animation-started .animatedLayers:nth-child(1) {
+    animation: moveUp 2s ease-in-out forwards;
+  }
+
+  .animation-started .animatedLayers:nth-child(3) {
+    animation: moveDown 2s ease-in-out forwards;
+  }
+
+
+
+
+/*adjusting animation index positions*/
+#layerStack{
+  margin-top: -50px !important;
+  margin-left: 50px !important;
+}
