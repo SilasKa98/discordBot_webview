@@ -137,7 +137,7 @@
 
     <div class="card wrapperCard wrapp2 " id="index_referenzSection">
         <div class="px-4 py-5 my-5 text-center hidden-element-right" id="referenzSectionDivWrapper">
-                <h1 class="display-5 fw-bold">5 SERVERS ALREADY DECIDED TO HAVE US</h1>
+                <h1 class="display-5 fw-bold">5 SERVERS ALREADY DECIDED TO USE OUR BOT</h1>
                 <div class="col-lg-6 mx-auto" style="width: 70%;">
                 <p class="lead mb-4">
                     Join the Club and get the Bergfest Bot now!
