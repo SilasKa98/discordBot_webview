@@ -45,7 +45,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </head>
 
-<body style="background-color: #cbc8c8">
+<body style="background-color: #cbc8c8; padding-top: 0px !important;">
 
 <?php include_once "frontend/navbar.php"; ?>
 
@@ -64,10 +64,7 @@
                 <a class="nav-link menuLink" name="#loginSection">LOGIN</a>
             <?php }?>
             <a class="nav-link menuLink" name="#index_moduleSection">MODULES</a>
-            <a class="nav-link menuLink" name="#index_recationRoleSection">REACTION ROLES</a>
-            <a class="nav-link menuLink" name="#index_welcomeMsgSection">WELCOME MESSAGE</a>
-            <a class="nav-link menuLink" name="#index_faceitEloSection">FACEIT ELO</a>
-            <a class="nav-link menuLink" name="#index_pointSystemSection">POINT SYSTEM</a>
+            <a class="nav-link menuLink" name="#index_referenzSection">REFERENCES</a>
             <a class="nav-link menuLink" name="#index_contactSection">CONTACT US</a>
         </nav>
         <div id="topSection"></div>
@@ -137,89 +134,19 @@
         </div>
     </div>
 
-    <div class="card wrapperCard" id="index_recationRoleSection">
-        <div class="container col-xxl-8 px-4 py-5 infoImgWrapper hidden-element-right" id="index_inner_recationRoleSection">
-            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper" id="roleManagerWrapper">
-                    <!--<img src="/quizVerwaltung/media/insertExamplePicture.png" style="border-radius: 7px;" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">-->
-                    <img src="<?php echo $_ENV["app_root"];?>media/roleManagerExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" alt="Bootstrap Themes"  loading="lazy">
-                </div>
-                <div class="col-lg-6" id="reactionRoleInfoTextWrapper">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">CREATE SELF ASSIGNABLE SERVER ROLES</h1>
-                    <p class="lead">
-                    Our role manager lets you create specific server roles accessible to other users, allowing each member to assign themselves a role through a simple reaction. 
-                    Be ready to expect an effortlessly intuitive administration experience.
-                    </p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <a type="button" class="btn btn-primary" href="#">Read more</a>
-                    </div>
-                </div>
+
+    <div class="card wrapperCard wrapp2 " id="index_referenzSection">
+        <div class="px-4 py-5 my-5 text-center hidden-element-right" id="referenzSectionDivWrapper">
+                <h1 class="display-5 fw-bold">5 SERVERS ALREADY DECIDED TO HAVE US</h1>
+                <div class="col-lg-6 mx-auto" style="width: 70%;">
+                <p class="lead mb-4">
+                    Join the Club and get the Bergfest Bot now!
+                </p>
             </div>
         </div>
-    </div>
-
-
-    <div class="card wrapperCard wrapp2" id="index_welcomeMsgSection">
-        <div class="container col-xxl-8 px-4 py-5 infoImgWrapper hidden-element-left"  id="index_inner_welcomeMsgSection">
-            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-lg-6" id="welcomeMessageInfoTextWrapper">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">CREATE PERSONALIZED WELCOME MESSAGES</h1>
-                    <p class="lead">
-                    Use our greeting manager to  cast memorable welcomes:<br> personalize custom welcome messages for new users! 
-                    You can freely choose between personal messages or public greetings within your discord.
-                    </p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <a type="button" class="btn btn-primary" href="#">Read more</a>
-                    </div>
-                </div>
-                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper" id="greetingManagerWrapper">
-                    <img src="<?php echo $_ENV["app_root"];?>media/greetingManagerExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" width="500" height="300" alt="Bootstrap Themes" loading="lazy">
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="card wrapperCard" id="index_faceitEloSection">
-        <div class="container col-xxl-8 px-4 py-5 infoImgWrapper hidden-element-right" id="index_inner_faceitEloSection">
-            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper" id="faceitEloWrapper">
-                    <!--<img src="/quizVerwaltung/media/insertExamplePicture.png" style="border-radius: 7px;" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">-->
-                    <img src="<?php echo $_ENV["app_root"];?>media/faceitEloCurveExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" alt="Bootstrap Themes"  loading="lazy">
-                </div>
-                <div class="col-lg-6" id="faceitInfoTextWrapper">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">FACEIT ELO MODULE</h1>
-                    <p class="lead">
-                        Catering to Counter-Strike Enthusiasts: The FACEIT Elo Module allows you to analyse any player's FACEIT ELO. 
-                        Share sleek graphs in any of your channels simply by typing the command /faceit_elo.
-                    </p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <a type="button" class="btn btn-primary" href="#">Read more</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="card wrapperCard wrapp2" id="index_pointSystemSection">
-        <div class="container col-xxl-8 px-4 py-5 infoImgWrapper hidden-element-left" id="index_inner_pointSystemSection">
-            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-lg-6" id="pointsInfoTextWrapper">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">EARN AND GAMBLE POINTS</h1>
-                    <p class="lead">
-                    Encourage Loyalty: Recognize and reward dedicated members of your community with points for their activity in voice channels. 
-                    Adventurous souls may venture forth into the world of the slots to embrace a nerve wracking experience.
-                    </p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <a type="button" class="btn btn-primary" href="#">Read more</a>
-                    </div>
-                </div>
-                <div class="col-10 col-sm-8 col-lg-6 indexImgWrapper" id="pointSystemWrapper">
-                    <img src="<?php echo $_ENV["app_root"];?>media/pointSystemExample.PNG" class="d-block mx-lg-auto img-fluid exampleImg" width="500" height="300" alt="Bootstrap Themes" loading="lazy">
-                </div>
-            </div>
-        </div>
+        <a id="joinBotReferenzBtn" href="<?php echo $_ENV["app_root"];?>services/oAuth/init-oauth.php">
+            <button type="button" class="btn btn-info">Add the Bergfest Bot</button>
+        </a>
     </div>
 
 
@@ -363,19 +290,12 @@
             if(isMobile){
                 
                 document.getElementById("loginBtnWrapper").style.opacity = 1;
-                document.getElementById("manageServersWrapper").style.opacity = 1;
-                document.getElementById("roleManagerWrapper").style.opacity = 1;
-                document.getElementById("greetingManagerWrapper").style.opacity = 1;
-                document.getElementById("faceitEloWrapper").style.opacity = 1;
-                document.getElementById("pointSystemWrapper").style.opacity = 1;
+                document.getElementById("loginInfoTextWrapper").style.opacity = 1;
+
+                document.getElementById("joinBotReferenzBtn").style.opacity = 1;
+                document.getElementById("referenzSectionDivWrapper").style.opacity = 1;
                 document.getElementById("contactFormDivWrapper").style.opacity = 1;
 
-                document.getElementById("loginInfoTextWrapper").style.opacity = 1;
-                document.getElementById("modulesInfoTextWrapper").style.opacity = 1;
-                document.getElementById("reactionRoleInfoTextWrapper").style.opacity = 1;
-                document.getElementById("welcomeMessageInfoTextWrapper").style.opacity = 1;
-                document.getElementById("faceitInfoTextWrapper").style.opacity = 1;
-                document.getElementById("pointsInfoTextWrapper").style.opacity = 1;
                 
             }
             
@@ -384,20 +304,8 @@
                 bottomFadeInOnScroll('#loginBtnWrapper');
                 leftSideFadeInOnScroll('#loginInfoTextWrapper');
 
-                bottomFadeInOnScroll('#manageServersWrapper');
-                rightSideFadeInOnScroll('#modulesInfoTextWrapper');
-
-                bottomFadeInOnScroll('#roleManagerWrapper');
-                leftSideFadeInOnScroll('#reactionRoleInfoTextWrapper');
-
-                bottomFadeInOnScroll('#greetingManagerWrapper');
-                rightSideFadeInOnScroll('#welcomeMessageInfoTextWrapper');
-
-                bottomFadeInOnScroll('#faceitEloWrapper');
-                leftSideFadeInOnScroll('#faceitInfoTextWrapper');
-
-                bottomFadeInOnScroll('#pointSystemWrapper');
-                rightSideFadeInOnScroll('#pointsInfoTextWrapper');
+                bottomFadeInOnScroll('#joinBotReferenzBtn');
+                leftSideFadeInOnScroll('#referenzSectionDivWrapper');
 
                 bottomFadeInOnScroll('#contactFormDivWrapper');
 

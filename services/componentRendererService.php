@@ -18,9 +18,9 @@
             print '
             <div class="carousel-item '.$status.'">
                 <div class="card moduleCard mb-3">
-                    <div class="row g-0">
+                    <div class="row g-0 animationAndTextWrapper">
                         <div class="col-md-8">
-                            <div class="card-body" id="'.$cardBodyId.'">
+                            <div class="card-body" id="'.$cardBodyId.'" style="min-height:35vh;">
                                 <h5 class="card-title">'.$titel.'</h5>
                                 <p class="card-text">'.$msg.'</p>
                             </div>

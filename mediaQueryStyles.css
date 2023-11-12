@@ -1,5 +1,39 @@
 /*index.php*/
 
+@media only screen and (max-width: 1500px) {
+    .animationAndTextWrapper{
+        margin: 0 auto;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #animatedLevelsContainer, #animatedBubblesContainer, #animatedLayersContainer, #animatedGraphContainer{
+        margin: 0 auto;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    #animatedBubblesContainer{
+        display: flex;
+        min-height: 30vh;
+        margin-right: 139px;
+        margin-top: 21px;
+    }
+
+    #animatedLayersContainer{
+        min-height: 41vh;
+        display: flex;
+        margin-right: 189px;
+    }
+
+    .animatedGraphic{
+        margin-left: 0;
+        margin-top: 6% !important;
+        width: 100% !important;
+    }
+}
+
 @media only screen and (max-width: 1150px) {
     #recaptchaWrapper{
         flex-wrap: wrap;
@@ -17,6 +51,14 @@
         width: 100% !important;
         padding: 3% !important;
         order: 1;
+    }
+
+    #animatedLevelsContainer, #animatedBubblesContainer, #animatedLayersContainer, #animatedGraphContainer{
+        display: none !important;
+    }
+
+    #index_referenzSection, #startSection{
+        padding-bottom: 10% !important;
     }
 
     #loginBtnWrapper{
@@ -47,6 +89,10 @@
         transform:scale(0.77);
         transform-origin:0 0;
         margin-top: 9% !important;
+    }
+
+    #index_referenzSection, #startSection{
+        padding-bottom: 20% !important;
     }
 
     #contactFormDivWrapper{

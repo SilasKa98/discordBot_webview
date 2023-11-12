@@ -565,4 +565,36 @@ body{
     }
 
 
+    #index_moduleSection{
+        min-height: 63vh;
+    }
 
+    #referenzSectionDivWrapper{
+        margin-bottom: 0px !important;
+        padding-bottom: 0px !important;
+    } 
+
+    #joinBotReferenzBtn{
+        margin-bottom: 5% !important;
+        margin: 0 auto;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2%;
+    }
+
+
+    #joinBotReferenzBtn button{
+        font-weight: bold;
+        border-radius: 30px;
+        width: 27vh;
+        padding: 2vh;
+        transition: 0.2s ease-out;
+        color: black;
+    }
+
+    #joinBotReferenzBtn button:hover{
+        border-radius: 10px;
+        background-color: #0d6efd;
+        border: none;
+        color: white;
+    }
