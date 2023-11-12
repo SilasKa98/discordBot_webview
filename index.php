@@ -144,7 +144,11 @@
                 </p>
             </div>
         </div>
-        <a id="joinBotReferenzBtn" href="<?php echo $_ENV["app_root"];?>services/oAuth/init-oauth.php">
+        <?php if(!isset($_SESSION["logged_in"])){?>
+            <a id="joinBotReferenzBtn" href="<?php echo $_ENV["app_root"];?>services/oAuth/init-oauth.php">
+        <?php }else{?>
+            <a id="joinBotReferenzBtn" href="<?php echo $_ENV["app_root"];?>dashboard.php">
+        <?php }?>
             <button type="button" class="btn btn-info">Add the Bergfest Bot</button>
         </a>
     </div>
