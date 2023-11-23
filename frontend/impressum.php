@@ -22,7 +22,7 @@
     76149 Karlsruhe</p>
 
     <h2>Kontakt</h2>
-    <p>Telefon: +49 (0) 15150702233<br />
+    <p>Telefon: +49 (0) 17642908256<br />
     E-Mail: silas.kammerer@mnd.thm.de</p>
     <br>
     <p>Telefon: +49 (0) 72146716451  <br />

@@ -36,6 +36,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="discord, bot, reaction roles, welcome messages, faceit elo, discord bot, Bergfest bot, discord Manager, point system, gamble, slot, levels">
+    <meta name="description" content=" Enhance Your Server with Our Free, Customizable Discord Bot! Experience seamless customization with our user-friendly web interface. Elevate your Discord server by adding our versatile bot.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="general.css">
     <link rel="stylesheet" href="mediaQueryStyles.css">
@@ -51,7 +53,7 @@
 
     <div class="card wrapperCard wrapp2" id="startSection">
         <div class="px-4 py-5 my-5 text-center">
-            <img class="d-block mx-auto mb-4" src="<?php echo $_ENV["app_root"];?>media/bergfestBot_logo_v2.png" width=300px>
+            <img class="d-block mx-auto mb-4" alt="our discord bot logo" src="<?php echo $_ENV["app_root"];?>media/bergfestBot_logo_v2.png" width=300px>
             <h1 class="display-5 fw-bold bergfestBot_mainHeading">Bergfest Bot</h1>
             <div class="col-lg-6 mx-auto">
                 <p class="lead mb-4">
@@ -164,20 +166,20 @@
                 <form id="contactForm">
                     <input type="hidden" name="method" value="sendContactForm">
                     <div class="form-group">
-                        <label for="FormControlInput1" class="contactFormLabel">Your Name*</label>
-                        <input type="text" class="form-control" name="name" id="FormControlInputName">
+                        <label for="FormControlInput1" class="contactFormLabel" for="name">Your Name*</label>
+                        <input type="text" class="form-control bg-dark" name="name" id="FormControlInputName">
                     </div>
                     <div class="form-group">
-                        <label for="FormControlInput2" class="contactFormLabel">Your Email*</label>
-                        <input type="email" class="form-control" name="mailAdress" id="FormControlInputMail">
+                        <label for="FormControlInput2" class="contactFormLabel" for="mailAdress">Your Email*</label>
+                        <input type="email" class="form-control bg-dark" name="mailAdress" id="FormControlInputMail">
                     </div>
                     <div class="form-group">
-                        <label for="FormControlTextarea3" class="contactFormLabel">Your Message*</label>
-                        <textarea class="form-control" id="FormControlTextareaMessage" name="message" rows="4"></textarea>
+                        <label for="FormControlTextarea3" class="contactFormLabel" for="message">Your Message*</label>
+                        <textarea class="form-control bg-dark" id="FormControlTextareaMessage" name="message" rows="4"></textarea>
                     </div>
                     <div id="recaptchaWrapper">
                         <div class="g-recaptcha" style="margin-top:2%;" data-sitekey="6Lc2RwQpAAAAAJZlCV5warFuvzEuVjCwIE_UbsDv"></div>
-                        <label id="userEmailAgreeLabel">I agree to be contacted about the issue via the email address provided here
+                        <label id="userEmailAgreeLabel" for="userEmailAcceptance">I agree to be contacted about the issue via the email address provided here
                             <input type="checkbox" id="userEmailAgreeCheckbox" name="userEmailAcceptance">
                         </label>
                     </div>
@@ -281,7 +283,7 @@
                     var container = document.getElementById(domElem.substring(1));
                     setTimeout(function(){ 
                         container.classList.add('animation-started');
-                    }, 1000);
+                    }, 500);
                 }
         
             });

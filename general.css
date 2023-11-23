@@ -1,5 +1,5 @@
 body{
-    background-color: rgba(9,10,17,0.8) !important;
+    background-color: rgb(30 30 35) !important;
 }
 
 #headerName{
@@ -141,7 +141,7 @@ body{
     margin: 0 auto;
     margin-bottom: 1%;
     margin-top: 1%;
-    background-color: #202228 !important;
+    background-color: #0f0f0f !important;
     color: white;
     overflow: hidden;
 }
@@ -159,6 +159,14 @@ body{
 .contactFormLabel{
     float:left;
     margin-top: 10px;
+}
+
+#contactForm input{
+    border: none;
+}
+
+#contactForm textarea{
+    border: none;
 }
 
 #submitContactFormular{
@@ -536,7 +544,7 @@ body{
 
 
     .moduleCard{
-        background-color: #202228 !important;
+        background-color: #0f0f0f !important;
         border: none !important;
     }
 
