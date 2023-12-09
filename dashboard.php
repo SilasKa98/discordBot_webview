@@ -19,6 +19,7 @@
     include_once "services/apiRequestService.php";
     $apiRequests = new ApiRequests();
 
+
     $totalServerNumber = count($serverNames);
     $totalServersAdminCount = count(array_keys($guildOwnerStatus, 1));
 ?>
