@@ -12,6 +12,24 @@ if(!in_array($_SESSION["userData"]["discord_id"],$allowedUsers)){
     header("Location:../../dashboard.php");
     exit();
 }
+
+
+
+include_once $basePath."/services/oAuth/oAuthService.php";
+$apiRequests2 = new oAuthService();
+
+$botServerCount_url = 'https://discord.com/api/v10/users/@me/guilds';
+$botServerCount_curlOptions = [
+    CURLOPT_RETURNTRANSFER=>true,
+    CURLOPT_HTTPHEADER=>[
+        'Authorization: Bot ' . $_ENV["bot_token"]
+    ]
+];
+
+$botServerCount_result = $apiRequests2->doCurlWithUrl($botServerCount_curlOptions, $botServerCount_url);
+$serverList_botIsOn = json_decode($botServerCount_result, true);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,6 +77,14 @@ if(!in_array($_SESSION["userData"]["discord_id"],$allowedUsers)){
                 <button type="submit" class="btn btn-danger">Stop Bot</button>
             </form>
         </div>
+    </div>
+
+    <div style="height: 300px; overflow-y: scroll; width: fit-content;">
+        <?php
+            foreach($serverList_botIsOn as $guild){
+                print $guild["name"]."<br>";
+            }
+        ?>
     </div>
 </body>
 </html>
