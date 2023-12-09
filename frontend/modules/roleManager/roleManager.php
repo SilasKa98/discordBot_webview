@@ -177,7 +177,7 @@ if(isset($sel_reaction_message_id)){
                         <div class="card-footer bg-transparent border-secondary">
                             <p class="card-text">
                                 <small class="text-body-dark smallDescText">
-                                    &#9432; Description
+                                    &#9432; Determine in which Channel the Role-Selection will be displayed.
                                 </small>
                             </p>
                         </div>
@@ -228,7 +228,7 @@ if(isset($sel_reaction_message_id)){
                         <div class="card-footer bg-transparent border-secondary">
                             <p class="card-text">
                                 <small class="text-body-dark smallDescText">
-                                    &#9432; Description
+                                    &#9432; Customize your Role Selection. Add a Titel and different Roles with their Name and Emote.
                                 </small>
                             </p>
                         </div>

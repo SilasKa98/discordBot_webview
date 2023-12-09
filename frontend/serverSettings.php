@@ -190,6 +190,13 @@
                     <input type="submit" class="btn btn-success" value="Save">
                 </form>
             </div>
+            <div class="card-footer bg-transparent border-secondary">
+                <p class="card-text">
+                    <small class="text-body-dark smallDescText">
+                        &#9432; Select the Admin-Role of your Server - necessary for all Bot-features to function correctly.
+                    </small>
+                </p>
+            </div>
         </div>
 
         <div class="card displayInfoCard text-bg-dark">

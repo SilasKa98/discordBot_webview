@@ -10,7 +10,7 @@
 <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="<?php echo $_ENV["app_root"];?>index.php">
-            <img src="<?php echo $_ENV["app_root"];?>media/bergfestBot_logo_v2.png" alt="Logo" width="90" class="d-inline-block align-text-top">
+            <img src="<?php echo $_ENV["app_root"];?>media/bergfestBot_logo_v2.png" alt="Logo" alt="our bergfest bot logo" width="90" class="d-inline-block align-text-top">
             <p id="headerName">Bergfest Bot</p>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">

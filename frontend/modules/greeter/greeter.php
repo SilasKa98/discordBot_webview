@@ -98,6 +98,14 @@
                         </div>
 
                     </div>
+
+                    <div class="card-footer bg-transparent border-secondary">
+                        <p class="card-text">
+                            <small class="text-body-dark smallDescText">
+                                &#9432; A direct Message to your new users, with all information they need to get started on your server.
+                            </small>
+                        </p>
+                    </div>
                 </div>
 
                 <div class="card  text-bg-dark" id="innerCardRight">
@@ -132,6 +140,14 @@
                         </div>
 
                     </div>
+
+                    <div class="card-footer bg-transparent border-secondary">
+                        <p class="card-text">
+                            <small class="text-body-dark smallDescText">
+                                &#9432; Welcome new users to your discord with a global shoutout. Determine in which channel the messages should appear
+                            </small>
+                        </p>
+                    </div>
                 </div>
             </div>
 
@@ -142,7 +158,7 @@
                     <p class="card-text">
                         <span class="discordVariable">{#channel} </span><span class="discordVariableText">Link a channel into your text. Just replace "channel" with your channel name. eg. {#welcome}</span><br>
                         <span class="discordVariable">{server} </span><span class="discordVariableText">Shows the server name in the text.</span><br>
-                        <span class="discordVariable">{user} </span><span class="discordVariableText">Shows the user which called the command. Eg. Hello I am {user}</span><br>
+                        <span class="discordVariable">{user} </span><span class="discordVariableText">Shows the user which joined the Server. Eg. Hello {user} and welcome on our Server!</span><br>
                     </p>
                 </div>
             </div>

@@ -69,7 +69,7 @@
                     <div class="card-footer bg-transparent border-secondary">
                         <p class="card-text">
                             <small class="text-body-dark smallDescText">
-                                &#9432; Our suggested Payment per Minute amount is somewhere around 10.
+                                &#9432; Set your desired PPM here. Our suggested Payment per Minute amount is somewhere around 10.
                             </small>
                         </p>
                     </div>
