@@ -30,6 +30,21 @@
 
     include_once "services/componentRendererService.php";
     $componentRendererService = new componentRendererService();
+
+    include_once "services/oAuth/oAuthService.php";
+    $apiRequests2 = new oAuthService();
+
+    $botServerCount_url = 'https://discord.com/api/v10/users/@me/guilds';
+    $botServerCount_curlOptions = [
+        CURLOPT_RETURNTRANSFER=>true,
+        CURLOPT_HTTPHEADER=>[
+            'Authorization: Bot ' . $_ENV["bot_token"]
+        ]
+    ];
+
+    $botServerCount_result = $apiRequests2->doCurlWithUrl($botServerCount_curlOptions, $botServerCount_url);
+    $actualBotServerCount = count(json_decode($botServerCount_result));
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +68,7 @@
 
     <div class="card wrapperCard wrapp2" id="startSection">
         <div class="px-4 py-5 my-5 text-center">
-            <img class="d-block mx-auto mb-4" alt="our discord bot logo" src="<?php echo $_ENV["app_root"];?>media/bergfestBot_logo_v2.png" width=300px>
+            <img class="d-block mx-auto mb-4" alt="our discord bot logo" src="<?php echo $_ENV["app_root"];?>media/bergfestBot_logo_v2.png" width=300px >
             <h1 class="display-5 fw-bold bergfestBot_mainHeading">Bergfest Bot</h1>
             <div class="col-lg-6 mx-auto">
                 <p class="lead mb-4">
@@ -139,7 +154,7 @@
 
     <div class="card wrapperCard wrapp2 " id="index_referenzSection">
         <div class="px-4 py-5 my-5 text-center hidden-element-right" id="referenzSectionDivWrapper">
-                <h1 class="display-5 fw-bold">5 SERVERS ALREADY DECIDED TO USE OUR BOT</h1>
+                <h1 class="display-5 fw-bold"><?php echo $actualBotServerCount;?> SERVERS ALREADY DECIDED TO USE OUR BOT</h1>
                 <div class="col-lg-6 mx-auto" style="width: 70%;">
                 <p class="lead mb-4">
                     Join the Club and get the Bergfest Bot now!
@@ -167,15 +182,15 @@
                     <input type="hidden" name="method" value="sendContactForm">
                     <div class="form-group">
                         <label for="FormControlInput1" class="contactFormLabel" for="name">Your Name*</label>
-                        <input type="text" class="form-control bg-dark" name="name" id="FormControlInputName">
+                        <input type="text" class="form-control bg-dark" name="name" id="FormControlInputName"  style="color:white;">
                     </div>
                     <div class="form-group">
                         <label for="FormControlInput2" class="contactFormLabel" for="mailAdress">Your Email*</label>
-                        <input type="email" class="form-control bg-dark" name="mailAdress" id="FormControlInputMail">
+                        <input type="email" class="form-control bg-dark" name="mailAdress" id="FormControlInputMail"  style="color:white;">
                     </div>
                     <div class="form-group">
                         <label for="FormControlTextarea3" class="contactFormLabel" for="message">Your Message*</label>
-                        <textarea class="form-control bg-dark" id="FormControlTextareaMessage" name="message" rows="4"></textarea>
+                        <textarea class="form-control bg-dark" id="FormControlTextareaMessage" name="message" rows="4"  style="color:white;"></textarea>
                     </div>
                     <div id="recaptchaWrapper">
                         <div class="g-recaptcha" style="margin-top:2%;" data-sitekey="6Lc2RwQpAAAAAJZlCV5warFuvzEuVjCwIE_UbsDv"></div>
