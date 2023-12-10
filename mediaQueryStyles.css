@@ -78,6 +78,13 @@
     }
 }
 
+@media only screen and (max-width: 900px) {
+    #startSection{
+        height: inherit !important;
+    }
+}
+
+
 @media only screen and (max-width: 650px) {
     .g-recaptcha {
         margin-top: 7% !important;
