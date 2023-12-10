@@ -27,8 +27,6 @@
                 <!--<a class="nav-link" aria-current="page" href="<?php //echo $_ENV["app_root"] ;?>frontend/commands.php">Commands</a>-->
                 <a class="nav-link" href="#">Help</a>
                 <a class="nav-link" target="_blank" href="https://discord.gg/CQVPtKvSCu">Join Our Discord</a>
-                <a class="nav-link" target="_blank" href="<?php echo $_ENV["app_root"];?>frontend/impressum.php">Impressum</a>
-                <a class="nav-link" target="_blank" href="<?php echo $_ENV["app_root"];?>frontend/datenschutzerklaerung.php">Data privacy</a>
                 <?php if($_SESSION["userData"]["discord_id"] == $_ENV["admin_silas"] || $_SESSION["userData"]["discord_id"] == $_ENV["admin_thilo"]){?>
                     <a class="nav-link" target="_blank" href="<?php echo $_ENV["app_root"];?>frontend/adminSection/adminDashboard.php">Admin-Bereich</a>
                 <?php }?>
@@ -38,12 +36,12 @@
         <?php if(isset($_SESSION["logged_in"])){ ?>
             <div class="nav-item dropdown" id="navOpenDrpDwnBtn">
                 <a id="ankerWrapUserLink" href="<?php echo $_ENV["app_root"];?>dashboard.php">
-                    <span id="usernameLink">
+                    <span id="usernameLink" >
                         <?php echo $name; ?>
                     </span>
                     <img class="rounded-circle" src="<?php echo $avatar_url;?>" alt="mdo" width="40" height="40">
                 </a>      
-                <button class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                <button class="btn btn-dark dropdown-toggle" style="background: none; border: none;" data-bs-toggle="dropdown" aria-expanded="false"></button>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
                     <li>
                         <form class="navbar-form navbar-right" method="post" action="<?php echo $_ENV["app_root"];?>doTransaction.php">
