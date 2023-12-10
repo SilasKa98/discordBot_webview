@@ -165,12 +165,15 @@
         </div>
     </div>
     <?php 
+    /*
         if(!isset($_COOKIE['logged_in'])){
             include_once "frontend/cookie_alert.php";
         }
+    */
     ?>
-
+    <br><br>
     <?php
+        include_once "frontend/footer.php";
         include_once "frontend/notificationToast.php";
         if(isset($_GET["error"])){
             if($_GET["error"] == "illegalGuildId"){

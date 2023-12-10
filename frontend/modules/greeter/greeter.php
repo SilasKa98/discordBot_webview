@@ -166,6 +166,8 @@
             <button type="button" class="btn btn-success greeter_saveAllBtn" onclick="saveAll()">Save</button>
         </div>
         <?php include_once "../../notificationToast.php";?>
+        <br>
+        <?php include_once "../../../frontend/footer.php";?>
     </body>
 </html>
 <script src="<?php echo $_ENV["app_root"];?>frontend/embedPreview.js"></script>

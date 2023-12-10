@@ -280,7 +280,9 @@
             </div>
         </div>
     </div>
+    <br>
     <?php
+        include_once "../frontend/footer.php";
         include_once "notificationToast.php";
         if(isset($_GET["error"])){
             if($_GET["error"] == "tooManyRequests"){

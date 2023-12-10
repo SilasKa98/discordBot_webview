@@ -246,6 +246,8 @@ if(isset($sel_reaction_message_id)){
             </form>
         </div>
     </main>
+    <br>
+    <?php include_once "../../../frontend/footer.php";?>
     <?php include_once "../../notificationToast.php";?>
 </body>
 </html>

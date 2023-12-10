@@ -79,6 +79,7 @@
                 <button class="btn btn-success" onclick="savePointSystem()"type="button" style="width: 98%; margin-left: 1%;">Save</button>
         </div>
     </div>
+    <?php include_once "../../../frontend/footer.php";?>
     <?php include_once "../../notificationToast.php";?>
 </body>
 </html>
