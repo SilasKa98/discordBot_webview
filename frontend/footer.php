@@ -13,7 +13,7 @@
     <ul class="nav col-md-4 justify-content-end">
       <li class="nav-item"><a href="<?php echo $_ENV["app_root"];?>frontend/impressum.php" target="_blank" class="nav-link px-2 text-muted" style="color:white !important;">Impressum</a></li>
       <li class="nav-item"><a href="<?php echo $_ENV["app_root"];?>frontend/datenschutzerklaerung.php" target="_blank" class="nav-link px-2 text-muted" style="color:white !important;">Data privacy</a></li>
-      <li class="nav-item"><a href="#" target="_blank" class="nav-link px-2 text-muted" style="color:white !important;">Help</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted" style="color:white !important;">Help</a></li>
     </ul>
   </footer>
 </div>
