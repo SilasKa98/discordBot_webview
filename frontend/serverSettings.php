@@ -134,6 +134,9 @@
     $rolesIdDic = $dataHandler->inputToDictionaryFilter($roles, "id", "name");
 
 
+    include_once "../services/componentRendererService.php";
+    $componentRenderer = new ComponentRendererService();
+
     
 
 ?>
@@ -265,11 +268,10 @@
                 <h2>Recent Activities</h2>
                 <div class="activityLogBody">
                     <?php foreach($dbActivitiesSelection as $activitie){?>
-                        <div class="alert alert-success activityLogMsg" role="alert">
-                            <span class="logAuthor"><?php echo $activitie["author"]?></span>
-                            <span class="logAction"><?php echo $activitie["action"]?></span>
-                            <span class="logDate"><?php echo $activitie["date"]?></span>
-                        </div>
+                        <?php
+                            $componentRenderer->createLogMessage("success activityLogMsg", $activitie["author"], $activitie["action"], $activitie["date"]);
+                        ?>
+      
                     <?php }?>
                     <?php if(empty($dbActivitiesSelection)){?>
                         <p>There is no recent activity yet</p>

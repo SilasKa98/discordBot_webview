@@ -34,7 +34,17 @@ class ComponentRendererService{
                 </div>
             </div>
         ';      
-    }   
+    }  
+    
+    function createLogMessage($logType, $logAuthor, $logContent, $logTime){
+        print'
+            <div class="alert alert-'.$logType.'" role="alert">
+                <span class="badge rounded-pill text-bg-primary">@'.$logAuthor.'</span>
+                <span class="badge text-bg-secondary" style="font-size: 11pt;">'.$logContent.'</span>
+                <span class="badge rounded-pill text-bg-warning" style="float:right; margin-right:1px;">'.$logTime.'</span>
+            </div>
+        ';
+    }
 }
 
 ?>
